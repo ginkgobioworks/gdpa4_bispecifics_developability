@@ -1,0 +1,37 @@
+section: s00_bsab_design
+purpose: >
+  Reproduces design-space coverage figures from the December 2025 bsAb
+  selection notebook.  Shows mAb and bsAb coverage for both selection
+  strategies (bottom-up mAb FPS, top-down bsAb FPS), MW chain differences,
+  and parent usage distribution.
+
+consumes:
+  - data/raw/bsab_design/bsabs_dec_2025/data/GDPa1_v1.2_20250814.csv
+  - data/raw/bsab_design/bsabs_dec_2025/data/p739_moe_properties.csv
+  - data/raw/bsab_design/bsabs_dec_2025/data/exported_bsabs.csv
+
+produces:
+  - reports/figures/s00_mab_coverage_assays.png
+  - reports/figures/s00_mab_coverage_computed.png
+  - reports/figures/s00_mab_coverage_moe.png
+  - reports/figures/s00_mab_coverage_charge.png
+  - reports/figures/s00_arm_charge_scatter.png
+  - reports/figures/s00_strat1_avg_assays.png
+  - reports/figures/s00_strat1_avg_computed.png
+  - reports/figures/s00_strat1_avg_moe.png
+  - reports/figures/s00_strat1_diff_assays.png
+  - reports/figures/s00_strat1_diff_computed.png
+  - reports/figures/s00_strat1_diff_moe.png
+  - reports/figures/s00_strat2_avg_assays.png
+  - reports/figures/s00_strat2_avg_computed.png
+  - reports/figures/s00_strat2_avg_moe.png
+  - reports/figures/s00_strat2_diff_assays.png
+  - reports/figures/s00_strat2_diff_computed.png
+  - reports/figures/s00_strat2_diff_moe.png
+  - reports/figures/s00_mw_differences.png
+  - reports/figures/s00_arm_distribution.png
+  - reports/figures/s00_coverage_consolidated.png
+  - reports/figures/s00_umap_design_space.png
+  - reports/figures/s00_umap_selected.png
+
+decisions: []

@@ -1,0 +1,120 @@
+pair,abs_sum_charge,category
+aducanumab__brazikumab,11.59131241,Enhancer
+aducanumab__racotumomab,10.532966680000001,Enhancer
+bococizumab__zanolimumab,14.5245939,Enhancer
+brazikumab__ixekizumab,6.71166431,Enhancer
+cixutumumab__prolgolimab,8.189456,Enhancer
+emapalumab__emibetuzumab,6.510008340000001,Enhancer
+erenumab__lenzilumab,17.9795336,Enhancer
+galcanezumab__ozanezumab,11.3324871,Enhancer
+galcanezumab__robatumumab,12.6710067,Enhancer
+galcanezumab__zolbetuximab,10.6167713,Enhancer
+ixekizumab__satralizumab,0.9122237999999996,Enhancer
+landogrozumab__tisotumab,8.913727,Enhancer
+mitazalimab__sintilimab,6.5229265000000005,Enhancer
+abrilumab__aducanumab,9.5474165,Not classified
+abrilumab__bemarituzumab,3.8137315999999997,Not classified
+abrilumab__dostarlimab,0.8408397999999999,Not classified
+abrilumab__emapalumab,1.66708146,Not classified
+abrilumab__fresolimumab,0.50968273,Not classified
+abrilumab__galcanezumab,4.46246,Not classified
+abrilumab__sintilimab,1.5668329,Not classified
+abrilumab__tisotumab,2.6169807,Not classified
+abrilumab__vatelizumab,1.9548420000000002,Not classified
+aducanumab__landogrozumab,15.8441628,Not classified
+anetumab__rovalpituzumab,2.51507582,Not classified
+anetumab__teprotumumab,9.4557003,Not classified
+atezolizumab__landogrozumab,8.238517,Not classified
+bemarituzumab__mepolizumab,8.850053299999999,Not classified
+bleselumab__erenumab,14.3002662,Not classified
+brazikumab__brontictuzumab,6.4531752099999995,Not classified
+brazikumab__erenumab,8.44981201,Not classified
+brazikumab__fresolimumab,1.53421318,Not classified
+brazikumab__mavrilimumab,1.6478780900000003,Not classified
+brazikumab__olaratumab,4.46100751,Not classified
+brazikumab__sintilimab,3.61072881,Not classified
+brazikumab__teplizumab,8.94601641,Not classified
+brazikumab__vatelizumab,3.99873791,Not classified
+brazikumab__zolbetuximab,5.80523221,Not classified
+brentuximab__erenumab,5.6167696,Not classified
+brontictuzumab__dostarlimab,7.643094099999999,Not classified
+brontictuzumab__gantenerumab,13.3842645,Not classified
+brontictuzumab__teplizumab,13.7043748,Not classified
+brontictuzumab__tisotumab,9.419235,Not classified
+certolizumab__cixutumumab,5.5243931,Not classified
+cixutumumab__galcanezumab,8.2781654,Not classified
+cixutumumab__gantenerumab,10.3977156,Not classified
+cixutumumab__landogrozumab,7.7194766999999995,Not classified
+cixutumumab__ozanezumab,8.2927575,Not classified
+cixutumumab__sintilimab,5.3825383,Not classified
+cixutumumab__zolbetuximab,7.5770417000000005,Not classified
+coltuximab__olaratumab,5.5502862,Not classified
+dostarlimab__eptinezumab,3.9008880999999995,Not classified
+dostarlimab__erenumab,9.6397309,Not classified
+dostarlimab__galcanezumab,7.696274799999999,Not classified
+dostarlimab__ligelizumab,0.8599419999999998,Not classified
+dostarlimab__mavrilimumab,0.45795920000000034,Not classified
+dostarlimab__olaratumab,5.6509263999999995,Not classified
+dostarlimab__ozanezumab,7.710866899999999,Not classified
+dostarlimab__sintilimab,4.8006477,Not classified
+dostarlimab__tisotumab,5.8507955,Not classified
+dostarlimab__zolbetuximab,6.995151099999999,Not classified
+efalizumab__teplizumab,14.2305727,Not classified
+emapalumab__erenumab,7.13180964,Not classified
+emapalumab__ligelizumab,1.64797926,Not classified
+emapalumab__racotumomab,0.68153128,Not classified
+emapalumab__vatelizumab,2.68073554,Not classified
+emapalumab__zolbetuximab,4.4872298399999995,Not classified
+emibetuzumab__olaratumab,10.5942014,Not classified
+enokizumab__ranibizumab,1.87151478,Not classified
+eptinezumab__galcanezumab,7.5225083,Not classified
+eptinezumab__prolgolimab,7.4337989,Not classified
+erenumab__ligelizumab,6.4250183,Not classified
+erenumab__ozanezumab,13.2759432,Not classified
+erenumab__tildrakizumab,11.288908,Not classified
+erenumab__tisotumab,11.4158718,Not classified
+erenumab__zolbetuximab,12.560227399999999,Not classified
+figitumumab__tremelimumab,11.5221443,Not classified
+galcanezumab__ligelizumab,4.4815622,Not classified
+galcanezumab__mavrilimumab,3.163661,Not classified
+galcanezumab__racotumomab,5.44801018,Not classified
+galcanezumab__rovalpituzumab,6.41897562,Not classified
+galcanezumab__tisotumab,9.472415699999999,Not classified
+ganitumab__ozanezumab,9.1637673,Not classified
+gantenerumab__landogrozumab,12.8787565,Not classified
+gantenerumab__oleclumab,11.6414495,Not classified
+gantenerumab__teplizumab,15.877105700000001,Not classified
+itolizumab__mavrilimumab,2.5860266,Not classified
+landogrozumab__ligelizumab,3.9228734999999997,Not classified
+landogrozumab__olaratumab,8.7138579,Not classified
+landogrozumab__ustekinumab,10.942795199999999,Not classified
+landogrozumab__vatelizumab,8.2515883,Not classified
+ligelizumab__mavrilimumab,3.6726718000000003,Not classified
+ligelizumab__ozanezumab,4.4961543,Not classified
+ligelizumab__ustekinumab,4.6651511,Not classified
+ligelizumab__zolbetuximab,3.7804385,Not classified
+mavrilimumab__olaratumab,1.1183125999999999,Not classified
+mavrilimumab__polatuzumab,5.5759144,Not classified
+mavrilimumab__sintilimab,0.2680338999999998,Not classified
+mavrilimumab__zolbetuximab,2.4625372999999997,Not classified
+mitazalimab__teplizumab,11.858214100000001,Not classified
+monalizumab__plozalizumab,8.9760878,Not classified
+olaratumab__ozanezumab,9.2871387,Not classified
+olaratumab__panitumumab,3.7482720400000002,Not classified
+olaratumab__teplizumab,11.7122071,Not classified
+olaratumab__tisotumab,7.4270673,Not classified
+olaratumab__vatelizumab,6.7649286,Not classified
+ozanezumab__secukinumab,7.7288403,Not classified
+ozanezumab__sintilimab,8.43686,Not classified
+ozanezumab__teplizumab,13.7721476,Not classified
+ozanezumab__vatelizumab,8.8248691,Not classified
+plozalizumab__racotumomab,5.76184578,Not classified
+racotumomab__satralizumab,5.1629694200000005,Not classified
+racotumomab__zanolimumab,4.588855479999999,Not classified
+robatumumab__vatelizumab,10.1633887,Not classified
+rovalpituzumab__veltuzumab,4.34640072,Not classified
+sintilimab__teplizumab,10.8619284,Not classified
+sintilimab__zolbetuximab,7.7211441999999995,Not classified
+teplizumab__tezepelumab,9.1070823,Not classified
+teplizumab__zolbetuximab,13.0564318,Not classified
+tisotumab__zolbetuximab,8.771291999999999,Not classified

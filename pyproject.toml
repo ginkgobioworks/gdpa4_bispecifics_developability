@@ -1,0 +1,49 @@
+[project]
+name = "prophet_ab"
+version = "0.1.0"
+description = "GDPa4 bispecific (N3) vs monospecific (N4) developability figures"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.2",
+    "pyarrow>=16",
+    "openpyxl>=3.1",
+    "pyyaml>=6",
+    "numpy>=2",
+]
+
+[project.optional-dependencies]
+modeling = [
+    "scikit-learn>=1.5",
+    "scipy>=1.13",
+    "xgboost>=2",
+    "joblib>=1.3",
+]
+analysis = [
+    "prophet_ab[modeling]",
+    "marimo>=0.9",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "datapoints-figures",
+    "networkx>=3",
+    "biopython>=1.83",
+]
+test = [
+    "prophet_ab[analysis]",
+    "pytest>=8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prophet_ab"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/prophet_ab" = "prophet_ab"
+
+[tool.uv.sources]
+datapoints-figures = { path = "datapoints_figures", editable = true }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,9 @@
+section: s09_multi_reactivity
+purpose: >
+  HIC vs HAC scatters colored by reactivity readouts.
+consumes:
+  - data/processed/03_aggregated/n3n4_per_antibody.parquet
+produces:
+  - reports/figures/s09_reactivity_vs_chromatography_n4.png
+  - reports/figures/s09_reactivity_vs_chromatography_n3.png
+  - reports/figures/s09_polyreactivity_vs_chromatography.png

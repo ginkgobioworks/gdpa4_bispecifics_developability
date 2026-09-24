@@ -1,0 +1,24 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+*.egg-info/
+build/
+dist/
+
+# Regenerated assay tables and feature matrices. The four modeling caches
+# listed below are committed so default `make all` does not re-fit models.
+data/processed/**
+!data/processed/05_modeling/
+!data/processed/05_modeling/cv_metrics.parquet
+!data/processed/05_modeling/cv_metrics_loo.parquet
+!data/processed/05_modeling/cv_oof_predictions_loo.parquet
+!data/processed/05_modeling/feature_importance_long.parquet
+
+reports/figures/*.png
+reports/figures/main/
+reports/tables/
+reports/figures/figure_data_supplement/extracted/
+reports/figures/figure_data_supplement/*.xlsx

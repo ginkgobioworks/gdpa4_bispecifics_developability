@@ -1,0 +1,8 @@
+panel,n,pearson_r,p,this_value_col,this_condition,gdpa1_col
+HAC RT,23,0.9967721583058745,1.7138454037276614e-24,hachplc_retentiontime,default,hac_rt
+SMAC RT,47,0.995326665843559,2.4648337213702545e-47,smachplc_retentiontime,default,smac_rt
+HIC RT (norm),47,0.9916825772444636,1.0199838995417181e-41,hihplc_normretentiontime,default,hic_rt
+PR Score @ Ovalbumin,48,0.93852574889585,7.019880724295009e-23,pr_score,Ovalbumin,polyreactivity_prscore_ova
+AC-SINS ΔLmax @ His/Arg pH 6,49,0.8859700277290669,2.683983678953436e-17,acsins_delta_Lmax,"His/Arg, pH 6",acsins_dLmax_ph6.0
+AC-SINS ΔLmax @ PBS,49,0.8608999966580473,2.1491319210535694e-15,acsins_delta_Lmax,1X PBS,acsins_dLmax_ph7.4
+PR Score @ CHO,48,0.8585824680252176,6.081424095619532e-15,pr_score,CHO,polyreactivity_prscore_cho

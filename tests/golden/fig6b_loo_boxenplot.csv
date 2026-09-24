@@ -1,0 +1,1009 @@
+model,config,config_display,label,spearman_rho
+ELASTICNET,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8418542187287463
+HGBM,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8072601920232031
+LASSO,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8385282648258989
+PLS,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.7848921254975715
+RF,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8249056210090877
+RIDGE,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8006801412462734
+XGB,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8158302425559372
+ELASTICNET,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.33310498860099086
+LASSO,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.2215330199782211
+RIDGE,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.3061366057644101
+ELASTICNET,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8406575792293093
+HGBM,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8100860796646437
+LASSO,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8375222664231858
+PLS,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.7506529845259301
+RF,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8080901874530116
+RIDGE,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.7534744727574462
+XGB,all_experimental,All Assays,label__acsins_delta_Lmax__1X PBS,0.8176486653246897
+ELASTICNET,arm_all_experimental,Arm All Assays,label__acsins_delta_Lmax__1X PBS,0.7686501458170428
+HGBM,arm_all_experimental,Arm All Assays,label__acsins_delta_Lmax__1X PBS,0.8051280253442064
+LASSO,arm_all_experimental,Arm All Assays,label__acsins_delta_Lmax__1X PBS,0.7865906635310256
+PLS,arm_all_experimental,Arm All Assays,label__acsins_delta_Lmax__1X PBS,0.7118590366532858
+RF,arm_all_experimental,Arm All Assays,label__acsins_delta_Lmax__1X PBS,0.7781556579816689
+RIDGE,arm_all_experimental,Arm All Assays,label__acsins_delta_Lmax__1X PBS,0.7197998494227164
+XGB,arm_all_experimental,Arm All Assays,label__acsins_delta_Lmax__1X PBS,0.7966314290032863
+ELASTICNET,arm_corresponding,Arm Same Assay,label__acsins_delta_Lmax__1X PBS,0.8652610687114035
+HGBM,arm_corresponding,Arm Same Assay,label__acsins_delta_Lmax__1X PBS,0.8341859252673915
+LASSO,arm_corresponding,Arm Same Assay,label__acsins_delta_Lmax__1X PBS,0.8650411014375616
+PLS,arm_corresponding,Arm Same Assay,label__acsins_delta_Lmax__1X PBS,0.8653241259965715
+RF,arm_corresponding,Arm Same Assay,label__acsins_delta_Lmax__1X PBS,0.8296080397428768
+RIDGE,arm_corresponding,Arm Same Assay,label__acsins_delta_Lmax__1X PBS,0.8652082765656814
+XGB,arm_corresponding,Arm Same Assay,label__acsins_delta_Lmax__1X PBS,0.8094858861268496
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__acsins_delta_Lmax__1X PBS,0.27638427779873564
+HGBM,arm_in_silico_only,Arm In Silico,label__acsins_delta_Lmax__1X PBS,0.32140861287903716
+LASSO,arm_in_silico_only,Arm In Silico,label__acsins_delta_Lmax__1X PBS,0.15121650240255194
+PLS,arm_in_silico_only,Arm In Silico,label__acsins_delta_Lmax__1X PBS,0.3062103518370463
+RF,arm_in_silico_only,Arm In Silico,label__acsins_delta_Lmax__1X PBS,0.25734685741595636
+RIDGE,arm_in_silico_only,Arm In Silico,label__acsins_delta_Lmax__1X PBS,0.2929478013870497
+XGB,arm_in_silico_only,Arm In Silico,label__acsins_delta_Lmax__1X PBS,0.3830785926030706
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.8369616658980018
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.8081210445247065
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.8470860188730988
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.757113603978241
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.671668112263297
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.7777391869149065
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.8000071909599307
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.8578776054234664
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.813514638128763
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.8549549757190388
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.7074464963719899
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.5796104091397909
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.7347326834820171
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.8044534595318447
+ELASTICNET,compositional_baseline,Parent Mean,label__acsins_delta_Lmax__1X PBS,0.8685014446408458
+HGBM,compositional_baseline,Parent Mean,label__acsins_delta_Lmax__1X PBS,0.8353744997996092
+LASSO,compositional_baseline,Parent Mean,label__acsins_delta_Lmax__1X PBS,0.8683357335336934
+PLS,compositional_baseline,Parent Mean,label__acsins_delta_Lmax__1X PBS,0.8683005382542982
+RF,compositional_baseline,Parent Mean,label__acsins_delta_Lmax__1X PBS,0.8545870588319167
+RIDGE,compositional_baseline,Parent Mean,label__acsins_delta_Lmax__1X PBS,0.8683005382542982
+XGB,compositional_baseline,Parent Mean,label__acsins_delta_Lmax__1X PBS,0.8560467151448653
+ELASTICNET,corresponding_experimental,Same Assay,label__acsins_delta_Lmax__1X PBS,0.8430244617686372
+HGBM,corresponding_experimental,Same Assay,label__acsins_delta_Lmax__1X PBS,0.8498332818616358
+LASSO,corresponding_experimental,Same Assay,label__acsins_delta_Lmax__1X PBS,0.850264424034227
+PLS,corresponding_experimental,Same Assay,label__acsins_delta_Lmax__1X PBS,0.24224397543232826
+RF,corresponding_experimental,Same Assay,label__acsins_delta_Lmax__1X PBS,0.8525189323305677
+RIDGE,corresponding_experimental,Same Assay,label__acsins_delta_Lmax__1X PBS,0.846472132679393
+XGB,corresponding_experimental,Same Assay,label__acsins_delta_Lmax__1X PBS,0.8552562878284479
+ELASTICNET,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.33310498860099086
+HGBM,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.42549113054344595
+LASSO,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.2215330199782211
+PLS,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.3488871384697936
+RF,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.2823496355203981
+RIDGE,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.3061366057644101
+XGB,in_silico_only,In Silico,label__acsins_delta_Lmax__1X PBS,0.43847525570032936
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.8277350458113674
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.8040486227783902
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.8674705162485611
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.7332093241756783
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.7593430583933969
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.740818836874918
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__acsins_delta_Lmax__1X PBS,0.821424825509801
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.8792433372062592
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.8281309927045635
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.8932510584055533
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.7026304922611388
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.7463228849042272
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.7209730987059431
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__acsins_delta_Lmax__1X PBS,0.8200375449136398
+ELASTICNET,all_experimental,All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7511846684201647
+HGBM,all_experimental,All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7106424715010009
+LASSO,all_experimental,All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7608045457686257
+PLS,all_experimental,All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6352357845622664
+RF,all_experimental,All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.762699487945547
+RIDGE,all_experimental,All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7414601027278335
+XGB,all_experimental,All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.752372226820944
+ELASTICNET,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7455691023062747
+HGBM,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7532750273372418
+LASSO,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7361603821241218
+PLS,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7182164216932772
+RF,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7049081206845852
+RIDGE,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7411019230960071
+XGB,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7555535995232188
+ELASTICNET,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6825256983126586
+HGBM,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6404510295296428
+LASSO,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6961677882066153
+PLS,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.692825966905254
+RF,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7058209894471955
+RIDGE,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6930664210077013
+XGB,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6838539209737968
+ELASTICNET,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.10837955331845456
+HGBM,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.19419061936454055
+LASSO,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.1686252210281025
+PLS,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.14665139219939594
+RF,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.11150118566353269
+RIDGE,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.06027992979010806
+XGB,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.1607530223611381
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7476203079927176
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6824021086911491
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7385452767739095
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.72779035062689
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.5926659492348014
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6136981683067978
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6661887508251026
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6646757003785637
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6600645769095984
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6383780657526121
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6118743291198888
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.4796451702038801
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.5822299904792145
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6508734088457044
+ELASTICNET,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6914789745313625
+HGBM,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6982228973663089
+LASSO,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7006637544058291
+PLS,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/Arg, pH 6",0.692051489750608
+RF,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7050698408028232
+RIDGE,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6927859449890115
+XGB,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7040661305659165
+ELASTICNET,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6887897887586781
+HGBM,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7005116289332867
+LASSO,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6832282123431509
+RF,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7199436670902998
+RIDGE,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6900542295143259
+XGB,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6948469997782951
+ELASTICNET,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.16294740723419116
+HGBM,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.10882844071934199
+LASSO,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.19987622053445517
+PLS,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.13609811854219372
+RF,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.166857887237589
+RIDGE,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.10265182843099167
+XGB,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/Arg, pH 6",0.17300239551186314
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7218032304108034
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6620932520311287
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6917200533464363
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.729162493833814
+RF,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7187818677310938
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6854518387571993
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7238201167856805
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6650065323503955
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.7063208058056032
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6492656583962655
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6713925213264866
+RF,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6573198277348288
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6276148002795799
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/Arg, pH 6",0.6468414689335179
+ELASTICNET,all_experimental,All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8099128479374558
+HGBM,all_experimental,All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8235542815780332
+LASSO,all_experimental,All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8173140512956414
+PLS,all_experimental,All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7838598498615923
+RF,all_experimental,All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8502283363519325
+RIDGE,all_experimental,All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7815349719598131
+XGB,all_experimental,All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8257633553472521
+ELASTICNET,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7785304127410797
+HGBM,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7798789970854481
+LASSO,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7625951296893103
+PLS,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7264266839143718
+RF,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7779220839335658
+RIDGE,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7488674205751699
+XGB,arm_all_experimental,Arm All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7899200870407991
+ELASTICNET,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7839572556535778
+HGBM,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7456445427863382
+LASSO,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7820355187401169
+PLS,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7839294043939623
+RF,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.776204508884343
+RIDGE,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7836831406247317
+XGB,arm_corresponding,Arm Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7196990634442694
+ELASTICNET,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.42275733500389784
+HGBM,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.2603119589242397
+LASSO,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.6485849328167196
+PLS,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.20588338795604472
+RF,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.4050531712412125
+RIDGE,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.21080278910789255
+XGB,arm_in_silico_only,Arm In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.41841734892339266
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7215453949287779
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7482752161456865
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.715273011874917
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.6670318045127857
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.470076924427988
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.654034089967662
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7428090519933502
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7203639177749073
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.6766536606393438
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7390462085020528
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.4128163263366196
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.2157603024259943
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.5969259405413091
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.6856305416446824
+ELASTICNET,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7861187633840648
+HGBM,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7372215678168238
+LASSO,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7856775349802594
+PLS,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7864910956583724
+RF,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7435025067861107
+RIDGE,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7863430422737069
+XGB,compositional_baseline,Parent Mean,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.6965435339111687
+ELASTICNET,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7869367216874651
+HGBM,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.78925280433867
+LASSO,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.788311712527231
+RF,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7882569426448371
+RIDGE,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7872372260820835
+XGB,corresponding_experimental,Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7471528715901865
+ELASTICNET,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.15416974850243306
+HGBM,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.047338237402964875
+LASSO,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.13768451717619892
+PLS,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.096898008513462
+RF,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.364532881587011
+RIDGE,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.1761226939356256
+XGB,in_silico_only,In Silico,"label__acsins_delta_Lmax__His/NaCl, pH 6",-0.17356327601853463
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8104464264722901
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8370432642086582
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8017098109019225
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7722926294814293
+RF,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8011936717737497
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7708238226355386
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.8420184442834614
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7426233175444757
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7826270489061091
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7361470813716763
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.6419206302201262
+RF,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.6702562308570931
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.6728872416167736
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,"label__acsins_delta_Lmax__His/NaCl, pH 6",0.7485879633088761
+ELASTICNET,all_experimental,All Assays,label__bvp_score_norm__default,0.5918972034166807
+HGBM,all_experimental,All Assays,label__bvp_score_norm__default,0.6263618291054374
+LASSO,all_experimental,All Assays,label__bvp_score_norm__default,0.5954948767991447
+PLS,all_experimental,All Assays,label__bvp_score_norm__default,0.5537967716475621
+RF,all_experimental,All Assays,label__bvp_score_norm__default,0.7132215247335859
+RIDGE,all_experimental,All Assays,label__bvp_score_norm__default,0.5546679571303113
+XGB,all_experimental,All Assays,label__bvp_score_norm__default,0.6899231699326783
+ELASTICNET,arm_all_experimental,Arm All Assays,label__bvp_score_norm__default,0.7253240896989404
+HGBM,arm_all_experimental,Arm All Assays,label__bvp_score_norm__default,0.668164054774763
+LASSO,arm_all_experimental,Arm All Assays,label__bvp_score_norm__default,0.7598175176607027
+PLS,arm_all_experimental,Arm All Assays,label__bvp_score_norm__default,0.6731138961528382
+RF,arm_all_experimental,Arm All Assays,label__bvp_score_norm__default,0.6669262277753275
+RIDGE,arm_all_experimental,Arm All Assays,label__bvp_score_norm__default,0.6944942776667873
+XGB,arm_all_experimental,Arm All Assays,label__bvp_score_norm__default,0.7174996737724127
+ELASTICNET,arm_corresponding,Arm Same Assay,label__bvp_score_norm__default,0.6939374704681318
+HGBM,arm_corresponding,Arm Same Assay,label__bvp_score_norm__default,0.7321770123280239
+LASSO,arm_corresponding,Arm Same Assay,label__bvp_score_norm__default,0.6941486638549517
+PLS,arm_corresponding,Arm Same Assay,label__bvp_score_norm__default,0.6954994215581543
+RF,arm_corresponding,Arm Same Assay,label__bvp_score_norm__default,0.783267873230749
+RIDGE,arm_corresponding,Arm Same Assay,label__bvp_score_norm__default,0.6944009226225422
+XGB,arm_corresponding,Arm Same Assay,label__bvp_score_norm__default,0.6379448237874901
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__bvp_score_norm__default,0.3503211736566368
+HGBM,arm_in_silico_only,Arm In Silico,label__bvp_score_norm__default,0.3406297508932826
+LASSO,arm_in_silico_only,Arm In Silico,label__bvp_score_norm__default,0.19711514994212428
+PLS,arm_in_silico_only,Arm In Silico,label__bvp_score_norm__default,0.351550200938067
+RF,arm_in_silico_only,Arm In Silico,label__bvp_score_norm__default,0.29795258518643614
+RIDGE,arm_in_silico_only,Arm In Silico,label__bvp_score_norm__default,0.36913937061132757
+XGB,arm_in_silico_only,Arm In Silico,label__bvp_score_norm__default,0.3633154239113761
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__bvp_score_norm__default,0.5428678033342562
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__bvp_score_norm__default,0.5756232869899388
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__bvp_score_norm__default,0.5897761667820647
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__bvp_score_norm__default,0.5177548747663214
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__bvp_score_norm__default,0.539377248525421
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__bvp_score_norm__default,0.5253900967557316
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__bvp_score_norm__default,0.6836310257890386
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__bvp_score_norm__default,0.5785051946367292
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__bvp_score_norm__default,0.5910594589911952
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__bvp_score_norm__default,0.5679235337351555
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__bvp_score_norm__default,0.5517188530280882
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__bvp_score_norm__default,0.5010119446412532
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__bvp_score_norm__default,0.5626569025088836
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__bvp_score_norm__default,0.6553765978931522
+ELASTICNET,compositional_baseline,Parent Mean,label__bvp_score_norm__default,0.6938806789097827
+HGBM,compositional_baseline,Parent Mean,label__bvp_score_norm__default,0.7222256767535579
+LASSO,compositional_baseline,Parent Mean,label__bvp_score_norm__default,0.693930544782021
+PLS,compositional_baseline,Parent Mean,label__bvp_score_norm__default,0.6941344082008776
+RF,compositional_baseline,Parent Mean,label__bvp_score_norm__default,0.7386976672444922
+RIDGE,compositional_baseline,Parent Mean,label__bvp_score_norm__default,0.6934274861297344
+XGB,compositional_baseline,Parent Mean,label__bvp_score_norm__default,0.6886731329828921
+ELASTICNET,corresponding_experimental,Same Assay,label__bvp_score_norm__default,0.6924316353282689
+HGBM,corresponding_experimental,Same Assay,label__bvp_score_norm__default,0.7502848469845403
+LASSO,corresponding_experimental,Same Assay,label__bvp_score_norm__default,0.7014206921208787
+PLS,corresponding_experimental,Same Assay,label__bvp_score_norm__default,0.055124172385488814
+RF,corresponding_experimental,Same Assay,label__bvp_score_norm__default,0.7720947339764234
+RIDGE,corresponding_experimental,Same Assay,label__bvp_score_norm__default,0.6904062009294119
+XGB,corresponding_experimental,Same Assay,label__bvp_score_norm__default,0.7549194398161029
+ELASTICNET,in_silico_only,In Silico,label__bvp_score_norm__default,0.33979753768559906
+HGBM,in_silico_only,In Silico,label__bvp_score_norm__default,0.45858235828043664
+LASSO,in_silico_only,In Silico,label__bvp_score_norm__default,0.3172743130078581
+PLS,in_silico_only,In Silico,label__bvp_score_norm__default,0.25823169688154307
+RF,in_silico_only,In Silico,label__bvp_score_norm__default,0.47049895857472307
+RIDGE,in_silico_only,In Silico,label__bvp_score_norm__default,0.27697685118291754
+XGB,in_silico_only,In Silico,label__bvp_score_norm__default,0.4132557802596262
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__bvp_score_norm__default,0.5464254278154121
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__bvp_score_norm__default,0.6363129966146172
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__bvp_score_norm__default,0.4693533787944257
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__bvp_score_norm__default,0.4475312091011191
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__bvp_score_norm__default,0.6449354851698997
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__bvp_score_norm__default,0.5061939648906799
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__bvp_score_norm__default,0.6656693074272539
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__bvp_score_norm__default,0.5364199945438389
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__bvp_score_norm__default,0.6673794122637614
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__bvp_score_norm__default,0.5080434007387382
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__bvp_score_norm__default,0.41419883121149104
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__bvp_score_norm__default,0.6240158494572486
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__bvp_score_norm__default,0.47706791690765854
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__bvp_score_norm__default,0.687632274774338
+ELASTICNET,all_experimental,All Assays,label__hachplc_retentiontime__default,0.8019004605971723
+HGBM,all_experimental,All Assays,label__hachplc_retentiontime__default,0.7253737050166458
+LASSO,all_experimental,All Assays,label__hachplc_retentiontime__default,0.8168691695793852
+PLS,all_experimental,All Assays,label__hachplc_retentiontime__default,0.6402624285283324
+RF,all_experimental,All Assays,label__hachplc_retentiontime__default,0.7831294149434135
+RIDGE,all_experimental,All Assays,label__hachplc_retentiontime__default,0.72529166863937
+XGB,all_experimental,All Assays,label__hachplc_retentiontime__default,0.7861963540900944
+ELASTICNET,arm_all_experimental,Arm All Assays,label__hachplc_retentiontime__default,0.6262121237849463
+HGBM,arm_all_experimental,Arm All Assays,label__hachplc_retentiontime__default,0.7809391409565486
+LASSO,arm_all_experimental,Arm All Assays,label__hachplc_retentiontime__default,0.589908655383035
+PLS,arm_all_experimental,Arm All Assays,label__hachplc_retentiontime__default,0.6181448491303854
+RF,arm_all_experimental,Arm All Assays,label__hachplc_retentiontime__default,0.7710436551581906
+RIDGE,arm_all_experimental,Arm All Assays,label__hachplc_retentiontime__default,0.625816597335567
+XGB,arm_all_experimental,Arm All Assays,label__hachplc_retentiontime__default,0.8028425167755049
+ELASTICNET,arm_corresponding,Arm Same Assay,label__hachplc_retentiontime__default,0.6201415252433629
+HGBM,arm_corresponding,Arm Same Assay,label__hachplc_retentiontime__default,0.8185616304124744
+LASSO,arm_corresponding,Arm Same Assay,label__hachplc_retentiontime__default,0.6195540952203958
+PLS,arm_corresponding,Arm Same Assay,label__hachplc_retentiontime__default,0.6264567642184511
+RF,arm_corresponding,Arm Same Assay,label__hachplc_retentiontime__default,0.8560443810529148
+RIDGE,arm_corresponding,Arm Same Assay,label__hachplc_retentiontime__default,0.6254415796650444
+XGB,arm_corresponding,Arm Same Assay,label__hachplc_retentiontime__default,0.7259214118478983
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__hachplc_retentiontime__default,0.72624808739683
+HGBM,arm_in_silico_only,Arm In Silico,label__hachplc_retentiontime__default,0.665073329892843
+LASSO,arm_in_silico_only,Arm In Silico,label__hachplc_retentiontime__default,0.7246117798266204
+PLS,arm_in_silico_only,Arm In Silico,label__hachplc_retentiontime__default,0.6205253323905382
+RF,arm_in_silico_only,Arm In Silico,label__hachplc_retentiontime__default,0.7130521531153186
+RIDGE,arm_in_silico_only,Arm In Silico,label__hachplc_retentiontime__default,0.6600311001196456
+XGB,arm_in_silico_only,Arm In Silico,label__hachplc_retentiontime__default,0.6658101810189087
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hachplc_retentiontime__default,0.6984249990521647
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hachplc_retentiontime__default,0.7324915456459199
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hachplc_retentiontime__default,0.6715526390987849
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hachplc_retentiontime__default,0.6863233546139358
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hachplc_retentiontime__default,0.7836301857251028
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hachplc_retentiontime__default,0.7162969349130037
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hachplc_retentiontime__default,0.775223051306631
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hachplc_retentiontime__default,0.6897395312063519
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hachplc_retentiontime__default,0.709946538031304
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hachplc_retentiontime__default,0.6734277274513975
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hachplc_retentiontime__default,0.6449747266132764
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hachplc_retentiontime__default,0.7572588259409369
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hachplc_retentiontime__default,0.6802249227296183
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hachplc_retentiontime__default,0.7430770053615284
+ELASTICNET,compositional_baseline,Parent Mean,label__hachplc_retentiontime__default,0.627672774487117
+HGBM,compositional_baseline,Parent Mean,label__hachplc_retentiontime__default,0.7018209891917732
+LASSO,compositional_baseline,Parent Mean,label__hachplc_retentiontime__default,0.6333010559423589
+PLS,compositional_baseline,Parent Mean,label__hachplc_retentiontime__default,0.6340335235966069
+RF,compositional_baseline,Parent Mean,label__hachplc_retentiontime__default,0.7192088206409984
+RIDGE,compositional_baseline,Parent Mean,label__hachplc_retentiontime__default,0.6340335235966069
+XGB,compositional_baseline,Parent Mean,label__hachplc_retentiontime__default,0.6442778162089201
+ELASTICNET,corresponding_experimental,Same Assay,label__hachplc_retentiontime__default,0.8360568922500667
+HGBM,corresponding_experimental,Same Assay,label__hachplc_retentiontime__default,0.8314496707048467
+LASSO,corresponding_experimental,Same Assay,label__hachplc_retentiontime__default,0.8336368191204312
+PLS,corresponding_experimental,Same Assay,label__hachplc_retentiontime__default,0.2389448657011407
+RF,corresponding_experimental,Same Assay,label__hachplc_retentiontime__default,0.8668528100233729
+RIDGE,corresponding_experimental,Same Assay,label__hachplc_retentiontime__default,0.8528567703678999
+XGB,corresponding_experimental,Same Assay,label__hachplc_retentiontime__default,0.8435925194769706
+ELASTICNET,in_silico_only,In Silico,label__hachplc_retentiontime__default,0.7876876582341434
+HGBM,in_silico_only,In Silico,label__hachplc_retentiontime__default,0.7075073539942277
+LASSO,in_silico_only,In Silico,label__hachplc_retentiontime__default,0.7918466095749638
+PLS,in_silico_only,In Silico,label__hachplc_retentiontime__default,0.5755928593347729
+RF,in_silico_only,In Silico,label__hachplc_retentiontime__default,0.7433331184782114
+RIDGE,in_silico_only,In Silico,label__hachplc_retentiontime__default,0.5572079212131472
+XGB,in_silico_only,In Silico,label__hachplc_retentiontime__default,0.743001271583779
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__hachplc_retentiontime__default,0.8204436117321157
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__hachplc_retentiontime__default,0.7735686117308583
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__hachplc_retentiontime__default,0.8168882137383956
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__hachplc_retentiontime__default,0.6711256856077277
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__hachplc_retentiontime__default,0.8009423894379528
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__hachplc_retentiontime__default,0.623137334772013
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__hachplc_retentiontime__default,0.8030958478089051
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__hachplc_retentiontime__default,0.8095137293954264
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__hachplc_retentiontime__default,0.7771327993364291
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__hachplc_retentiontime__default,0.8198605674793342
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__hachplc_retentiontime__default,0.6242580102830126
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__hachplc_retentiontime__default,0.7750000366231146
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__hachplc_retentiontime__default,0.6088966986381228
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__hachplc_retentiontime__default,0.8032716400459247
+ELASTICNET,all_experimental,All Assays,label__hihplc_normretentiontime__default,0.8839874105145562
+HGBM,all_experimental,All Assays,label__hihplc_normretentiontime__default,0.906000848279688
+LASSO,all_experimental,All Assays,label__hihplc_normretentiontime__default,0.9023077707122494
+PLS,all_experimental,All Assays,label__hihplc_normretentiontime__default,0.8242916902158196
+RF,all_experimental,All Assays,label__hihplc_normretentiontime__default,0.8695354731564122
+RIDGE,all_experimental,All Assays,label__hihplc_normretentiontime__default,0.8616253204443668
+XGB,all_experimental,All Assays,label__hihplc_normretentiontime__default,0.9179985893654955
+ELASTICNET,arm_all_experimental,Arm All Assays,label__hihplc_normretentiontime__default,0.9025414604214835
+HGBM,arm_all_experimental,Arm All Assays,label__hihplc_normretentiontime__default,0.8802749330182493
+LASSO,arm_all_experimental,Arm All Assays,label__hihplc_normretentiontime__default,0.9102541753410904
+PLS,arm_all_experimental,Arm All Assays,label__hihplc_normretentiontime__default,0.7964238785076495
+RF,arm_all_experimental,Arm All Assays,label__hihplc_normretentiontime__default,0.7955302876052829
+RIDGE,arm_all_experimental,Arm All Assays,label__hihplc_normretentiontime__default,0.8574209794644432
+XGB,arm_all_experimental,Arm All Assays,label__hihplc_normretentiontime__default,0.8798530409200828
+ELASTICNET,arm_corresponding,Arm Same Assay,label__hihplc_normretentiontime__default,0.9327917098212718
+HGBM,arm_corresponding,Arm Same Assay,label__hihplc_normretentiontime__default,0.8899278314952394
+LASSO,arm_corresponding,Arm Same Assay,label__hihplc_normretentiontime__default,0.9340954735968559
+PLS,arm_corresponding,Arm Same Assay,label__hihplc_normretentiontime__default,0.9340998683062118
+RF,arm_corresponding,Arm Same Assay,label__hihplc_normretentiontime__default,0.8998489684894344
+RIDGE,arm_corresponding,Arm Same Assay,label__hihplc_normretentiontime__default,0.9341687187527875
+XGB,arm_corresponding,Arm Same Assay,label__hihplc_normretentiontime__default,0.8782694806488397
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__hihplc_normretentiontime__default,0.3409459465401914
+HGBM,arm_in_silico_only,Arm In Silico,label__hihplc_normretentiontime__default,0.6566032705434071
+LASSO,arm_in_silico_only,Arm In Silico,label__hihplc_normretentiontime__default,0.33711083017560806
+PLS,arm_in_silico_only,Arm In Silico,label__hihplc_normretentiontime__default,0.38207456649895455
+RF,arm_in_silico_only,Arm In Silico,label__hihplc_normretentiontime__default,0.5923672687913141
+RIDGE,arm_in_silico_only,Arm In Silico,label__hihplc_normretentiontime__default,0.20806311974579886
+XGB,arm_in_silico_only,Arm In Silico,label__hihplc_normretentiontime__default,0.7047311976030026
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hihplc_normretentiontime__default,0.89612225495563
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hihplc_normretentiontime__default,0.8441006154067057
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hihplc_normretentiontime__default,0.8938091729313072
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hihplc_normretentiontime__default,0.6497797518168107
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hihplc_normretentiontime__default,0.702714026008644
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hihplc_normretentiontime__default,0.6991469869147706
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__hihplc_normretentiontime__default,0.8640525958824984
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hihplc_normretentiontime__default,0.8988806675280175
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hihplc_normretentiontime__default,0.8487033410054531
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hihplc_normretentiontime__default,0.8999852044794674
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hihplc_normretentiontime__default,0.6099754042772926
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hihplc_normretentiontime__default,0.7184983571119232
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hihplc_normretentiontime__default,0.7826655084174406
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__hihplc_normretentiontime__default,0.8761702744798374
+ELASTICNET,compositional_baseline,Parent Mean,label__hihplc_normretentiontime__default,0.924032618124035
+HGBM,compositional_baseline,Parent Mean,label__hihplc_normretentiontime__default,0.9012836430890674
+LASSO,compositional_baseline,Parent Mean,label__hihplc_normretentiontime__default,0.9277520643532006
+PLS,compositional_baseline,Parent Mean,label__hihplc_normretentiontime__default,0.9279703382752744
+RF,compositional_baseline,Parent Mean,label__hihplc_normretentiontime__default,0.9143176077111806
+RIDGE,compositional_baseline,Parent Mean,label__hihplc_normretentiontime__default,0.9279732681265774
+XGB,compositional_baseline,Parent Mean,label__hihplc_normretentiontime__default,0.9155433739735769
+ELASTICNET,corresponding_experimental,Same Assay,label__hihplc_normretentiontime__default,0.9250097235335875
+HGBM,corresponding_experimental,Same Assay,label__hihplc_normretentiontime__default,0.9110540441744717
+LASSO,corresponding_experimental,Same Assay,label__hihplc_normretentiontime__default,0.9254404116751294
+PLS,corresponding_experimental,Same Assay,label__hihplc_normretentiontime__default,0.42679583408576294
+RF,corresponding_experimental,Same Assay,label__hihplc_normretentiontime__default,0.929996535517116
+RIDGE,corresponding_experimental,Same Assay,label__hihplc_normretentiontime__default,0.9346079164022335
+XGB,corresponding_experimental,Same Assay,label__hihplc_normretentiontime__default,0.91713349008124
+ELASTICNET,in_silico_only,In Silico,label__hihplc_normretentiontime__default,0.44139381820298773
+HGBM,in_silico_only,In Silico,label__hihplc_normretentiontime__default,0.5616495649348477
+LASSO,in_silico_only,In Silico,label__hihplc_normretentiontime__default,0.4398424619380463
+PLS,in_silico_only,In Silico,label__hihplc_normretentiontime__default,0.4233386095482165
+RF,in_silico_only,In Silico,label__hihplc_normretentiontime__default,0.5747342638715368
+RIDGE,in_silico_only,In Silico,label__hihplc_normretentiontime__default,0.42354369913942685
+XGB,in_silico_only,In Silico,label__hihplc_normretentiontime__default,0.6082459200578468
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__hihplc_normretentiontime__default,0.8432610124771286
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__hihplc_normretentiontime__default,0.8870930528957419
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__hihplc_normretentiontime__default,0.8468500803233101
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__hihplc_normretentiontime__default,0.7358848920732806
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__hihplc_normretentiontime__default,0.7797993648416162
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__hihplc_normretentiontime__default,0.7380793506992318
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__hihplc_normretentiontime__default,0.9132668795111415
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__hihplc_normretentiontime__default,0.8415236106544461
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__hihplc_normretentiontime__default,0.8900727116708985
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__hihplc_normretentiontime__default,0.8501344436339794
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__hihplc_normretentiontime__default,0.6782679012740264
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__hihplc_normretentiontime__default,0.7949305043141269
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__hihplc_normretentiontime__default,0.7205236816916231
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__hihplc_normretentiontime__default,0.916220169624571
+ELASTICNET,all_experimental,All Assays,label__pr_score__CHO,0.5621394947642856
+HGBM,all_experimental,All Assays,label__pr_score__CHO,0.4742030288751998
+LASSO,all_experimental,All Assays,label__pr_score__CHO,0.4698452827874873
+PLS,all_experimental,All Assays,label__pr_score__CHO,0.6540886872573751
+RF,all_experimental,All Assays,label__pr_score__CHO,0.5482222538867318
+RIDGE,all_experimental,All Assays,label__pr_score__CHO,0.6945864742212218
+XGB,all_experimental,All Assays,label__pr_score__CHO,0.5459835824184461
+ELASTICNET,arm_all_experimental,Arm All Assays,label__pr_score__CHO,0.5921371582085193
+HGBM,arm_all_experimental,Arm All Assays,label__pr_score__CHO,0.41539394738028074
+LASSO,arm_all_experimental,Arm All Assays,label__pr_score__CHO,0.4757039079260892
+PLS,arm_all_experimental,Arm All Assays,label__pr_score__CHO,0.45641162083295045
+RF,arm_all_experimental,Arm All Assays,label__pr_score__CHO,0.5233578521275378
+RIDGE,arm_all_experimental,Arm All Assays,label__pr_score__CHO,0.5776630676897654
+XGB,arm_all_experimental,Arm All Assays,label__pr_score__CHO,0.49534570927882676
+ELASTICNET,arm_corresponding,Arm Same Assay,label__pr_score__CHO,0.523956376546336
+HGBM,arm_corresponding,Arm Same Assay,label__pr_score__CHO,0.46277291650458185
+LASSO,arm_corresponding,Arm Same Assay,label__pr_score__CHO,0.5005959234788101
+PLS,arm_corresponding,Arm Same Assay,label__pr_score__CHO,0.5257669504147301
+RF,arm_corresponding,Arm Same Assay,label__pr_score__CHO,0.46211219829409267
+RIDGE,arm_corresponding,Arm Same Assay,label__pr_score__CHO,0.5245158993739342
+XGB,arm_corresponding,Arm Same Assay,label__pr_score__CHO,0.3895169730576388
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__pr_score__CHO,0.09830501068048779
+HGBM,arm_in_silico_only,Arm In Silico,label__pr_score__CHO,-0.01941229198913835
+LASSO,arm_in_silico_only,Arm In Silico,label__pr_score__CHO,0.09115571900131049
+PLS,arm_in_silico_only,Arm In Silico,label__pr_score__CHO,0.07352099953416649
+RF,arm_in_silico_only,Arm In Silico,label__pr_score__CHO,0.05599878465702215
+RIDGE,arm_in_silico_only,Arm In Silico,label__pr_score__CHO,0.038266561211878464
+XGB,arm_in_silico_only,Arm In Silico,label__pr_score__CHO,-0.08154182677054102
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__CHO,0.3996133035563308
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__CHO,0.28471311582029574
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__CHO,0.38630326052877306
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__CHO,0.4116842960326925
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__CHO,0.3059284813718284
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__CHO,0.4059480620039107
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__CHO,0.3254307770329664
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__CHO,0.31673042207299407
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__CHO,0.2604196246863729
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__CHO,0.32044607366538225
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__CHO,0.2932814653946685
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__CHO,0.24299941397082825
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__CHO,0.1887632012238005
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__CHO,0.3485107186560931
+ELASTICNET,compositional_baseline,Parent Mean,label__pr_score__CHO,0.5200846198696143
+HGBM,compositional_baseline,Parent Mean,label__pr_score__CHO,0.49668966942469395
+LASSO,compositional_baseline,Parent Mean,label__pr_score__CHO,0.5035881882942015
+PLS,compositional_baseline,Parent Mean,label__pr_score__CHO,0.5221892387202377
+RF,compositional_baseline,Parent Mean,label__pr_score__CHO,0.48594356510596715
+RIDGE,compositional_baseline,Parent Mean,label__pr_score__CHO,0.5221892387202377
+XGB,compositional_baseline,Parent Mean,label__pr_score__CHO,0.444454848955948
+ELASTICNET,corresponding_experimental,Same Assay,label__pr_score__CHO,0.49506320687717226
+HGBM,corresponding_experimental,Same Assay,label__pr_score__CHO,0.3645603372066992
+LASSO,corresponding_experimental,Same Assay,label__pr_score__CHO,0.4752680890205615
+PLS,corresponding_experimental,Same Assay,label__pr_score__CHO,-0.03209206228140355
+RF,corresponding_experimental,Same Assay,label__pr_score__CHO,0.4709082340753362
+RIDGE,corresponding_experimental,Same Assay,label__pr_score__CHO,0.5159848883523275
+XGB,corresponding_experimental,Same Assay,label__pr_score__CHO,0.37015865335105136
+ELASTICNET,in_silico_only,In Silico,label__pr_score__CHO,0.13084113877297876
+HGBM,in_silico_only,In Silico,label__pr_score__CHO,0.12037654782362166
+LASSO,in_silico_only,In Silico,label__pr_score__CHO,0.04161760020118818
+PLS,in_silico_only,In Silico,label__pr_score__CHO,0.06923265966029295
+RF,in_silico_only,In Silico,label__pr_score__CHO,0.010877831811464796
+RIDGE,in_silico_only,In Silico,label__pr_score__CHO,0.033005613870875805
+XGB,in_silico_only,In Silico,label__pr_score__CHO,0.13644995551031336
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__CHO,0.4091473550948502
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__CHO,0.39563309192645024
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__CHO,0.4438308137158487
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__CHO,0.4980693766395736
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__CHO,0.3774743761402841
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__CHO,0.45402088916295064
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__CHO,0.35275317044030163
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__CHO,0.4087873347640237
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__CHO,0.3127114092288353
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__CHO,0.36217370243026176
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__CHO,0.276296852850446
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__CHO,0.27222706033035565
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__CHO,0.261234502259492
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__CHO,0.2728361574203762
+ELASTICNET,all_experimental,All Assays,label__pr_score__Ovalbumin,0.5615163952309192
+HGBM,all_experimental,All Assays,label__pr_score__Ovalbumin,0.54683547313669
+LASSO,all_experimental,All Assays,label__pr_score__Ovalbumin,0.6286169184876714
+PLS,all_experimental,All Assays,label__pr_score__Ovalbumin,0.5856464245288976
+RF,all_experimental,All Assays,label__pr_score__Ovalbumin,0.5639619292174437
+RIDGE,all_experimental,All Assays,label__pr_score__Ovalbumin,0.49997077328538975
+XGB,all_experimental,All Assays,label__pr_score__Ovalbumin,0.5990303185282614
+ELASTICNET,arm_all_experimental,Arm All Assays,label__pr_score__Ovalbumin,0.48474065444762726
+HGBM,arm_all_experimental,Arm All Assays,label__pr_score__Ovalbumin,0.48184228691340303
+LASSO,arm_all_experimental,Arm All Assays,label__pr_score__Ovalbumin,0.6087477073981865
+PLS,arm_all_experimental,Arm All Assays,label__pr_score__Ovalbumin,0.39052732140057234
+RF,arm_all_experimental,Arm All Assays,label__pr_score__Ovalbumin,0.4690438950013732
+RIDGE,arm_all_experimental,Arm All Assays,label__pr_score__Ovalbumin,0.4599070917997853
+XGB,arm_all_experimental,Arm All Assays,label__pr_score__Ovalbumin,0.5038570817815956
+ELASTICNET,arm_corresponding,Arm Same Assay,label__pr_score__Ovalbumin,0.6488048171542872
+HGBM,arm_corresponding,Arm Same Assay,label__pr_score__Ovalbumin,0.6415128498810146
+LASSO,arm_corresponding,Arm Same Assay,label__pr_score__Ovalbumin,0.633588766437863
+PLS,arm_corresponding,Arm Same Assay,label__pr_score__Ovalbumin,0.6496913405727843
+RF,arm_corresponding,Arm Same Assay,label__pr_score__Ovalbumin,0.6373767811151387
+RIDGE,arm_corresponding,Arm Same Assay,label__pr_score__Ovalbumin,0.6493651374135133
+XGB,arm_corresponding,Arm Same Assay,label__pr_score__Ovalbumin,0.5080036716798738
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__pr_score__Ovalbumin,0.05167897007307515
+HGBM,arm_in_silico_only,Arm In Silico,label__pr_score__Ovalbumin,0.1259502234298857
+LASSO,arm_in_silico_only,Arm In Silico,label__pr_score__Ovalbumin,0.10337823027966937
+PLS,arm_in_silico_only,Arm In Silico,label__pr_score__Ovalbumin,0.08367651063265093
+RF,arm_in_silico_only,Arm In Silico,label__pr_score__Ovalbumin,0.27694627551981293
+RIDGE,arm_in_silico_only,Arm In Silico,label__pr_score__Ovalbumin,0.056746821114338625
+XGB,arm_in_silico_only,Arm In Silico,label__pr_score__Ovalbumin,0.21000912504039607
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__Ovalbumin,0.5613624417336471
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__Ovalbumin,0.38140924755300193
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__Ovalbumin,0.5963722867310542
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__Ovalbumin,0.3036137540818788
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__Ovalbumin,0.3417919814672641
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__Ovalbumin,0.2806531268357972
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__pr_score__Ovalbumin,0.4818516515904118
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__Ovalbumin,0.5963379495820221
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__Ovalbumin,0.41480212498688923
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__Ovalbumin,0.6207903649736433
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__Ovalbumin,0.3614531208472444
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__Ovalbumin,0.3981283175727168
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__Ovalbumin,0.29033620286289874
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__pr_score__Ovalbumin,0.5268957480027505
+ELASTICNET,compositional_baseline,Parent Mean,label__pr_score__Ovalbumin,0.6611711002702773
+HGBM,compositional_baseline,Parent Mean,label__pr_score__Ovalbumin,0.60114667092574
+LASSO,compositional_baseline,Parent Mean,label__pr_score__Ovalbumin,0.6563903541574047
+PLS,compositional_baseline,Parent Mean,label__pr_score__Ovalbumin,0.6618734625787307
+RF,compositional_baseline,Parent Mean,label__pr_score__Ovalbumin,0.6098739393019641
+RIDGE,compositional_baseline,Parent Mean,label__pr_score__Ovalbumin,0.661388052183333
+XGB,compositional_baseline,Parent Mean,label__pr_score__Ovalbumin,0.4866106545426657
+ELASTICNET,corresponding_experimental,Same Assay,label__pr_score__Ovalbumin,0.626408848417225
+HGBM,corresponding_experimental,Same Assay,label__pr_score__Ovalbumin,0.7076050528846947
+LASSO,corresponding_experimental,Same Assay,label__pr_score__Ovalbumin,0.6390544915796456
+PLS,corresponding_experimental,Same Assay,label__pr_score__Ovalbumin,-0.0026096661771867536
+RF,corresponding_experimental,Same Assay,label__pr_score__Ovalbumin,0.699790869750095
+RIDGE,corresponding_experimental,Same Assay,label__pr_score__Ovalbumin,0.6291465006150634
+XGB,corresponding_experimental,Same Assay,label__pr_score__Ovalbumin,0.6818345993849755
+ELASTICNET,in_silico_only,In Silico,label__pr_score__Ovalbumin,0.26107567921557884
+HGBM,in_silico_only,In Silico,label__pr_score__Ovalbumin,0.14831383596449552
+LASSO,in_silico_only,In Silico,label__pr_score__Ovalbumin,0.25521017791533285
+PLS,in_silico_only,In Silico,label__pr_score__Ovalbumin,0.2103370639232967
+RF,in_silico_only,In Silico,label__pr_score__Ovalbumin,0.19956082650451845
+RIDGE,in_silico_only,In Silico,label__pr_score__Ovalbumin,0.23805694234063798
+XGB,in_silico_only,In Silico,label__pr_score__Ovalbumin,0.05903897077783515
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__Ovalbumin,0.5897607037804805
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__Ovalbumin,0.501249071732676
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__Ovalbumin,0.6077318006328041
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__Ovalbumin,0.4860749355855255
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__Ovalbumin,0.4316652091198149
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__Ovalbumin,0.521409976547811
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__pr_score__Ovalbumin,0.5194074650607925
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__Ovalbumin,0.5719909506396342
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__Ovalbumin,0.5300178104144573
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__Ovalbumin,0.6145915340587171
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__Ovalbumin,0.5070786745417283
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__Ovalbumin,0.47804424238281906
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__Ovalbumin,0.531517743024765
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__pr_score__Ovalbumin,0.553169215626418
+ELASTICNET,all_experimental,All Assays,label__sehplc_pct_mono__default,-0.001739780817243358
+HGBM,all_experimental,All Assays,label__sehplc_pct_mono__default,-0.07396945973363682
+LASSO,all_experimental,All Assays,label__sehplc_pct_mono__default,-0.14090326927868663
+PLS,all_experimental,All Assays,label__sehplc_pct_mono__default,0.04180933833329607
+RF,all_experimental,All Assays,label__sehplc_pct_mono__default,0.004384129608167953
+RIDGE,all_experimental,All Assays,label__sehplc_pct_mono__default,0.059192390095066015
+XGB,all_experimental,All Assays,label__sehplc_pct_mono__default,-0.1310390742140317
+ELASTICNET,arm_all_experimental,Arm All Assays,label__sehplc_pct_mono__default,0.08526418057879369
+HGBM,arm_all_experimental,Arm All Assays,label__sehplc_pct_mono__default,-0.039387205496679956
+LASSO,arm_all_experimental,Arm All Assays,label__sehplc_pct_mono__default,-0.015092657838720686
+PLS,arm_all_experimental,Arm All Assays,label__sehplc_pct_mono__default,0.09274261447123991
+RF,arm_all_experimental,Arm All Assays,label__sehplc_pct_mono__default,0.07693283926925319
+RIDGE,arm_all_experimental,Arm All Assays,label__sehplc_pct_mono__default,0.12082658326386739
+XGB,arm_all_experimental,Arm All Assays,label__sehplc_pct_mono__default,-0.06860352631585644
+ELASTICNET,arm_corresponding,Arm Same Assay,label__sehplc_pct_mono__default,-0.05630976192533951
+HGBM,arm_corresponding,Arm Same Assay,label__sehplc_pct_mono__default,-0.015477795079227736
+LASSO,arm_corresponding,Arm Same Assay,label__sehplc_pct_mono__default,-0.12347342367523888
+PLS,arm_corresponding,Arm Same Assay,label__sehplc_pct_mono__default,0.003151920835490349
+RF,arm_corresponding,Arm Same Assay,label__sehplc_pct_mono__default,0.035411889611468815
+RIDGE,arm_corresponding,Arm Same Assay,label__sehplc_pct_mono__default,-0.027664893175923716
+XGB,arm_corresponding,Arm Same Assay,label__sehplc_pct_mono__default,-0.06094039984113027
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__sehplc_pct_mono__default,-0.18874592788908012
+HGBM,arm_in_silico_only,Arm In Silico,label__sehplc_pct_mono__default,0.15194147218575385
+LASSO,arm_in_silico_only,Arm In Silico,label__sehplc_pct_mono__default,-0.22804971869690296
+PLS,arm_in_silico_only,Arm In Silico,label__sehplc_pct_mono__default,0.06803190926940406
+RF,arm_in_silico_only,Arm In Silico,label__sehplc_pct_mono__default,0.06816471492258482
+RIDGE,arm_in_silico_only,Arm In Silico,label__sehplc_pct_mono__default,0.08712641096006188
+XGB,arm_in_silico_only,Arm In Silico,label__sehplc_pct_mono__default,0.042680785695563134
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__sehplc_pct_mono__default,-0.13419893060739319
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__sehplc_pct_mono__default,0.0838623431285522
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__sehplc_pct_mono__default,-0.17228762804363346
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__sehplc_pct_mono__default,0.16513940287518536
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__sehplc_pct_mono__default,0.08120623006493674
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__sehplc_pct_mono__default,0.17741654770256352
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__sehplc_pct_mono__default,-0.005884766054276924
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__sehplc_pct_mono__default,-0.18034062712167725
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__sehplc_pct_mono__default,0.19875694055034507
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__sehplc_pct_mono__default,-0.22774573307463084
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__sehplc_pct_mono__default,0.08925720388442895
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__sehplc_pct_mono__default,0.007080016932903882
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__sehplc_pct_mono__default,0.12375716134405645
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__sehplc_pct_mono__default,0.03212421188606034
+ELASTICNET,compositional_baseline,Parent Mean,label__sehplc_pct_mono__default,-0.12166262457229259
+HGBM,compositional_baseline,Parent Mean,label__sehplc_pct_mono__default,-0.05478022330663714
+LASSO,compositional_baseline,Parent Mean,label__sehplc_pct_mono__default,-0.15316472542944082
+PLS,compositional_baseline,Parent Mean,label__sehplc_pct_mono__default,0.026022930205332164
+RF,compositional_baseline,Parent Mean,label__sehplc_pct_mono__default,-0.08168706251072144
+RIDGE,compositional_baseline,Parent Mean,label__sehplc_pct_mono__default,-0.040215645981622763
+XGB,compositional_baseline,Parent Mean,label__sehplc_pct_mono__default,-0.012635142202246452
+ELASTICNET,corresponding_experimental,Same Assay,label__sehplc_pct_mono__default,-0.06551132506806712
+HGBM,corresponding_experimental,Same Assay,label__sehplc_pct_mono__default,-0.13793259739625818
+LASSO,corresponding_experimental,Same Assay,label__sehplc_pct_mono__default,-0.06307060580547937
+PLS,corresponding_experimental,Same Assay,label__sehplc_pct_mono__default,0.009877269618327822
+RF,corresponding_experimental,Same Assay,label__sehplc_pct_mono__default,-0.10195941948043241
+RIDGE,corresponding_experimental,Same Assay,label__sehplc_pct_mono__default,0.0021145936480998577
+XGB,corresponding_experimental,Same Assay,label__sehplc_pct_mono__default,-0.11493565744065175
+ELASTICNET,in_silico_only,In Silico,label__sehplc_pct_mono__default,0.011322593902212288
+HGBM,in_silico_only,In Silico,label__sehplc_pct_mono__default,-0.04384572300487862
+LASSO,in_silico_only,In Silico,label__sehplc_pct_mono__default,-0.03572086945806018
+PLS,in_silico_only,In Silico,label__sehplc_pct_mono__default,0.03856292798729489
+RF,in_silico_only,In Silico,label__sehplc_pct_mono__default,-0.04392245634032957
+RIDGE,in_silico_only,In Silico,label__sehplc_pct_mono__default,0.014819863229495373
+XGB,in_silico_only,In Silico,label__sehplc_pct_mono__default,-0.15770948552188072
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__sehplc_pct_mono__default,-0.0002228218010209899
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__sehplc_pct_mono__default,-0.06746188263097083
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__sehplc_pct_mono__default,-0.05210931297651798
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__sehplc_pct_mono__default,0.025420868650255585
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__sehplc_pct_mono__default,-0.060974964503233926
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__sehplc_pct_mono__default,-0.02339628910720394
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__sehplc_pct_mono__default,-0.1793539735010951
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__sehplc_pct_mono__default,0.012411617009189045
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__sehplc_pct_mono__default,-0.0463218487142377
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__sehplc_pct_mono__default,-0.03572086945806018
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__sehplc_pct_mono__default,0.05411323354464053
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__sehplc_pct_mono__default,-0.049506282135451586
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__sehplc_pct_mono__default,0.01610957352149766
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__sehplc_pct_mono__default,-0.09987876557685894
+ELASTICNET,all_experimental,All Assays,label__smachplc_retentiontime__default,0.8549134447364027
+HGBM,all_experimental,All Assays,label__smachplc_retentiontime__default,0.881229426965693
+LASSO,all_experimental,All Assays,label__smachplc_retentiontime__default,0.9102672470363335
+PLS,all_experimental,All Assays,label__smachplc_retentiontime__default,0.7895541782510983
+RF,all_experimental,All Assays,label__smachplc_retentiontime__default,0.8531444560239404
+RIDGE,all_experimental,All Assays,label__smachplc_retentiontime__default,0.7747759758057032
+XGB,all_experimental,All Assays,label__smachplc_retentiontime__default,0.9341983250644834
+ELASTICNET,arm_all_experimental,Arm All Assays,label__smachplc_retentiontime__default,0.700062624750625
+HGBM,arm_all_experimental,Arm All Assays,label__smachplc_retentiontime__default,0.7541015546369078
+LASSO,arm_all_experimental,Arm All Assays,label__smachplc_retentiontime__default,0.8566918752689705
+PLS,arm_all_experimental,Arm All Assays,label__smachplc_retentiontime__default,0.668291736101605
+RF,arm_all_experimental,Arm All Assays,label__smachplc_retentiontime__default,0.6726454377368358
+RIDGE,arm_all_experimental,Arm All Assays,label__smachplc_retentiontime__default,0.6667257512267524
+XGB,arm_all_experimental,Arm All Assays,label__smachplc_retentiontime__default,0.9124813682286386
+ELASTICNET,arm_corresponding,Arm Same Assay,label__smachplc_retentiontime__default,0.8967263005681714
+HGBM,arm_corresponding,Arm Same Assay,label__smachplc_retentiontime__default,0.828516473619841
+LASSO,arm_corresponding,Arm Same Assay,label__smachplc_retentiontime__default,0.8893050850620882
+PLS,arm_corresponding,Arm Same Assay,label__smachplc_retentiontime__default,0.8978703924178064
+RF,arm_corresponding,Arm Same Assay,label__smachplc_retentiontime__default,0.8840153082771557
+RIDGE,arm_corresponding,Arm Same Assay,label__smachplc_retentiontime__default,0.8935371994713014
+XGB,arm_corresponding,Arm Same Assay,label__smachplc_retentiontime__default,0.9068215660919017
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__smachplc_retentiontime__default,0.23688445280753223
+HGBM,arm_in_silico_only,Arm In Silico,label__smachplc_retentiontime__default,0.38383475856769833
+LASSO,arm_in_silico_only,Arm In Silico,label__smachplc_retentiontime__default,0.08262595943372812
+PLS,arm_in_silico_only,Arm In Silico,label__smachplc_retentiontime__default,0.49374375126221504
+RF,arm_in_silico_only,Arm In Silico,label__smachplc_retentiontime__default,0.43827067807146014
+RIDGE,arm_in_silico_only,Arm In Silico,label__smachplc_retentiontime__default,0.33498745674173125
+XGB,arm_in_silico_only,Arm In Silico,label__smachplc_retentiontime__default,0.4486700481618047
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__smachplc_retentiontime__default,0.7987196718663367
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__smachplc_retentiontime__default,0.6670831883731172
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__smachplc_retentiontime__default,0.8132237095145268
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__smachplc_retentiontime__default,0.685765138896031
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__smachplc_retentiontime__default,0.5995480763988862
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__smachplc_retentiontime__default,0.6192408122947168
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__smachplc_retentiontime__default,0.8473273496785007
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__smachplc_retentiontime__default,0.799206020770407
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__smachplc_retentiontime__default,0.6270429034485661
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__smachplc_retentiontime__default,0.8314940213565859
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__smachplc_retentiontime__default,0.7227437695750799
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__smachplc_retentiontime__default,0.5767219058470128
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__smachplc_retentiontime__default,0.6805471425216391
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__smachplc_retentiontime__default,0.8621325374066715
+ELASTICNET,compositional_baseline,Parent Mean,label__smachplc_retentiontime__default,0.9248403594398616
+HGBM,compositional_baseline,Parent Mean,label__smachplc_retentiontime__default,0.9154955162866496
+LASSO,compositional_baseline,Parent Mean,label__smachplc_retentiontime__default,0.9226649400671999
+PLS,compositional_baseline,Parent Mean,label__smachplc_retentiontime__default,0.9267476968292256
+RF,compositional_baseline,Parent Mean,label__smachplc_retentiontime__default,0.9084576626414897
+RIDGE,compositional_baseline,Parent Mean,label__smachplc_retentiontime__default,0.9262393665111693
+XGB,compositional_baseline,Parent Mean,label__smachplc_retentiontime__default,0.940383254755647
+ELASTICNET,corresponding_experimental,Same Assay,label__smachplc_retentiontime__default,0.9174600477903869
+HGBM,corresponding_experimental,Same Assay,label__smachplc_retentiontime__default,0.9058753902826366
+LASSO,corresponding_experimental,Same Assay,label__smachplc_retentiontime__default,0.9188458705018604
+RF,corresponding_experimental,Same Assay,label__smachplc_retentiontime__default,0.917500635440351
+RIDGE,corresponding_experimental,Same Assay,label__smachplc_retentiontime__default,0.9385564884541593
+XGB,corresponding_experimental,Same Assay,label__smachplc_retentiontime__default,0.9377156192825042
+ELASTICNET,in_silico_only,In Silico,label__smachplc_retentiontime__default,0.4933221217782564
+HGBM,in_silico_only,In Silico,label__smachplc_retentiontime__default,0.4190062801788416
+LASSO,in_silico_only,In Silico,label__smachplc_retentiontime__default,0.4735133535916353
+PLS,in_silico_only,In Silico,label__smachplc_retentiontime__default,0.5604905754186027
+RF,in_silico_only,In Silico,label__smachplc_retentiontime__default,0.5728542548825717
+RIDGE,in_silico_only,In Silico,label__smachplc_retentiontime__default,0.588170406426309
+XGB,in_silico_only,In Silico,label__smachplc_retentiontime__default,0.42899416521776945
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__smachplc_retentiontime__default,0.887137485100336
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__smachplc_retentiontime__default,0.8372244286253654
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__smachplc_retentiontime__default,0.8953821047833935
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__smachplc_retentiontime__default,0.6846535516938167
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__smachplc_retentiontime__default,0.8052113189040923
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__smachplc_retentiontime__default,0.7254928387450387
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__smachplc_retentiontime__default,0.9247392793477986
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__smachplc_retentiontime__default,0.8934293545990445
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__smachplc_retentiontime__default,0.84818063164768
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__smachplc_retentiontime__default,0.8996728814450272
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__smachplc_retentiontime__default,0.7355041626458941
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__smachplc_retentiontime__default,0.7899669001190499
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__smachplc_retentiontime__default,0.7535872446230906
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__smachplc_retentiontime__default,0.9239526125443512
+ELASTICNET,all_experimental,All Assays,label__thermostability_tm1__Tm1,-0.4279758133390569
+HGBM,all_experimental,All Assays,label__thermostability_tm1__Tm1,-0.10019117658002566
+LASSO,all_experimental,All Assays,label__thermostability_tm1__Tm1,-0.4009268876596618
+PLS,all_experimental,All Assays,label__thermostability_tm1__Tm1,0.06159108721713092
+RF,all_experimental,All Assays,label__thermostability_tm1__Tm1,-0.09712027600084322
+RIDGE,all_experimental,All Assays,label__thermostability_tm1__Tm1,-0.002156413205137995
+XGB,all_experimental,All Assays,label__thermostability_tm1__Tm1,-0.022888451030622304
+ELASTICNET,arm_all_experimental,Arm All Assays,label__thermostability_tm1__Tm1,-0.3844247147203504
+HGBM,arm_all_experimental,Arm All Assays,label__thermostability_tm1__Tm1,-0.060283420424938276
+LASSO,arm_all_experimental,Arm All Assays,label__thermostability_tm1__Tm1,-0.40127203314734866
+PLS,arm_all_experimental,Arm All Assays,label__thermostability_tm1__Tm1,-0.1145811283311942
+RF,arm_all_experimental,Arm All Assays,label__thermostability_tm1__Tm1,-0.13638810741908106
+RIDGE,arm_all_experimental,Arm All Assays,label__thermostability_tm1__Tm1,-0.13836723067232135
+XGB,arm_all_experimental,Arm All Assays,label__thermostability_tm1__Tm1,0.022094105777476104
+ELASTICNET,arm_corresponding,Arm Same Assay,label__thermostability_tm1__Tm1,-0.4094237240532229
+HGBM,arm_corresponding,Arm Same Assay,label__thermostability_tm1__Tm1,0.04285598137905418
+LASSO,arm_corresponding,Arm Same Assay,label__thermostability_tm1__Tm1,-0.4091527042717042
+PLS,arm_corresponding,Arm Same Assay,label__thermostability_tm1__Tm1,-0.3419766768933548
+RF,arm_corresponding,Arm Same Assay,label__thermostability_tm1__Tm1,-0.041561618759885344
+RIDGE,arm_corresponding,Arm Same Assay,label__thermostability_tm1__Tm1,-0.38498415318397555
+XGB,arm_corresponding,Arm Same Assay,label__thermostability_tm1__Tm1,-0.03326570225933088
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__thermostability_tm1__Tm1,0.14589646287157293
+HGBM,arm_in_silico_only,Arm In Silico,label__thermostability_tm1__Tm1,-0.011061702209635463
+LASSO,arm_in_silico_only,Arm In Silico,label__thermostability_tm1__Tm1,0.24323985808197415
+PLS,arm_in_silico_only,Arm In Silico,label__thermostability_tm1__Tm1,0.21852831462295738
+RF,arm_in_silico_only,Arm In Silico,label__thermostability_tm1__Tm1,-0.015207460023602935
+RIDGE,arm_in_silico_only,Arm In Silico,label__thermostability_tm1__Tm1,0.20490591112045436
+XGB,arm_in_silico_only,Arm In Silico,label__thermostability_tm1__Tm1,0.046285994307461546
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm1__Tm1,-0.14815585268934103
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm1__Tm1,0.03538250476351812
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm1__Tm1,-0.14233655771735293
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm1__Tm1,0.04376191631683753
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm1__Tm1,-0.07858188715789505
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm1__Tm1,0.05309792852475792
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm1__Tm1,0.004761029291658755
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm1__Tm1,0.12129142744831374
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm1__Tm1,0.01502434351238529
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm1__Tm1,0.2315159550445916
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm1__Tm1,0.21024705351965062
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm1__Tm1,-0.003615452397481171
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm1__Tm1,0.18758894888762417
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm1__Tm1,0.05807430283360862
+ELASTICNET,compositional_baseline,Parent Mean,label__thermostability_tm1__Tm1,-0.41409028848057655
+HGBM,compositional_baseline,Parent Mean,label__thermostability_tm1__Tm1,-0.057620834182041
+LASSO,compositional_baseline,Parent Mean,label__thermostability_tm1__Tm1,-0.4034290594803863
+PLS,compositional_baseline,Parent Mean,label__thermostability_tm1__Tm1,-0.27046724728165916
+RF,compositional_baseline,Parent Mean,label__thermostability_tm1__Tm1,-0.08384582254376602
+RIDGE,compositional_baseline,Parent Mean,label__thermostability_tm1__Tm1,-0.33323176315185776
+XGB,compositional_baseline,Parent Mean,label__thermostability_tm1__Tm1,-0.0484922664936841
+ELASTICNET,corresponding_experimental,Same Assay,label__thermostability_tm1__Tm1,-0.4009268876596618
+HGBM,corresponding_experimental,Same Assay,label__thermostability_tm1__Tm1,-0.10992229869402714
+LASSO,corresponding_experimental,Same Assay,label__thermostability_tm1__Tm1,-0.4009268876596618
+PLS,corresponding_experimental,Same Assay,label__thermostability_tm1__Tm1,0.0774169920100017
+RF,corresponding_experimental,Same Assay,label__thermostability_tm1__Tm1,-0.09588811320518087
+RIDGE,corresponding_experimental,Same Assay,label__thermostability_tm1__Tm1,-0.33317170001231244
+XGB,corresponding_experimental,Same Assay,label__thermostability_tm1__Tm1,-0.18751725901175928
+ELASTICNET,in_silico_only,In Silico,label__thermostability_tm1__Tm1,-0.154455525322218
+HGBM,in_silico_only,In Silico,label__thermostability_tm1__Tm1,0.06844707485303161
+LASSO,in_silico_only,In Silico,label__thermostability_tm1__Tm1,-0.39916159665030987
+PLS,in_silico_only,In Silico,label__thermostability_tm1__Tm1,0.21375445895930376
+RF,in_silico_only,In Silico,label__thermostability_tm1__Tm1,0.041704907948141745
+RIDGE,in_silico_only,In Silico,label__thermostability_tm1__Tm1,0.20981519597790696
+XGB,in_silico_only,In Silico,label__thermostability_tm1__Tm1,0.040082623441427094
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm1__Tm1,-0.3406579481370575
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm1__Tm1,-0.043063806099345445
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm1__Tm1,-0.37357000441597893
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm1__Tm1,0.23947613223091577
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm1__Tm1,-0.012902559490264136
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm1__Tm1,0.20739216103137284
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm1__Tm1,0.07285219340456012
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm1__Tm1,-0.1505279388248015
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm1__Tm1,0.0977652117242454
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm1__Tm1,-0.38873832235027755
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm1__Tm1,0.20091413168822048
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm1__Tm1,-0.02241442328463631
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm1__Tm1,0.1916907773814618
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm1__Tm1,0.057376412766599674
+ELASTICNET,all_experimental,All Assays,label__thermostability_tm2__Tm2,-0.32893944880399817
+HGBM,all_experimental,All Assays,label__thermostability_tm2__Tm2,-0.12626400803172383
+LASSO,all_experimental,All Assays,label__thermostability_tm2__Tm2,-0.4298797008312244
+PLS,all_experimental,All Assays,label__thermostability_tm2__Tm2,-0.23372120493161117
+RF,all_experimental,All Assays,label__thermostability_tm2__Tm2,-0.06322400521579873
+RIDGE,all_experimental,All Assays,label__thermostability_tm2__Tm2,-0.10605055632843148
+XGB,all_experimental,All Assays,label__thermostability_tm2__Tm2,0.05779504420063242
+ELASTICNET,arm_all_experimental,Arm All Assays,label__thermostability_tm2__Tm2,0.2710448876643079
+HGBM,arm_all_experimental,Arm All Assays,label__thermostability_tm2__Tm2,0.30545416693046384
+LASSO,arm_all_experimental,Arm All Assays,label__thermostability_tm2__Tm2,0.24019270934141218
+PLS,arm_all_experimental,Arm All Assays,label__thermostability_tm2__Tm2,0.16342082189644894
+RF,arm_all_experimental,Arm All Assays,label__thermostability_tm2__Tm2,0.29839440450676014
+RIDGE,arm_all_experimental,Arm All Assays,label__thermostability_tm2__Tm2,0.22260271687595082
+XGB,arm_all_experimental,Arm All Assays,label__thermostability_tm2__Tm2,0.3336558492627336
+ELASTICNET,arm_corresponding,Arm Same Assay,label__thermostability_tm2__Tm2,0.25900154274123505
+HGBM,arm_corresponding,Arm Same Assay,label__thermostability_tm2__Tm2,0.07871989750645926
+LASSO,arm_corresponding,Arm Same Assay,label__thermostability_tm2__Tm2,0.29777557132210547
+PLS,arm_corresponding,Arm Same Assay,label__thermostability_tm2__Tm2,0.2946950356147929
+RF,arm_corresponding,Arm Same Assay,label__thermostability_tm2__Tm2,0.003947594943159847
+RIDGE,arm_corresponding,Arm Same Assay,label__thermostability_tm2__Tm2,0.28832923849549863
+XGB,arm_corresponding,Arm Same Assay,label__thermostability_tm2__Tm2,0.15534434070594333
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__thermostability_tm2__Tm2,0.15560570492986878
+HGBM,arm_in_silico_only,Arm In Silico,label__thermostability_tm2__Tm2,0.03690027051330959
+LASSO,arm_in_silico_only,Arm In Silico,label__thermostability_tm2__Tm2,-0.06018603782231997
+PLS,arm_in_silico_only,Arm In Silico,label__thermostability_tm2__Tm2,0.029119851811949923
+RF,arm_in_silico_only,Arm In Silico,label__thermostability_tm2__Tm2,-0.009112298266360863
+RIDGE,arm_in_silico_only,Arm In Silico,label__thermostability_tm2__Tm2,0.029338717792571353
+XGB,arm_in_silico_only,Arm In Silico,label__thermostability_tm2__Tm2,0.028895647636679178
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm2__Tm2,0.3975545697690442
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm2__Tm2,0.31561808954273746
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm2__Tm2,0.3439594829947746
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm2__Tm2,0.10411614844001306
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm2__Tm2,0.17752700125723309
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm2__Tm2,0.1195008254193054
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tm2__Tm2,0.2594469363454427
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm2__Tm2,0.415255492671985
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm2__Tm2,0.27796513358387615
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm2__Tm2,0.3320948705230989
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm2__Tm2,0.27034486072199554
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm2__Tm2,0.13440773397748507
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm2__Tm2,0.24629362472955918
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tm2__Tm2,0.26997919438851825
+ELASTICNET,compositional_baseline,Parent Mean,label__thermostability_tm2__Tm2,0.2146101110196115
+HGBM,compositional_baseline,Parent Mean,label__thermostability_tm2__Tm2,0.1323098030069499
+LASSO,compositional_baseline,Parent Mean,label__thermostability_tm2__Tm2,0.2144312781575858
+PLS,compositional_baseline,Parent Mean,label__thermostability_tm2__Tm2,0.22042618275623826
+RF,compositional_baseline,Parent Mean,label__thermostability_tm2__Tm2,0.11380130414658364
+RIDGE,compositional_baseline,Parent Mean,label__thermostability_tm2__Tm2,0.20807603868768765
+XGB,compositional_baseline,Parent Mean,label__thermostability_tm2__Tm2,0.09325211998494669
+ELASTICNET,corresponding_experimental,Same Assay,label__thermostability_tm2__Tm2,0.1287890212776389
+HGBM,corresponding_experimental,Same Assay,label__thermostability_tm2__Tm2,-0.030388240808396066
+LASSO,corresponding_experimental,Same Assay,label__thermostability_tm2__Tm2,0.11400194582058888
+PLS,corresponding_experimental,Same Assay,label__thermostability_tm2__Tm2,0.10276483613210866
+RF,corresponding_experimental,Same Assay,label__thermostability_tm2__Tm2,0.0407576600796905
+RIDGE,corresponding_experimental,Same Assay,label__thermostability_tm2__Tm2,0.1443848483345961
+XGB,corresponding_experimental,Same Assay,label__thermostability_tm2__Tm2,-0.06864788831018245
+ELASTICNET,in_silico_only,In Silico,label__thermostability_tm2__Tm2,-0.020827494539632948
+HGBM,in_silico_only,In Silico,label__thermostability_tm2__Tm2,0.2648968441623592
+LASSO,in_silico_only,In Silico,label__thermostability_tm2__Tm2,-0.4968890882998244
+PLS,in_silico_only,In Silico,label__thermostability_tm2__Tm2,0.0539754945654269
+RF,in_silico_only,In Silico,label__thermostability_tm2__Tm2,0.13259015973678664
+RIDGE,in_silico_only,In Silico,label__thermostability_tm2__Tm2,0.0466807152830952
+XGB,in_silico_only,In Silico,label__thermostability_tm2__Tm2,0.20449938144717375
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm2__Tm2,-0.26461568033706667
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm2__Tm2,0.3020940794637037
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm2__Tm2,-0.4938248868732579
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm2__Tm2,0.05014259919424932
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm2__Tm2,0.12864652633579216
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm2__Tm2,-0.03649791873640824
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tm2__Tm2,0.1654017133434069
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm2__Tm2,0.015435781228078602
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm2__Tm2,0.2650329706692743
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm2__Tm2,-0.49393165347348666
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm2__Tm2,0.089645977671567
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm2__Tm2,0.13459218372582862
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm2__Tm2,0.062284549781635674
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tm2__Tm2,0.2614322911040106
+ELASTICNET,all_experimental,All Assays,label__thermostability_tonset__Tonset,-0.24678568525921796
+HGBM,all_experimental,All Assays,label__thermostability_tonset__Tonset,-0.10940379538787454
+LASSO,all_experimental,All Assays,label__thermostability_tonset__Tonset,-0.2772183238012186
+PLS,all_experimental,All Assays,label__thermostability_tonset__Tonset,0.06126852793223278
+RF,all_experimental,All Assays,label__thermostability_tonset__Tonset,-0.031299121185230094
+RIDGE,all_experimental,All Assays,label__thermostability_tonset__Tonset,0.013108356357449705
+XGB,all_experimental,All Assays,label__thermostability_tonset__Tonset,-0.008007406778030853
+ELASTICNET,arm_all_experimental,Arm All Assays,label__thermostability_tonset__Tonset,-0.13307330866504238
+HGBM,arm_all_experimental,Arm All Assays,label__thermostability_tonset__Tonset,-0.001557215967617591
+LASSO,arm_all_experimental,Arm All Assays,label__thermostability_tonset__Tonset,-0.18932837795045013
+PLS,arm_all_experimental,Arm All Assays,label__thermostability_tonset__Tonset,0.054594849182664516
+RF,arm_all_experimental,Arm All Assays,label__thermostability_tonset__Tonset,-0.12733426748565968
+RIDGE,arm_all_experimental,Arm All Assays,label__thermostability_tonset__Tonset,-0.023510591782027013
+XGB,arm_all_experimental,Arm All Assays,label__thermostability_tonset__Tonset,0.012951407685519398
+ELASTICNET,arm_corresponding,Arm Same Assay,label__thermostability_tonset__Tonset,-0.2977195633662442
+HGBM,arm_corresponding,Arm Same Assay,label__thermostability_tonset__Tonset,-0.004788116506274154
+LASSO,arm_corresponding,Arm Same Assay,label__thermostability_tonset__Tonset,-0.2833008599495585
+PLS,arm_corresponding,Arm Same Assay,label__thermostability_tonset__Tonset,-0.3256104894998397
+RF,arm_corresponding,Arm Same Assay,label__thermostability_tonset__Tonset,-0.036563079337504654
+RIDGE,arm_corresponding,Arm Same Assay,label__thermostability_tonset__Tonset,-0.34635969642865955
+XGB,arm_corresponding,Arm Same Assay,label__thermostability_tonset__Tonset,0.11137544901450132
+ELASTICNET,arm_in_silico_only,Arm In Silico,label__thermostability_tonset__Tonset,0.04546689744773959
+HGBM,arm_in_silico_only,Arm In Silico,label__thermostability_tonset__Tonset,0.03532375223627749
+LASSO,arm_in_silico_only,Arm In Silico,label__thermostability_tonset__Tonset,0.046219970794277754
+PLS,arm_in_silico_only,Arm In Silico,label__thermostability_tonset__Tonset,0.13480099353170563
+RF,arm_in_silico_only,Arm In Silico,label__thermostability_tonset__Tonset,-0.0944393619796832
+RIDGE,arm_in_silico_only,Arm In Silico,label__thermostability_tonset__Tonset,0.03899192606780567
+XGB,arm_in_silico_only,Arm In Silico,label__thermostability_tonset__Tonset,0.036053285210758734
+ELASTICNET,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tonset__Tonset,-0.02495500847447381
+HGBM,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tonset__Tonset,-0.03840009610457189
+LASSO,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tonset__Tonset,0.014488146529599918
+PLS,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tonset__Tonset,0.14330488693906232
+RF,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tonset__Tonset,-0.15871151001661093
+RIDGE,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tonset__Tonset,0.08010799433038603
+XGB,arm_in_silico_plus_all_experimental,Arm In Silico + All Assays,label__thermostability_tonset__Tonset,0.021821532505768237
+ELASTICNET,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tonset__Tonset,0.04881718241287732
+HGBM,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tonset__Tonset,0.055998247956867385
+LASSO,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tonset__Tonset,0.04044082640001369
+PLS,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tonset__Tonset,0.12299076292875832
+RF,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tonset__Tonset,-0.11098130243719764
+RIDGE,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tonset__Tonset,0.020782900218805987
+XGB,arm_in_silico_plus_corresponding,Arm In Silico + Same Assay,label__thermostability_tonset__Tonset,0.005399715951682446
+ELASTICNET,compositional_baseline,Parent Mean,label__thermostability_tonset__Tonset,-0.2772183238012186
+HGBM,compositional_baseline,Parent Mean,label__thermostability_tonset__Tonset,-0.053231861181422604
+LASSO,compositional_baseline,Parent Mean,label__thermostability_tonset__Tonset,-0.2772183238012186
+PLS,compositional_baseline,Parent Mean,label__thermostability_tonset__Tonset,-0.267077633464391
+RF,compositional_baseline,Parent Mean,label__thermostability_tonset__Tonset,-0.0018516890803261066
+RIDGE,compositional_baseline,Parent Mean,label__thermostability_tonset__Tonset,-0.2603740305708181
+XGB,compositional_baseline,Parent Mean,label__thermostability_tonset__Tonset,-0.008678359403328496
+ELASTICNET,corresponding_experimental,Same Assay,label__thermostability_tonset__Tonset,-0.25653136013574207
+HGBM,corresponding_experimental,Same Assay,label__thermostability_tonset__Tonset,0.041502012474054065
+LASSO,corresponding_experimental,Same Assay,label__thermostability_tonset__Tonset,-0.25510320682257226
+PLS,corresponding_experimental,Same Assay,label__thermostability_tonset__Tonset,-0.2137110360408846
+RF,corresponding_experimental,Same Assay,label__thermostability_tonset__Tonset,-0.08833251906868231
+RIDGE,corresponding_experimental,Same Assay,label__thermostability_tonset__Tonset,-0.14368358291182656
+XGB,corresponding_experimental,Same Assay,label__thermostability_tonset__Tonset,0.08182614580931052
+ELASTICNET,in_silico_only,In Silico,label__thermostability_tonset__Tonset,-0.342459301587767
+HGBM,in_silico_only,In Silico,label__thermostability_tonset__Tonset,-0.06331213065000685
+LASSO,in_silico_only,In Silico,label__thermostability_tonset__Tonset,-0.2772183238012186
+PLS,in_silico_only,In Silico,label__thermostability_tonset__Tonset,0.07727455179918578
+RF,in_silico_only,In Silico,label__thermostability_tonset__Tonset,-0.21685720648319426
+RIDGE,in_silico_only,In Silico,label__thermostability_tonset__Tonset,0.019971638603164036
+XGB,in_silico_only,In Silico,label__thermostability_tonset__Tonset,-0.1024848451111384
+ELASTICNET,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tonset__Tonset,-0.3376493622797326
+HGBM,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tonset__Tonset,-0.05932600663920883
+LASSO,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tonset__Tonset,-0.2772183238012186
+PLS,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tonset__Tonset,0.1367514481014274
+RF,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tonset__Tonset,-0.22474753579155296
+RIDGE,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tonset__Tonset,0.04220076235908064
+XGB,in_silico_plus_all_experimental,In Silico + All Assays,label__thermostability_tonset__Tonset,-0.15950062846294244
+ELASTICNET,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tonset__Tonset,-0.34222344302964874
+HGBM,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tonset__Tonset,-0.024573040851571446
+LASSO,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tonset__Tonset,-0.2772183238012186
+PLS,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tonset__Tonset,0.07903102467274213
+RF,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tonset__Tonset,-0.22876473824336166
+RIDGE,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tonset__Tonset,0.016833719591356117
+XGB,in_silico_plus_corresponding,In Silico + Same Assay,label__thermostability_tonset__Tonset,-0.08968119797612381

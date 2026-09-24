@@ -1,0 +1,97 @@
+section: s07_loo_models
+purpose: >
+  Visualize the per-N3 leave-one-out CV sweep produced by stage 05
+  (D-2026-04-30-CV-LOO-PARENT-DISJOINT). Mirrors s05's figures and tables
+  but reads the _loo parquets, and adds a side-by-side comparison of
+  LOO Spearman ρ vs the parent-aware 5-fold ρ for the same
+  (label × config × model) combos.
+
+consumes:
+  - data/processed/05_modeling/cv_metrics_loo.parquet
+  - data/processed/05_modeling/cv_oof_predictions_loo.parquet
+  - data/processed/05_modeling/cv_metrics.parquet
+  - data/processed/05_modeling/feature_importance_long.parquet
+
+produces:
+  - reports/figures/s07_spearman_heatmap.png
+  - reports/figures/s07_spearman_comparison.png
+  - reports/figures/s07_oof_scatter_spearman.png
+  - reports/tables/s07_best_per_label_spearman.csv
+  - reports/tables/s07_config_summary_spearman.csv
+  - reports/figures/s07_mse_heatmap.png
+  - reports/figures/s07_mse_comparison.png
+  - reports/figures/s07_oof_scatter_mse.png
+  - reports/tables/s07_best_per_label_mse.csv
+  - reports/tables/s07_config_summary_mse.csv
+  - reports/figures/s07_rmse_heatmap.png
+  - reports/figures/s07_rmse_comparison.png
+  - reports/figures/s07_oof_scatter_rmse.png
+  - reports/tables/s07_best_per_label_rmse.csv
+  - reports/tables/s07_config_summary_rmse.csv
+  - reports/figures/s07_pearson_heatmap.png
+  - reports/figures/s07_pearson_comparison.png
+  - reports/figures/s07_oof_scatter_pearson.png
+  - reports/tables/s07_best_per_label_pearson.csv
+  - reports/tables/s07_config_summary_pearson.csv
+  - reports/figures/s07_loo_vs_kfold_scatter.png
+  - reports/figures/s07_spearman_comparison_subset.png
+  - reports/figures/s07_top_features_subset.png
+  - reports/tables/s07_top_features_subset.csv
+  - reports/figures/s07_boxenplot_model_config.png
+  - reports/figures/s07_hic_spearman_heatmap.png
+  - reports/figures/s07_top_features_subset_arm.png
+  - reports/figures/s07_spearman_comparison_subset_arm.png
+  - reports/figures/s07_top_features_subset_arm_groups.png
+  - reports/figures/s07_top_features_all_arm_groups.png
+  - reports/figures/s07_stacked_importance_subset_arm.png
+  - reports/figures/s07_stacked_importance_all_arm.png
+  - reports/figures/s07_top_features_subset_groups.png
+  - reports/figures/s07_top_features_all_groups.png
+  - reports/figures/s07_stacked_importance_subset.png
+  - reports/figures/s07_stacked_importance_all.png
+  - reports/figures/s07_supervised_vs_baseline.png
+  - reports/figures/s07_supervised_vs_baseline_reported_subset.png
+  - reports/figures/s07_hic_spearman_heatmap_arm.png
+  # reported_subset variants (REPORTED_VALUE_COLS filter)
+  - reports/figures/s07_spearman_heatmap_reported_subset.png
+  - reports/figures/s07_spearman_comparison_reported_subset.png
+  - reports/figures/s07_spearman_comparison_arm_reported_subset.png
+  - reports/figures/s07_oof_scatter_spearman_reported_subset.png
+  - reports/tables/s07_best_per_label_spearman_reported_subset.csv
+  - reports/tables/s07_config_summary_spearman_reported_subset.csv
+  - reports/figures/s07_mse_heatmap_reported_subset.png
+  - reports/figures/s07_mse_comparison_reported_subset.png
+  - reports/figures/s07_mse_comparison_arm_reported_subset.png
+  - reports/figures/s07_oof_scatter_mse_reported_subset.png
+  - reports/tables/s07_best_per_label_mse_reported_subset.csv
+  - reports/tables/s07_config_summary_mse_reported_subset.csv
+  - reports/figures/s07_rmse_heatmap_reported_subset.png
+  - reports/figures/s07_rmse_comparison_reported_subset.png
+  - reports/figures/s07_rmse_comparison_arm_reported_subset.png
+  - reports/figures/s07_oof_scatter_rmse_reported_subset.png
+  - reports/tables/s07_best_per_label_rmse_reported_subset.csv
+  - reports/tables/s07_config_summary_rmse_reported_subset.csv
+  - reports/figures/s07_pearson_heatmap_reported_subset.png
+  - reports/figures/s07_pearson_comparison_reported_subset.png
+  - reports/figures/s07_pearson_comparison_arm_reported_subset.png
+  - reports/figures/s07_oof_scatter_pearson_reported_subset.png
+  - reports/tables/s07_best_per_label_pearson_reported_subset.csv
+  - reports/tables/s07_config_summary_pearson_reported_subset.csv
+  - reports/figures/s07_top_features_all_arm_groups_reported_subset.png
+  - reports/figures/s07_top_features_all_groups_reported_subset.png
+  - reports/figures/s07_stacked_importance_all_arm_reported_subset.png
+  - reports/figures/s07_stacked_importance_all_reported_subset.png
+  - reports/figures/s07_loo_vs_kfold_scatter_reported_subset.png
+  - reports/figures/s07_boxenplot_model_config_reported_subset.png
+
+decisions:
+  - id: D-2026-04-30-CV-LOO-PARENT-DISJOINT
+    note: Per-N3 LOO with parent exclusion; full 160-N3 panel coverage.
+  - id: D-2026-04-27-CV-PARENTAWARE
+    note: Source of the k-fold ρ values used by s07_loo_vs_kfold_scatter.
+  - id: D-2026-04-27-MODELS
+    note: Ridge, Lasso, ElasticNet, RF, XGBoost, HGBM, PLS model families.
+  - id: D-2026-04-29-TARGET-TRANSFORMS
+    note: Per-label target transforms applied at fit time; OOF predictions are on the original scale.
+  - id: D-2026-04-27-IMPORTANCE
+    note: Built-in + permutation importance from full-data refit (split-agnostic); reused from s05/s06 pipeline.
