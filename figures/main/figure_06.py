@@ -113,7 +113,7 @@ def main():
     _n = len(bars_v2)
     _x = np.arange(_n)
     _w = 0.24
-    _c_par = DATAPOINTS_COLORS['navy']
+    _c_par = DATAPOINTS_COLORS['gray']
     _c_mod = DATAPOINTS_COLORS['blue']
     _c_is = DATAPOINTS_COLORS['pink']
     _TICK = {'AC-SINS PBS pH 7.4': 'AC-SINS PBS', 'AC-SINS His/NaCl pH 6.0': 'AC-SINS His/NaCl', 'AC-SINS His/Arg pH 6.0': 'AC-SINS His/Arg'}
@@ -252,7 +252,7 @@ def main():
     _fig6.savefig(_o6, dpi=300, bbox_inches='tight')
     print(f'wrote {_o6.relative_to(paths.REPO_ROOT)}')
     _fig6
-    _src = paths.FIGURES / 'main/figure_5_loo.png'
+    _src = paths.FIGURES / 'main/figure_5_version_2.png'
     _dst = paths.FIGURES / 'main/figure_06.png'
     _dst.parent.mkdir(parents=True, exist_ok=True)
     copy2(_src, _dst)
