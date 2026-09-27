@@ -16,16 +16,16 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def main() -> None:
-    n3n4 = pd.read_parquet(paths.S03 / "n3n4_per_antibody.parquet")
+    summaries = pd.read_parquet(paths.S03 / "gdpa4_per_antibody.parquet")
     _gdpa1_all = pd.read_parquet(paths.S03 / "gdpa1_per_antibody.parquet")
     gdpa1 = _gdpa1_all[_gdpa1_all["hc_subtype"] == "IgG1"]
-    n4_map = pd.read_parquet(paths.S02 / "n4_gdpa1_map.parquet")
+    monospecific_map = pd.read_parquet(paths.S02 / "monospecific_gdpa1_map.parquet")
 
-    # Filter to N4, attach stripped name for cross-platform join
-    n4 = n3n4[n3n4["kind"] == schema.KIND_N4].merge(
-        n4_map[["n4_antibody_name", "n4_stripped"]],
+    # Filter to monospecific, attach stripped name for cross-platform join
+    monospecific = summaries[summaries["kind"] == schema.KIND_MONOSPECIFIC].merge(
+        monospecific_map[["monospecific_antibody_name", "monospecific_stripped"]],
         left_on="antibody_name",
-        right_on="n4_antibody_name",
+        right_on="monospecific_antibody_name",
         how="left",
     )
 
@@ -40,17 +40,17 @@ def main() -> None:
     all_rows: list[pd.DataFrame] = []
 
     for (this_vc, this_cond), gdpa1_col in schema.PROPHET_TO_GDPA1.items():
-        ours = n4[(n4["value_col"] == this_vc) & (n4["condition"] == this_cond)][
-            ["n4_stripped", "median"]
+        ours = monospecific[(monospecific["value_col"] == this_vc) & (monospecific["condition"] == this_cond)][
+            ["monospecific_stripped", "median"]
         ].rename(columns={"median": "this_campaign_median"})
 
         theirs = gdpa1[gdpa1["value_col"] == gdpa1_col][
             ["antibody_name", "median"]
         ].rename(
-            columns={"antibody_name": "n4_stripped", "median": "gdpa1_median"}
+            columns={"antibody_name": "monospecific_stripped", "median": "gdpa1_median"}
         )
 
-        merged = ours.merge(theirs, on="n4_stripped", how="inner").dropna(
+        merged = ours.merge(theirs, on="monospecific_stripped", how="inner").dropna(
             subset=["this_campaign_median", "gdpa1_median"]
         )
 
@@ -77,7 +77,7 @@ def main() -> None:
         )
         n = len(merged)
 
-        merged["antibody_name"] = merged["n4_stripped"]
+        merged["antibody_name"] = merged["monospecific_stripped"]
         merged["value_col"] = this_vc
         merged["condition"] = this_cond
         merged["panel_label"] = panel

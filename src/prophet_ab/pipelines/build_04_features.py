@@ -1,17 +1,17 @@
 """Stage 04 — feature tables.
 
 Outputs (data/processed/04_features/):
-    in_silico_per_n4_long.parquet
-        Per-N4 in-silico features in long form.
-        Cols: n4_antibody_name, parent (stripped), source, feature, value
-        One row per (N4 antibody × in-silico feature). NaN values dropped.
+    in_silico_per_monospecific_long.parquet
+        Per-monospecific in-silico features in long form.
+        Cols: monospecific_antibody_name, parent (stripped), source, feature, value
+        One row per (monospecific antibody × in-silico feature). NaN values dropped.
 
-    in_silico_per_n3_long.parquet
-        Per-N3 in-silico features computed by applying every operator in
+    in_silico_per_bispecific_long.parquet
+        Per-bispecific in-silico features computed by applying every operator in
         compositional.OPERATORS to the two parents' values.
         Cols: antibody_name, parent_a, parent_b, source, feature, operator, value
 
-Note: stage 04 also receives `n3_compositional_predictions.parquet` from the
+Note: stage 04 also receives `bispecific_compositional_predictions.parquet` from the
 s03 notebook (compositional baseline labels + predictions).
 
 Run: `python -m prophet_ab.pipelines.build_04_features`
@@ -32,21 +32,21 @@ def _write(df: pd.DataFrame, out: Path) -> None:
     print(f"  wrote {out.relative_to(paths.REPO_ROOT)}  shape={df.shape}")
 
 
-def _build_per_n4(in_silico_long: pd.DataFrame, n4_map: pd.DataFrame) -> pd.DataFrame:
-    # in_silico_long.antibody_name uses the bare GDPa1 name; join via n4_stripped.
+def _build_per_monospecific(in_silico_long: pd.DataFrame, monospecific_map: pd.DataFrame) -> pd.DataFrame:
+    # in_silico_long.antibody_name uses the bare GDPa1 name; join via monospecific_stripped.
     merged = in_silico_long.merge(
-        n4_map[["n4_antibody_name", "n4_stripped"]],
-        left_on="antibody_name", right_on="n4_stripped", how="inner",
+        monospecific_map[["monospecific_antibody_name", "monospecific_stripped"]],
+        left_on="antibody_name", right_on="monospecific_stripped", how="inner",
     )
-    out = merged[["n4_antibody_name", "n4_stripped", "source", "feature", "value"]].rename(
-        columns={"n4_stripped": "parent"}
+    out = merged[["monospecific_antibody_name", "monospecific_stripped", "source", "feature", "value"]].rename(
+        columns={"monospecific_stripped": "parent"}
     )
     return out.dropna(subset=["value"]).reset_index(drop=True)
 
 
-def _build_per_n3(per_n4: pd.DataFrame, components: pd.DataFrame) -> pd.DataFrame:
+def _build_per_bispecific(per_monospecific: pd.DataFrame, components: pd.DataFrame) -> pd.DataFrame:
     # Per-(parent, source, feature) lookup → join twice for parent_a and parent_b.
-    lookup = per_n4[["parent", "source", "feature", "value"]]
+    lookup = per_monospecific[["parent", "source", "feature", "value"]]
     base = components[["antibody_name", "parent_a", "parent_b"]]
 
     merged = (
@@ -69,16 +69,16 @@ def _build_per_n3(per_n4: pd.DataFrame, components: pd.DataFrame) -> pd.DataFram
 def main() -> None:
     out = paths.S04
 
-    print("[1/2] in_silico_per_n4_long")
+    print("[1/2] in_silico_per_monospecific_long")
     insilico_long = in_silico.load_all_long().dropna(subset=["value"])
-    n4_map = pd.read_parquet(paths.S02 / "n4_gdpa1_map.parquet")
-    per_n4 = _build_per_n4(insilico_long, n4_map)
-    _write(per_n4, out / "in_silico_per_n4_long.parquet")
+    monospecific_map = pd.read_parquet(paths.S02 / "monospecific_gdpa1_map.parquet")
+    per_monospecific = _build_per_monospecific(insilico_long, monospecific_map)
+    _write(per_monospecific, out / "in_silico_per_monospecific_long.parquet")
 
-    print("[2/2] in_silico_per_n3_long")
-    components = pd.read_parquet(paths.S02 / "n3_components.parquet")
-    per_n3 = _build_per_n3(per_n4, components)
-    _write(per_n3, out / "in_silico_per_n3_long.parquet")
+    print("[2/2] in_silico_per_bispecific_long")
+    components = pd.read_parquet(paths.S02 / "bispecific_components.parquet")
+    per_bispecific = _build_per_bispecific(per_monospecific, components)
+    _write(per_bispecific, out / "in_silico_per_bispecific_long.parquet")
 
     print("done.")
 

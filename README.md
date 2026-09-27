@@ -1,133 +1,102 @@
 # GDPa4 bispecific developability figures
 
-This repository rebuilds the central figures for the GDPa4 campaign: **160
-bispecific antibodies (N3)** assembled from **65 unique monospecific parents**,
-profiled together with **71 monospecific IgG1s (N4)** on the PROPHET-Ab
-platform. A subset of the N4 panel also appears in the published GDPa1
-benchmark (Arsiwala et al. 2025, *MAbs*).
+This repository contains the analysis required to reproduce the code-backed
+figures and source data for the revised PNAS manuscript. It describes 160
+bispecific antibodies assembled from 65 unique monospecific parents and
+profiled alongside 71 monospecific IgG1s.
 
-N3/N4 are format labels used in the tables and code. The assay table for this
-campaign is `data/raw/GDPa4_N3_N4_Summary_tall.csv`.
+The historical campaign labels remain only in immutable raw filenames and
+input parsing. Processed data, code, and figure labels use **bispecific** and
+**monospecific**.
 
 ## Setup
 
-Requires Python 3.11+ and [uv](https://docs.astral.sh/uv/).
+Python 3.11+ and [uv](https://docs.astral.sh/uv/) are required.
 
 ```bash
 uv venv
 source .venv/bin/activate
-uv pip install -e ".[analysis]"
+uv pip install -e ".[test]"
+python scripts/ensure_editable_imports.py
 ```
 
-For the numeric tests:
+## Reproduction
+
+Build the normalized and analysis-ready data:
 
 ```bash
-uv pip install -e ".[test]"
+make data
 ```
 
-## Reproduce figures (default)
+Each code-backed manuscript figure has an independent, non-interactive Python
+entry point. For example:
 
-Default `make all` rebuilds processed assay tables and every listed figure
-from the committed model caches. It does **not** re-fit models. Then run
-`python -m pytest tests -q` (or `make test`).
+```bash
+uv run python figures/main/figure_03.py
+uv run python figures/supplementary/figure_s14.py
+```
+
+Each command writes a final-numbered PNG and its numerical source-data CSVs.
+Generate all supported figures and assemble the PNAS source-data workbook with:
 
 ```bash
 make all
 ```
 
-If `make` is not available, the same steps are `bash scripts/reproduce.sh`.
+The default workflow uses the committed supervised-model records in
+`data/processed/05_modeling/`; it does not refit models. `make fit-local`
+repeats that expensive sweep and can take hours.
 
-Runtime is typically 10–20 minutes on a laptop (s00 protein-property
-computation and s07 figure rendering dominate). No GPU is required.
+## Final figure map
 
-Then:
+Main figures:
+
+- Figure 1: `figures/main/figure_01.py` generates panels B and C; panels A and
+  D are manually composed.
+- Figure 2: `figures/main/figure_02.py`
+- Figure 3: `figures/main/figure_03.py`
+- Figure 4: `figures/main/figure_04.py`
+- Figure 5: `figures/main/figure_05.py`
+- Figure 6: `figures/main/figure_06.py`; panel A uses
+  `reports/manual_input_materials/loo_diagram.png`.
+
+Supplementary figures with in-repository generators:
+
+- S1, S2, S4, S5, S7, S8, S9, S11, and S13–S16 are under
+  `figures/supplementary/figure_sNN.py`.
+- S3, S6, S10, and S12 are external or manually composed and have no analysis
+  generator in this checkout. Their submitted records remain in
+  `docs_for_updates/Supplementary_Information_PNAS_Revision_TRACKED.docx`.
+
+Generated outputs are written under `reports/figures/main/`,
+`reports/figures/supplementary/`, and
+`reports/figures/figure_data_supplement/`; they are intentionally ignored by
+Git.
+
+## Preserved inputs
+
+- `data/raw/`: immutable assay, design, production, and in-silico inputs.
+- `data/processed/05_modeling/cv_metrics.parquet`
+- `data/processed/05_modeling/cv_metrics_loo.parquet`
+- `data/processed/05_modeling/cv_oof_predictions_loo.parquet`
+- `data/processed/05_modeling/feature_importance_long.parquet`
+- `datapoints_figures/`: the local manuscript plotting-style package.
+- `docs_for_updates/`: the tracked manuscript and supplementary records.
+
+Intermediate processed tables and rendered outputs are reproducible and are
+not versioned.
+
+## Verification
+
+Rendering all figure scripts is the primary integration test. A minimal pytest
+suite protects cohort counts, immutable inputs, and readability of the costly
+model records:
 
 ```bash
 make test
 ```
 
-### Optional model re-fit
+## Citation and license
 
-The leave-one-bispecific-out sweep (Ridge, Lasso, ElasticNet, random forest,
-XGBoost, HGBM, PLS × feature configs × labels) is already stored under
-`data/processed/05_modeling/`. To overwrite those parquets locally:
-
-```bash
-make fit-local
-```
-
-This takes hours on a multi-core workstation.
-
-## Inputs
-
-| File | Role |
-|---|---|
-| `data/raw/GDPa4_N3_N4_Summary_tall.csv` | Primary GDPa4 assay table (tall) |
-| `data/raw/[External] AbDev peer-review 246 IgGs_Master data file_GDPa1.xlsx` | GDPa1 companion file |
-| `data/raw/bsab_design/bsabs_dec_2025/data/` | Design-space selection tables |
-| `data/raw/bsab_design/umap_coords.csv` | Frozen UMAP coordinates for Figure 1B |
-| `data/raw/in_silico_gpa1/GDPa1/` | In-silico predictor CSVs |
-| `data/raw/production/` | N3 and N4 production summaries |
-| `data/processed/05_modeling/cv_*.parquet` | Committed CV metrics / importance |
-
-## Figure outputs
-
-File names inside `reports/figures/` are the names used by the plotting
-scripts. Manuscript numbering in
-`reports/figures/figure_data_supplement/figures_for_data.md` can differ.
-
-| Description | Path |
-|---|---|
-| Design-space UMAP (selected pairs) | `reports/figures/s00_umap_selected.png` |
-| Parent-arm usage | `reports/figures/s00_arm_distribution.png` |
-| Design-space coverage grid | `reports/figures/s00_coverage_consolidated.png` |
-| Swap-pair orientation scatters | `reports/figures/s01_swap_pair_scatters_pearson.png` |
-| Pooled Tm violins | `reports/figures/s01_violin_pts_if_tm_pooled.png` |
-| GDPa4 vs GDPa1 scatter | `reports/figures/s02_cross_platform_scatter.png` |
-| Compositional tiers | `reports/figures/main/figure_2_tiers.png` |
-| Compositional tiers (wide panel A) | `reports/figures/main/figure_2a_wide.png` |
-| AC-SINS classification + charge | `reports/figures/main/figure_3.png` |
-| AC-SINS charge quadrants (band-only alt.) | `reports/figures/main/figure_3_version_2.png` |
-| Charge-transform horserace | `reports/figures/main/figure_4.png` |
-| Polyreactivity vs HIC/HAC | `reports/figures/s09_polyreactivity_vs_chromatography.png` |
-| LOO design + model sweep | `reports/figures/main/figure_5_loo.png` |
-| LOO vs parental bars | `reports/figures/main/figure_5_version_2.png` |
-| LOO Δρ bars | `reports/figures/main/figure_5_version_3.png` |
-| Feature-group importance + dumbbell | `reports/figures/main/figure_6_loo.png` |
-| mAb ceiling crossers | `reports/figures/main/supplemental_figure_ceiling.png` |
-| LOO top features (operator configs) | `reports/figures/s07_top_features_all_groups_reported_subset.png` |
-| LOO top features (arm configs) | `reports/figures/s07_top_features_all_arm_groups_reported_subset.png` |
-| Format-effect coefficients | `reports/figures/s08_coefficient_overlay_reported_subset.png` |
-
-Source-data Excel workbook (one sheet per panel):
-
-`reports/figures/figure_data_supplement/source_data.xlsx`
-
-Rebuild a single section with `make s00`, `make s01`, …, `make s13`.
-
-## How the pipeline is organized
-
-```
-data/raw/GDPa4_N3_N4_Summary_tall.csv
-        → python -m prophet_ab.pipelines.build_01_normalized
-        → build_02_joined → build_03_aggregated
-        → build_04_features → build_05_wide
-        → notebooks (figures)
-```
-
-Median over replicates is the per-antibody summary. Three N4 names carry an
-`_IgG1` suffix (`bococizumab_IgG1`, `galcanezumab_IgG1`, `ixekizumab_IgG1`);
-that suffix is stripped before joining N3 components to N4 parents.
-Deprecated metrics excluded from modeling: `acsins_Lmax`, `pr_score_norm`.
-
-Open a notebook in the browser with `marimo edit notebooks/sNN_.../*.py`,
-or run headless with `python notebooks/sNN_.../*.py`.
-
-## Citation
-
-Replace with the published article citation when available.
-
-## License
-
-Data and code licensing for redistribution should be confirmed before a
-public release.
+Replace this section with the final article citation. Confirm data and code
+redistribution terms before public release.

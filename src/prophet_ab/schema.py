@@ -1,17 +1,17 @@
 """Canonical names, enums, and cross-dataset mappings.
 
-Single source of truth for column names, the assay panel, and how N3/N4
-readouts map onto the published GDPa1 schema. Touch this file when (and only
-when) a methodological decision changes a name or a join.
+Legacy campaign labels are accepted only at the raw-data boundary. Processed
+tables use biological format names so publication-facing analysis does not
+depend on internal production campaign terminology.
 """
 from __future__ import annotations
 
 # ---------------------------------------------------------------------------
 # Sample kinds
 # ---------------------------------------------------------------------------
-KIND_N3 = "N3"          # bispecific
-KIND_N4 = "N4"          # monospecific (this campaign)
-KIND_GDPA1 = "GDPa1"    # historical monospecific
+KIND_BISPECIFIC = "bispecific"
+KIND_MONOSPECIFIC = "monospecific"
+KIND_GDPA1 = "GDPa1"  # historical monospecific
 
 # ---------------------------------------------------------------------------
 # PROPHET-Ab assay panel (this campaign)
@@ -42,18 +42,18 @@ ASSAY_PANEL: tuple[tuple[str, str, str], ...] = (
 # ---------------------------------------------------------------------------
 # Name normalization
 # ---------------------------------------------------------------------------
-# All 71 N4 monospecifics were expressed on a uniform IgG1 constant region
-# (D-2026-04-27-IGG1-UNIFORM). Three N4 names carry an explicit `_IgG1`
-# suffix flagging the originally non-IgG1 parents; their N3 components drop
+# All 71 monospecific monospecifics were expressed on a uniform IgG1 constant region
+# (D-2026-04-27-IGG1-UNIFORM). Three monospecific names carry an explicit `_IgG1`
+# suffix flagging the originally non-IgG1 parents; their bispecific components drop
 # the suffix, so strip at join time (D-2026-04-27-ISOTYPE).
 ISOTYPE_SUFFIXES_TO_STRIP: tuple[str, ...] = ("_IgG1",)
 
-# Plate controls. These also occur as legitimate N4 parents in some N3s; do
+# Plate controls. These also occur as legitimate monospecific parents in some bispecifics; do
 # not drop them by name — instead flag.
 CONTROL_NAMES: frozenset[str] = frozenset({"atezolizumab", "trastuzumab", "adalimumab"})
 
-N3_PREFIX = "N3-"
-N3_PAIR_SEP = "__x__"
+LEGACY_BISPECIFIC_PREFIX = "N3-"
+BISPECIFIC_PAIR_SEP = "__x__"
 
 # ---------------------------------------------------------------------------
 # Metrics deprecated for downstream analysis
@@ -67,7 +67,7 @@ N3_PAIR_SEP = "__x__"
 # pr_score_norm is excluded from baselines, features, and labels.
 DEPRECATED_VALUE_COLS: frozenset[str] = frozenset({"pr_score_norm", "acsins_Lmax"})
 
-# Production QC metrics — flow through n3n4_long and aggregation for
+# Production QC metrics — flow through gdpa4_long and aggregation for
 # descriptive analysis but are excluded from feature/label builders.
 PRODUCTION_VALUE_COLS: frozenset[str] = frozenset({
     "production_amount_mg",
@@ -96,7 +96,7 @@ REPORTED_VALUE_COLS: frozenset[str] = frozenset({
 })
 
 # ---------------------------------------------------------------------------
-# N3/N4  ↔  GDPa1 cross-platform mapping
+# bispecific/monospecific  ↔  GDPa1 cross-platform mapping
 # ---------------------------------------------------------------------------
 # (this_value_col, this_condition_or_None) -> gdpa1_column
 # `this_condition` of None means "any condition / not condition-keyed".

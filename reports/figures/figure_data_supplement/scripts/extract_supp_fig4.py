@@ -47,17 +47,17 @@ def _wide(summaries: pd.DataFrame, kind: str) -> pd.DataFrame:
 
 
 def main() -> None:
-    summaries = pd.read_parquet(paths.S03 / "n3n4_per_antibody.parquet")
-    components = pd.read_parquet(paths.S02 / "n3_components.parquet")[
+    summaries = pd.read_parquet(paths.S03 / "gdpa4_per_antibody.parquet")
+    components = pd.read_parquet(paths.S02 / "bispecific_components.parquet")[
         ["antibody_name", "parent_a", "parent_b"]
     ]
 
-    wide_n4 = _wide(summaries, schema.KIND_N4)
-    wide_n4["parent"] = wide_n4["antibody_name"].map(nz.strip_isotype_suffix)
-    wide_n3 = _wide(summaries, schema.KIND_N3)
+    wide_monospecific = _wide(summaries, schema.KIND_MONOSPECIFIC)
+    wide_monospecific["parent"] = wide_monospecific["antibody_name"].map(nz.strip_isotype_suffix)
+    wide_bispecific = _wide(summaries, schema.KIND_BISPECIFIC)
 
-    # ---- Pareto MAX-MAX frontier on N4 HIC x HAC ----
-    core = wide_n4.dropna(subset=["hic", "hac"]).copy().reset_index(drop=True)
+    # ---- Pareto MAX-MAX frontier on monospecific HIC x HAC ----
+    core = wide_monospecific.dropna(subset=["hic", "hac"]).copy().reset_index(drop=True)
     pts = core[["hic", "hac"]].values
     n = len(pts)
     is_pareto = np.ones(n, dtype=bool)
@@ -79,14 +79,14 @@ def main() -> None:
     frontier_pts = frontier_core[["hic", "hac"]].values
     frontier_parent_set = set(frontier_core["parent"])
 
-    # ---- N3 pair averaging across orientations ----
-    n3 = wide_n3.merge(components, on="antibody_name", how="left")
-    n3 = n3.dropna(subset=["hic", "hac", "parent_a", "parent_b"]).copy()
-    n3["pair_key"] = n3.apply(
+    # ---- bispecific pair averaging across orientations ----
+    bispecific = wide_bispecific.merge(components, on="antibody_name", how="left")
+    bispecific = bispecific.dropna(subset=["hic", "hac", "parent_a", "parent_b"]).copy()
+    bispecific["pair_key"] = bispecific.apply(
         lambda r: tuple(sorted([r["parent_a"], r["parent_b"]])), axis=1
     )
 
-    crosser_df = n3.groupby("pair_key", as_index=False).agg(
+    crosser_df = bispecific.groupby("pair_key", as_index=False).agg(
         parent_a=("parent_a", "first"),
         parent_b=("parent_b", "first"),
         antibody_name=("antibody_name", "first"),
@@ -119,27 +119,27 @@ def main() -> None:
     crosser_df["category"] = crosser_df.apply(_categorize, axis=1)
 
     # ---- Panel A: scatter data + frontier ----
-    # N3 rows
-    scatter_n3 = crosser_df[
+    # Bispecific rows
+    scatter_bispecific = crosser_df[
         ["pair_key", "hic", "hac", "pr_cho", "pr_ova", "bvp", "category", "frontier_dist"]
     ].copy()
-    scatter_n3["pair_key"] = scatter_n3["pair_key"].apply(
+    scatter_bispecific["pair_key"] = scatter_bispecific["pair_key"].apply(
         lambda t: f"{t[0]}__{t[1]}"
     )
-    scatter_n3["kind"] = "N3"
+    scatter_bispecific["kind"] = "bispecific"
 
-    # N4 rows
-    scatter_n4 = wide_n4.dropna(subset=["hic", "hac"]).copy()
-    scatter_n4["pair_key"] = scatter_n4["parent"]
-    scatter_n4["kind"] = "N4"
-    scatter_n4["category"] = ""
-    scatter_n4["frontier_dist"] = np.nan
-    scatter_n4 = scatter_n4[
+    # Monospecific rows
+    scatter_monospecific = wide_monospecific.dropna(subset=["hic", "hac"]).copy()
+    scatter_monospecific["pair_key"] = scatter_monospecific["parent"]
+    scatter_monospecific["kind"] = "monospecific"
+    scatter_monospecific["category"] = ""
+    scatter_monospecific["frontier_dist"] = np.nan
+    scatter_monospecific = scatter_monospecific[
         ["pair_key", "hic", "hac", "pr_cho", "pr_ova", "bvp", "category", "frontier_dist", "kind"]
     ]
 
     scatter = pd.concat(
-        [scatter_n3[scatter_n4.columns], scatter_n4], ignore_index=True
+        [scatter_bispecific[scatter_monospecific.columns], scatter_monospecific], ignore_index=True
     )
     out_scatter = OUT_DIR / "supp_fig4a_scatter.csv"
     scatter.to_csv(out_scatter, index=False)

@@ -6,8 +6,8 @@ import pandas as pd
 from . import paths
 
 
-def read_n3n4_tall() -> pd.DataFrame:
-    df = pd.read_csv(paths.RAW_N3N4_TALL_CSV)
+def read_gdpa4_tall() -> pd.DataFrame:
+    df = pd.read_csv(paths.RAW_GDPA4_TALL_CSV)
     df["plateid"] = df["plateid"].astype("string")
     return df
 
@@ -24,10 +24,10 @@ def read_gdpa1_prior_lit() -> pd.DataFrame:
     return pd.read_excel(paths.RAW_GDPA1_XLSX, sheet_name="Prior literature Data")
 
 
-def read_n3_production() -> pd.DataFrame:
-    """N3 production summary with sequences, yields, vendor QC."""
+def read_bispecific_production() -> pd.DataFrame:
+    """bispecific production summary with sequences, yields, vendor QC."""
     df = pd.read_excel(
-        paths.RAW_N3_PRODUCTION_XLSX,
+        paths.RAW_BISPECIFIC_PRODUCTION_XLSX,
         sheet_name="Customized service_Main item",
     )
     rename = {
@@ -58,8 +58,8 @@ def read_n3_production() -> pd.DataFrame:
     return df.rename(columns=rename)
 
 
-def read_n4_production() -> pd.DataFrame:
-    df = pd.read_excel(paths.RAW_N4_PRODUCTION_XLSX)
+def read_monospecific_production() -> pd.DataFrame:
+    df = pd.read_excel(paths.RAW_MONOSPECIFIC_PRODUCTION_XLSX)
     return df.rename(columns={
         "Protein Name": "antibody_name",
         "Expression Volume (mL)": "expression_volume_ml",

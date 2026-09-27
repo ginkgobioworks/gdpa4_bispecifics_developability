@@ -16,9 +16,9 @@ FIGURES = REPORTS / "figures"
 TABLES = REPORTS / "tables"
 
 # Raw file locations
-RAW_N3N4_TALL_CSV = RAW / "GDPa4_N3_N4_Summary_tall.csv"
+RAW_GDPA4_TALL_CSV = RAW / "GDPa4_N3_N4_Summary_tall.csv"
 RAW_GDPA1_XLSX = RAW / "[External] AbDev peer-review 246 IgGs_Master data file_GDPa1.xlsx"
-RAW_N3_PRODUCTION_XLSX = RAW / "production" / "Data_Summary_U594PPMRG0_03032026 (1).xlsx"
-RAW_N4_PRODUCTION_XLSX = RAW / "production" / "N4_U126M421G0_AntibodyList_reformatted.xlsx"
+RAW_BISPECIFIC_PRODUCTION_XLSX = RAW / "production" / "Data_Summary_U594PPMRG0_03032026 (1).xlsx"
+RAW_MONOSPECIFIC_PRODUCTION_XLSX = RAW / "production" / "N4_U126M421G0_AntibodyList_reformatted.xlsx"
 RAW_IN_SILICO_DIR = RAW / "in_silico_gpa1" / "GDPa1"
 RAW_UMAP_COORDS = RAW / "bsab_design" / "umap_coords.csv"

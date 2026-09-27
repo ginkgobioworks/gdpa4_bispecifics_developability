@@ -30,16 +30,16 @@ from .. import schema
 MIN_DEGREE = 3
 
 
-def _components_from_names(n3_names) -> pd.DataFrame:
-    """(antibody_name, parent_a, parent_b) parsed from N3 names.
+def _components_from_names(bispecific_names) -> pd.DataFrame:
+    """(antibody_name, parent_a, parent_b) parsed from bispecific names.
 
-    Robust to an optional ``N3-`` prefix (``normalize.parse_n3_components``),
+    Robust to an optional ``N3-`` prefix (``normalize.parse_bispecific_components``),
     so it does not depend on the possibly-stale stage-02 parquet.
     """
-    parsed = [nz.parse_n3_components(n) for n in n3_names]
+    parsed = [nz.parse_bispecific_components(n) for n in bispecific_names]
     return pd.DataFrame(
         {
-            "antibody_name": list(n3_names),
+            "antibody_name": list(bispecific_names),
             "parent_a": [p[0] for p in parsed],
             "parent_b": [p[1] for p in parsed],
         }
@@ -51,38 +51,38 @@ def build_residuals_long(
 ) -> pd.DataFrame:
     """Bispecific residuals off the compositional parent mean, in long form.
 
-    For every (N3, value_col, condition): ``residual = n3_median -
+    For every (bispecific, value_col, condition): ``residual = bispecific_median -
     mean(parent_a_median, parent_b_median)``. Excludes
     ``schema.EXCLUDED_FROM_MODELING`` value_cols. Mirrors the s08 residuals
     cell. Returns rows with ``parent_a``, ``parent_b``, ``residual`` populated.
     """
-    n4 = per_antibody[per_antibody["kind"] == schema.KIND_N4][
+    monospecific = per_antibody[per_antibody["kind"] == schema.KIND_MONOSPECIFIC][
         ["antibody_name", "value_col", "condition", "median"]
     ].copy()
-    n4["parent"] = n4["antibody_name"].map(nz.strip_isotype_suffix)
-    n4_lookup = n4[["parent", "value_col", "condition", "median"]]
+    monospecific["parent"] = monospecific["antibody_name"].map(nz.strip_isotype_suffix)
+    monospecific_lookup = monospecific[["parent", "value_col", "condition", "median"]]
 
-    n3 = per_antibody[per_antibody["kind"] == schema.KIND_N3][
+    bispecific = per_antibody[per_antibody["kind"] == schema.KIND_BISPECIFIC][
         ["antibody_name", "value_col", "condition", "median"]
-    ].rename(columns={"median": "n3_median"})
-    n3 = n3[~n3["value_col"].isin(schema.EXCLUDED_FROM_MODELING)]
+    ].rename(columns={"median": "bispecific_median"})
+    bispecific = bispecific[~bispecific["value_col"].isin(schema.EXCLUDED_FROM_MODELING)]
 
     if components is None:
-        components = _components_from_names(n3["antibody_name"].unique())
+        components = _components_from_names(bispecific["antibody_name"].unique())
 
     merged = (
-        n3.merge(components[["antibody_name", "parent_a", "parent_b"]], on="antibody_name")
+        bispecific.merge(components[["antibody_name", "parent_a", "parent_b"]], on="antibody_name")
         .merge(
-            n4_lookup.rename(columns={"parent": "parent_a", "median": "pa_median"}),
+            monospecific_lookup.rename(columns={"parent": "parent_a", "median": "pa_median"}),
             on=["parent_a", "value_col", "condition"], how="left",
         )
         .merge(
-            n4_lookup.rename(columns={"parent": "parent_b", "median": "pb_median"}),
+            monospecific_lookup.rename(columns={"parent": "parent_b", "median": "pb_median"}),
             on=["parent_b", "value_col", "condition"], how="left",
         )
     )
     merged["parent_mean"] = (merged["pa_median"] + merged["pb_median"]) / 2
-    merged["residual"] = merged["n3_median"] - merged["parent_mean"]
+    merged["residual"] = merged["bispecific_median"] - merged["parent_mean"]
     return merged.dropna(subset=["residual"])
 
 
@@ -102,7 +102,7 @@ def fit_format_effects(
     """Per-Fv format-effect coefficients per assay (reproduces s08).
 
     Fits ``residual = bs_a + bs_b`` (OLS, no intercept) per (value_col,
-    condition) over N3s whose both parents pass the degree threshold. Returns
+    condition) over bispecifics whose both parents pass the degree threshold. Returns
     one row per (value_col, condition, fv) with the same columns as
     ``reports/tables/s08_format_effect_coefficients.csv``.
     """
@@ -210,12 +210,12 @@ def flagged_parents(coef: pd.DataFrame, min_sig_assays: int = 3) -> set[str]:
     return set(counts[counts >= min_sig_assays].index)
 
 
-def clean_panel(n3_names, bad_parents: set[str]) -> list[str]:
-    """N3 names whose neither parent is in ``bad_parents`` (order preserved)."""
+def clean_panel(bispecific_names, bad_parents: set[str]) -> list[str]:
+    """bispecific names whose neither parent is in ``bad_parents`` (order preserved)."""
     bad = set(bad_parents)
     kept = []
-    for name in n3_names:
-        pa, pb = nz.parse_n3_components(name)
+    for name in bispecific_names:
+        pa, pb = nz.parse_bispecific_components(name)
         if pa is None:
             continue
         if pa not in bad and pb not in bad:
