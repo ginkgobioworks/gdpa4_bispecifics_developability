@@ -65,13 +65,11 @@ Supplementary figures with in-repository generators:
 - S1, S2, S4, S5, S7, S8, S9, S11, and S13–S16 are under
   `figures/supplementary/figure_sNN.py`.
 - S3, S6, S10, and S12 are external or manually composed and have no analysis
-  generator in this checkout. Their submitted records remain in
-  `docs_for_updates/Supplementary_Information_PNAS_Revision_TRACKED.docx`.
+  generator in this checkout.
 
-Generated outputs are written under `reports/figures/main/`,
-`reports/figures/supplementary/`, and
-`reports/figures/figure_data_supplement/`; they are intentionally ignored by
-Git.
+Final-numbered manuscript images under `reports/figures/main/` and
+`reports/figures/supplementary/` are versioned. Intermediate plots and
+generated source-data files remain ignored.
 
 ## Preserved inputs
 
@@ -81,10 +79,9 @@ Git.
 - `data/processed/05_modeling/cv_oof_predictions_loo.parquet`
 - `data/processed/05_modeling/feature_importance_long.parquet`
 - `datapoints_figures/`: the local manuscript plotting-style package.
-- `docs_for_updates/`: the tracked manuscript and supplementary records.
 
-Intermediate processed tables and rendered outputs are reproducible and are
-not versioned.
+Intermediate processed tables and exploratory outputs are reproducible and
+are not versioned.
 
 ## Verification
 
