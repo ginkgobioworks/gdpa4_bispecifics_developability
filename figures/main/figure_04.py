@@ -322,7 +322,7 @@ def main():
     fig_c.savefig(_o, dpi=300, bbox_inches='tight')
     print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
     fig_c
-    _src = paths.FIGURES / 'main/figure_3.png'
+    _src = paths.FIGURES / 'main/figure_3_version_2.png'
     _dst = paths.FIGURES / 'main/figure_04.png'
     _dst.parent.mkdir(parents=True, exist_ok=True)
     copy2(_src, _dst)
