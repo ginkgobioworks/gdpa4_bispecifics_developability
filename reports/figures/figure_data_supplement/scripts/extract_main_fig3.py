@@ -32,34 +32,34 @@ for _tier_num, _members in TIER_DEFS:
         _METRIC_TO_TIER[m] = _tier_num
 
 
-def _build_n3_with_parents():
-    """Join N3 observed medians with parent N4 medians."""
-    summaries = pd.read_parquet(paths.S03 / "n3n4_per_antibody.parquet")
-    components = pd.read_parquet(paths.S02 / "n3_components.parquet")
+def _build_bispecific_with_parents():
+    """Join bispecific observed medians with parent monospecific medians."""
+    summaries = pd.read_parquet(paths.S03 / "gdpa4_per_antibody.parquet")
+    components = pd.read_parquet(paths.S02 / "bispecific_components.parquet")
 
-    n4 = summaries[summaries["kind"] == schema.KIND_N4][
+    monospecific = summaries[summaries["kind"] == schema.KIND_MONOSPECIFIC][
         ["antibody_name", "value_col", "condition", "median"]
     ].copy()
-    n4["parent"] = n4["antibody_name"].map(nz.strip_isotype_suffix)
+    monospecific["parent"] = monospecific["antibody_name"].map(nz.strip_isotype_suffix)
 
-    n3 = summaries[summaries["kind"] == schema.KIND_N3][
+    bispecific = summaries[summaries["kind"] == schema.KIND_BISPECIFIC][
         ["antibody_name", "value_col", "condition", "median"]
     ].rename(columns={"median": "observed"})
 
-    n3p = n3.merge(
+    n3p = bispecific.merge(
         components[["antibody_name", "parent_a", "parent_b"]],
         on="antibody_name",
     )
     n3p = (
         n3p.merge(
-            n4[["parent", "value_col", "condition", "median"]].rename(
+            monospecific[["parent", "value_col", "condition", "median"]].rename(
                 columns={"parent": "parent_a", "median": "pa_median"}
             ),
             on=["parent_a", "value_col", "condition"],
             how="left",
         )
         .merge(
-            n4[["parent", "value_col", "condition", "median"]].rename(
+            monospecific[["parent", "value_col", "condition", "median"]].rename(
                 columns={"parent": "parent_b", "median": "pb_median"}
             ),
             on=["parent_b", "value_col", "condition"],
@@ -70,7 +70,7 @@ def _build_n3_with_parents():
 
 
 def main():
-    n3_with_parents = _build_n3_with_parents()
+    bispecific_with_parents = _build_bispecific_with_parents()
 
     # ---- Panel A scatter data: per-metric, per-operator --------------------
     # Only include the 11 metrics shown in the figure (exclude SEC %mono, Tonset)
@@ -78,9 +78,9 @@ def main():
 
     scatter_rows = []
     for vc, cond in figure_metrics:
-        g = n3_with_parents[
-            (n3_with_parents["value_col"] == vc)
-            & (n3_with_parents["condition"] == cond)
+        g = bispecific_with_parents[
+            (bispecific_with_parents["value_col"] == vc)
+            & (bispecific_with_parents["condition"] == cond)
         ]
         chosen_op = BEST_TRANSFORM[(vc, cond)]
         tier = _METRIC_TO_TIER.get((vc, cond), 0)
@@ -108,9 +108,9 @@ def main():
     # ---- Panel B heatmap data: Spearman rho per (metric, operator) ---------
     heatmap_rows = []
     for vc, cond in figure_metrics:
-        g = n3_with_parents[
-            (n3_with_parents["value_col"] == vc)
-            & (n3_with_parents["condition"] == cond)
+        g = bispecific_with_parents[
+            (bispecific_with_parents["value_col"] == vc)
+            & (bispecific_with_parents["condition"] == cond)
         ]
         obs = g["observed"].values
         a = g["pa_median"]

@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .pytest_cache/
+.mplconfig/
 .DS_Store
 *.egg-info/
 build/
@@ -19,6 +20,7 @@ data/processed/**
 
 reports/figures/*.png
 reports/figures/main/
+reports/figures/supplementary/
 reports/tables/
 reports/figures/figure_data_supplement/extracted/
 reports/figures/figure_data_supplement/*.xlsx

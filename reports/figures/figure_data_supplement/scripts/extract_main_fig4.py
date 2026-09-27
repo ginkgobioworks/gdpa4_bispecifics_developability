@@ -14,39 +14,39 @@ OUT_DIR = Path(__file__).resolve().parents[1] / "extracted"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------------------
-# Load per-antibody summaries and N3 component map
+# Load per-antibody summaries and bispecific component map
 # ---------------------------------------------------------------------------
-summaries = pd.read_parquet(paths.S03 / "n3n4_per_antibody.parquet")
-components = pd.read_parquet(paths.S02 / "n3_components.parquet")
+summaries = pd.read_parquet(paths.S03 / "gdpa4_per_antibody.parquet")
+components = pd.read_parquet(paths.S02 / "bispecific_components.parquet")
 
 acsins = summaries[summaries["value_col"] == "acsins_delta_Lmax"].copy()
 
-# N4 parent medians and SDs (strip isotype suffix for join)
-n4 = acsins[acsins["kind"] == schema.KIND_N4][
+# monospecific parent medians and SDs (strip isotype suffix for join)
+monospecific = acsins[acsins["kind"] == schema.KIND_MONOSPECIFIC][
     ["antibody_name", "condition", "median", "std"]
 ].copy()
-n4["parent"] = n4["antibody_name"].map(nz.strip_isotype_suffix)
+monospecific["parent"] = monospecific["antibody_name"].map(nz.strip_isotype_suffix)
 
-# N3 observed medians
-n3 = acsins[acsins["kind"] == schema.KIND_N3][
+# bispecific observed medians
+bispecific = acsins[acsins["kind"] == schema.KIND_BISPECIFIC][
     ["antibody_name", "condition", "median"]
 ].rename(columns={"median": "observed"})
 
-# Join N3 with parent medians
-n3p = n3.merge(
+# Join bispecific with parent medians
+n3p = bispecific.merge(
     components[["antibody_name", "parent_a", "parent_b"]],
     on="antibody_name",
 )
 n3p = (
     n3p.merge(
-        n4[["parent", "condition", "median"]].rename(
+        monospecific[["parent", "condition", "median"]].rename(
             columns={"parent": "parent_a", "median": "pa_median"}
         ),
         on=["parent_a", "condition"],
         how="left",
     )
     .merge(
-        n4[["parent", "condition", "median"]].rename(
+        monospecific[["parent", "condition", "median"]].rename(
             columns={"parent": "parent_b", "median": "pb_median"}
         ),
         on=["parent_b", "condition"],
@@ -60,11 +60,11 @@ n3p["residual"] = n3p["observed"] - n3p["expected"]
 # Error-propagation noise band (Ammar pattern)
 # ---------------------------------------------------------------------------
 pbs = acsins[acsins["condition"] == "1X PBS"]
-sigma_arm = float(np.nanmedian(pbs[pbs["kind"] == schema.KIND_N4]["std"]))
-sigma_bsab = float(np.nanmedian(pbs[pbs["kind"] == schema.KIND_N3]["std"]))
+sigma_arm = float(np.nanmedian(pbs[pbs["kind"] == schema.KIND_MONOSPECIFIC]["std"]))
+sigma_bsab = float(np.nanmedian(pbs[pbs["kind"] == schema.KIND_BISPECIFIC]["std"]))
 noise_pbs = float(np.sqrt(sigma_bsab**2 + sigma_arm**2 / 2))
 
-n3_acsins_pbs = n3p[n3p["condition"] == "1X PBS"].dropna(subset=["residual"]).copy()
+bispecific_acsins_pbs = n3p[n3p["condition"] == "1X PBS"].dropna(subset=["residual"]).copy()
 
 # ---------------------------------------------------------------------------
 # Panel A: unique-pair classification (average both orientations, then classify)
@@ -74,7 +74,7 @@ ENHANCER_THRESHOLD = 17.51
 SUPPRESSOR_CEILING = 5.0
 band = NOISE_MULTIPLIER * noise_pbs
 
-g = n3_acsins_pbs.copy()
+g = bispecific_acsins_pbs.copy()
 g["pair"] = g.apply(
     lambda r: tuple(sorted([r["parent_a"], r["parent_b"]])), axis=1
 )

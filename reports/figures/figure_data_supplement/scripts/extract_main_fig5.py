@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "src"))
 import numpy as np
 import pandas as pd
 
-from prophet_ab import paths
+from prophet_ab import paths, schema
 
 OUT_DIR = Path(__file__).resolve().parents[1] / "extracted"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -15,7 +15,7 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 # ---------------------------------------------------------------------------
 # Load per-antibody summaries and pivot to wide
 # ---------------------------------------------------------------------------
-per_ab = pd.read_parquet(paths.S03 / "n3n4_per_antibody.parquet")
+per_ab = pd.read_parquet(paths.S03 / "gdpa4_per_antibody.parquet")
 
 metrics = [
     ("hihplc_normretentiontime", "default", "hic"),
@@ -48,10 +48,15 @@ wide[["antibody_name", "kind", "hic", "hac", "pr_cho", "pr_ova", "bvp"]].to_csv(
 print(f"Scatter: {len(wide)} antibodies -> {out_scatter}")
 
 # ---------------------------------------------------------------------------
-# Pareto frontier on N4 HIC x HAC (maximize both)
+# Pareto frontier on monospecific HIC x HAC (maximize both)
 # ---------------------------------------------------------------------------
-n4 = wide[wide["kind"] == "N4"].dropna(subset=["hic", "hac"]).copy().reset_index(drop=True)
-pts = n4[["hic", "hac"]].values
+monospecific = (
+    wide[wide["kind"] == schema.KIND_MONOSPECIFIC]
+    .dropna(subset=["hic", "hac"])
+    .copy()
+    .reset_index(drop=True)
+)
+pts = monospecific[["hic", "hac"]].values
 n = len(pts)
 is_pareto = np.ones(n, dtype=bool)
 for i in range(n):

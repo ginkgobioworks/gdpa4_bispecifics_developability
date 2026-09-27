@@ -1,22 +1,22 @@
 """CV runner with parent-aware splits and per-feature importance.
 
 Two split strategies live here, both enforcing the same parent-leakage
-guarantee (no test N3 shares a parent with any train N3 in the same fold)
+guarantee (no test bispecific shares a parent with any train bispecific in the same fold)
 but with different fold geometry:
 
-- D-2026-04-27-CV-PARENTAWARE: 5-fold k-fold-style. The 65 unique N4 parents
-  are partitioned into 5 sets. For each fold, the test set is N3s with BOTH
-  parents in the held-out set; the train set is N3s with NEITHER parent in
-  the held-out set; "bridge" N3s with one parent in each are excluded from
+- D-2026-04-27-CV-PARENTAWARE: 5-fold k-fold-style. The 65 unique monospecific parents
+  are partitioned into 5 sets. For each fold, the test set is bispecifics with BOTH
+  parents in the held-out set; the train set is bispecifics with NEITHER parent in
+  the held-out set; "bridge" bispecifics with one parent in each are excluded from
   that fold (they remain available in other folds). Built by
   `build_parent_aware_splits`. Reports metrics on the union of OOF
   predictions across all 5 folds. With one giant connected component of 61
-  parents, only ~27 N3s receive an OOF prediction; the rest are bridges and
+  parents, only ~27 bispecifics receive an OOF prediction; the rest are bridges and
   never sit in any test fold.
-- D-2026-04-30-CV-LOO-PARENT-DISJOINT: per-N3 leave-one-out generalization
-  of the above. For each N3 (parents A, B), test = {that N3}, train = N3s
+- D-2026-04-30-CV-LOO-PARENT-DISJOINT: per-bispecific leave-one-out generalization
+  of the above. For each bispecific (parents A, B), test = {that bispecific}, train = bispecifics
   whose parents are neither A nor B. Built by
-  `build_parent_disjoint_loo_splits`. All 160 N3s receive an OOF prediction
+  `build_parent_disjoint_loo_splits`. All 160 bispecifics receive an OOF prediction
   (subject to y observability and `min_train`).
 
 `run_one` is split-strategy agnostic — it accepts an arbitrary
@@ -174,22 +174,22 @@ def build_parent_disjoint_loo_splits(
     antibody_names: list[str],
     components: pd.DataFrame,
 ) -> list[tuple[np.ndarray, np.ndarray]]:
-    """Per-N3 leave-one-out with parent exclusion (D-2026-04-30-CV-LOO-PARENT-DISJOINT).
+    """Per-bispecific leave-one-out with parent exclusion (D-2026-04-30-CV-LOO-PARENT-DISJOINT).
 
-    For each N3 in `antibody_names` (with parents `(pa, pb)`), produces one
+    For each bispecific in `antibody_names` (with parents `(pa, pb)`), produces one
     fold:
 
-      - test_idx: position of that N3
-      - train_idx: positions of N3s whose parent_a AND parent_b are both
+      - test_idx: position of that bispecific
+      - train_idx: positions of bispecifics whose parent_a AND parent_b are both
         NOT in {pa, pb}
 
-    Returns `len(antibody_names)` splits, one per N3, each with a singleton
-    test set. N3s in `antibody_names` that have no row in `components`
+    Returns `len(antibody_names)` splits, one per bispecific, each with a singleton
+    test set. bispecifics in `antibody_names` that have no row in `components`
     (shouldn't happen in practice — the modeling pipeline aligns them) are
     skipped.
 
     Same parent-leakage guarantee as `build_parent_aware_splits`: no train
-    N3 shares an arm with the test N3.
+    bispecific shares an arm with the test bispecific.
     """
     pa, pb, pos = _component_arrays(antibody_names, components)
 

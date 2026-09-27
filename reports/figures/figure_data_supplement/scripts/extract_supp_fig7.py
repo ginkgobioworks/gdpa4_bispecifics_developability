@@ -1,4 +1,4 @@
-"""Extract source data for Supplemental Figure 7."""
+"""Extract source data for Supplemental Figure 6."""
 import sys
 from pathlib import Path
 
@@ -27,14 +27,14 @@ def _is_reported(label_col: str) -> bool:
 m_reported = m[m["label"].map(_is_reported)].copy()
 imp_reported = imp[imp["label"].map(_is_reported)].copy()
 
-# ── Arm in-silico configs ────────────────────────────────────────────────
-ARM_IS_CONFIGS = (
-    "arm_in_silico_only",
-    "arm_in_silico_plus_corresponding",
-    "arm_in_silico_plus_all_experimental",
+# ── Non-arm in-silico configs ────────────────────────────────────────────
+NONARM_IS_CONFIGS = (
+    "in_silico_only",
+    "in_silico_plus_corresponding",
+    "in_silico_plus_all_experimental",
 )
 
-ms = m_reported[m_reported["config"].isin(ARM_IS_CONFIGS)].dropna(
+ms = m_reported[m_reported["config"].isin(NONARM_IS_CONFIGS)].dropna(
     subset=["spearman_rho"]
 )
 
@@ -70,6 +70,6 @@ for _, brow in best.iterrows():
         )
 
 out = pd.DataFrame(rows)
-out_path = OUT_DIR / "supp_fig7_top_features_arm.csv"
+out_path = OUT_DIR / "supp_fig7_top_features.csv"
 out.to_csv(out_path, index=False)
 print(f"wrote {out_path} ({len(out)} rows)")

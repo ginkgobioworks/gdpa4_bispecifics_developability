@@ -1,7 +1,7 @@
 [project]
 name = "prophet_ab"
 version = "0.1.0"
-description = "GDPa4 bispecific (N3) vs monospecific (N4) developability figures"
+description = "GDPa4 bispecific and monospecific developability figures"
 requires-python = ">=3.11"
 dependencies = [
     "pandas>=2.2",
@@ -20,7 +20,6 @@ modeling = [
 ]
 analysis = [
     "prophet_ab[modeling]",
-    "marimo>=0.9",
     "matplotlib>=3.8",
     "seaborn>=0.13",
     "datapoints-figures",
@@ -47,3 +46,4 @@ datapoints-figures = { path = "datapoints_figures", editable = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src", "datapoints_figures/src"]

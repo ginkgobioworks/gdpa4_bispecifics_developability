@@ -13,7 +13,7 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def main() -> None:
-    per_ab = pd.read_parquet(paths.S03 / "n3n4_per_antibody.parquet")
+    per_ab = pd.read_parquet(paths.S03 / "gdpa4_per_antibody.parquet")
 
     # Filter to Tm1 and Tm2 (PTS-IF, pooled), exclude deprecated
     tm_cols = {"thermostability_tm1", "thermostability_tm2"}

@@ -7,14 +7,14 @@ import numpy as np
 import pandas as pd
 
 from prophet_ab import paths, schema
-from prophet_ab.normalize import parse_n3_components
+from prophet_ab.normalize import parse_bispecific_components
 
 OUT_DIR = Path(__file__).resolve().parents[1] / "extracted"
 
 
 def main():
     # ---- Load per-antibody summaries (stage 03) ----------------------------
-    per_ab = pd.read_parquet(paths.S03 / "n3n4_per_antibody.parquet")
+    per_ab = pd.read_parquet(paths.S03 / "gdpa4_per_antibody.parquet")
 
     # Filter to assay data (exclude deprecated + production)
     assay_data = per_ab[
@@ -22,30 +22,30 @@ def main():
         & ~per_ab["value_col"].isin(schema.PRODUCTION_VALUE_COLS)
     ].copy()
 
-    # ---- Restrict to N3 + reported value_cols ------------------------------
-    n3 = assay_data[
-        (assay_data["kind"] == "N3")
+    # ---- Restrict to bispecifics + reported value_cols --------------------
+    bispecific = assay_data[
+        (assay_data["kind"] == schema.KIND_BISPECIFIC)
         & assay_data["value_col"].isin(schema.REPORTED_VALUE_COLS)
     ].copy()
 
-    # Parse N3 components -> sorted pair key
-    comps = n3["antibody_name"].map(parse_n3_components)
-    n3["pair"] = comps.map(lambda t: tuple(sorted(t)))
+    # Parse bispecific components -> sorted pair key
+    comps = bispecific["antibody_name"].map(parse_bispecific_components)
+    bispecific["pair"] = comps.map(lambda t: tuple(sorted(t)))
 
     # Keep only pairs with exactly 2 orientations
     orient_counts = (
-        n3.groupby(["pair", "value_col", "condition"])["antibody_name"]
+        bispecific.groupby(["pair", "value_col", "condition"])["antibody_name"]
         .nunique()
         .reset_index(name="_n_orient")
     )
     swap_pair_keys = frozenset(
         orient_counts.loc[orient_counts["_n_orient"] == 2, "pair"]
     )
-    n3 = n3[n3["pair"].isin(swap_pair_keys)]
+    bispecific = bispecific[bispecific["pair"].isin(swap_pair_keys)]
 
     # ---- Build swap pair table: sort medians into lo/hi --------------------
     rows = []
-    for (pair, vc, cond), grp in n3.groupby(["pair", "value_col", "condition"]):
+    for (pair, vc, cond), grp in bispecific.groupby(["pair", "value_col", "condition"]):
         if grp["antibody_name"].nunique() != 2:
             continue
         sorted_grp = grp.sort_values("median")

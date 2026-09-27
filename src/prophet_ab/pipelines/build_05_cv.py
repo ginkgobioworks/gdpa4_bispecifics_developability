@@ -8,11 +8,11 @@ Outputs (data/processed/05_modeling/):
                                           5-fold sweep (D-2026-04-27-CV-PARENTAWARE).
     cv_oof_predictions.parquet         — long-form out-of-fold predictions
                                           for the 5-fold sweep.
-    cv_metrics_loo.parquet             — long-form metrics from the per-N3
+    cv_metrics_loo.parquet             — long-form metrics from the per-bispecific
                                           parent-disjoint leave-one-out sweep
                                           (D-2026-04-30-CV-LOO-PARENT-DISJOINT).
     cv_oof_predictions_loo.parquet     — long-form OOF predictions for the
-                                          LOO sweep (one row per N3 per
+                                          LOO sweep (one row per bispecific per
                                           (label x config x model) combo).
     feature_importance_long.parquet    — per (label x config x model x feature)
                                           built-in + permutation importances
@@ -130,9 +130,9 @@ def main() -> None:
     out = paths.S05
 
     print("[1/3] loading wide matrices")
-    feats = pd.read_parquet(out / "n3_features_wide.parquet").set_index("antibody_name")
-    labels_w = pd.read_parquet(out / "n3_labels_wide.parquet").set_index("antibody_name")
-    components = pd.read_parquet(paths.S02 / "n3_components.parquet")
+    feats = pd.read_parquet(out / "bispecific_features_wide.parquet").set_index("antibody_name")
+    labels_w = pd.read_parquet(out / "bispecific_labels_wide.parquet").set_index("antibody_name")
+    components = pd.read_parquet(paths.S02 / "bispecific_components.parquet")
 
     common = feats.index.intersection(labels_w.index)
     X_full = feats.loc[common]
@@ -148,7 +148,7 @@ def main() -> None:
     loo_splits = cv.build_parent_disjoint_loo_splits(list(common), components)
     _loo_train_sizes = [len(tr) for tr, _ in loo_splits]
     print(f"  parent-disjoint LOO splits (D-2026-04-30-CV-LOO-PARENT-DISJOINT): "
-          f"{len(loo_splits)} folds (one per N3), "
+          f"{len(loo_splits)} folds (one per bispecific), "
           f"train sizes min={min(_loo_train_sizes)} "
           f"median={int(pd.Series(_loo_train_sizes).median())} "
           f"max={max(_loo_train_sizes)}")

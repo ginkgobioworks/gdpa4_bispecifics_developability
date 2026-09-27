@@ -1,7 +1,7 @@
 """Stage 03 — per-antibody summary statistics.
 
 Outputs (data/processed/03_aggregated/):
-    n3n4_per_antibody.parquet   — per-antibody summaries from this campaign
+    gdpa4_per_antibody.parquet   — per-antibody summaries from this campaign
                                    (one row per antibody × value_col × condition).
     gdpa1_per_antibody.parquet  — per-antibody summaries from the GDPa1 wide
                                    tidy table, melted to long form to match
@@ -52,9 +52,9 @@ def _melt_gdpa1(tidy: pd.DataFrame) -> pd.DataFrame:
 def main() -> None:
     out = paths.S03
 
-    print("[1/2] n3n4_per_antibody")
-    long = pd.read_parquet(paths.S01 / "n3n4_long.parquet")
-    _write(aggregate.per_antibody_long(long), out / "n3n4_per_antibody.parquet")
+    print("[1/2] gdpa4_per_antibody")
+    long = pd.read_parquet(paths.S01 / "gdpa4_long.parquet")
+    _write(aggregate.per_antibody_long(long), out / "gdpa4_per_antibody.parquet")
 
     print("[2/2] gdpa1_per_antibody")
     tidy = pd.read_parquet(paths.S01 / "gdpa1_tidy.parquet")

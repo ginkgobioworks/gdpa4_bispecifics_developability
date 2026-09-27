@@ -2,8 +2,8 @@
 
 Single source of truth (repo rule #2) for:
 
-- the four arm-combination operators used to predict an N3 bispecific value
-  from its two parent monospecific (N4) values;
+- the four arm-combination operators used to predict an bispecific bispecific value
+  from its two parent monospecific (monospecific) values;
 - the mechanistically-chosen operator per metric (D-2026-05-28-BEST-TRANSFORM);
 - the short display label per metric;
 - the three-tier "zones of inheritance" grouping used by the combined
@@ -15,7 +15,7 @@ and duplicated in the raw figure bundle's `plot_style.py`. Both s03 and s13
 now import from here so a metric reclassification is a one-line edit.
 
 Metrics are keyed by the `(value_col, condition)` pair as they appear in
-`data/processed/03_aggregated/n3n4_per_antibody.parquet`.
+`data/processed/03_aggregated/gdpa4_per_antibody.parquet`.
 """
 from __future__ import annotations
 
