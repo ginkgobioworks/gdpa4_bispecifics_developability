@@ -11,6 +11,10 @@ dependencies = [
     "numpy>=2",
 ]
 
+[project.urls]
+Paper = "https://www.biorxiv.org/content/10.64898/2026.06.15.732449v1"
+Dataset = "https://datapoints.ginkgo.bio/dataset-access"
+
 [project.optional-dependencies]
 modeling = [
     "scikit-learn>=1.5",

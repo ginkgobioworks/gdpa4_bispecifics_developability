@@ -26,7 +26,6 @@ from Bio.SeqUtils.ProtParam import ProteinAnalysis
 from prophet_ab import paths
 from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, FILL_ALPHA, SINGLE_COL_WIDTH, FULL_WIDTH, FONT_SIZE_TICK, FONT_SIZE_LABEL, FONT_SIZE_TITLE, FONT_SIZE_LEGEND, equalize_axes, grid_figsize, wrap_label, wrap_title
 from scipy.ndimage import gaussian_filter
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -82,7 +81,6 @@ def main():
     _moe = pd.read_csv(DESIGN_DATA / 'p739_moe_properties.csv')
     df_mabs = _raw.merge(_moe, on='antibody_name', how='left', suffixes=('', '_moe'))
     print(f'GDPa1 mAbs: {len(df_mabs)}')
-    df_mabs
     assays = ['HIC', 'PR_CHO', 'AC-SINS_pH7.4', 'Tm2']
     computed_props = ['pI', 'hydrophobicity', 'aromaticity', 'instability_index', 'length']
     moe_props = ['patch_cdr_hyd', 'ens_charge', 'dipole_moment', 'affinity_VL_VH']
@@ -99,7 +97,6 @@ def main():
     print(f'Strategy 1 unique parents (FPS-selected mAbs): {len(mab_subsample_names)}')
     df_mab_subsample = df_mabs[df_mabs['antibody_name'].isin(mab_subsample_names)].copy()
     print(f'mAb subsample: {len(df_mab_subsample)} of {len(mab_subsample_names)} found')
-    df_mab_subsample
     _n = len(df_mabs)
     _idx = np.array(list(combinations(range(_n), 2)))
     _names = df_mabs['antibody_name'].values
@@ -110,7 +107,6 @@ def main():
         _data[f'{_col}_diff'] = _v[_idx[:, 0]] - _v[_idx[:, 1]]
     df_all_bsabs = pd.DataFrame(_data)
     print(f'All possible bsAbs: {len(df_all_bsabs):,}')
-    df_all_bsabs
     _lookup = df_mabs.set_index('antibody_name')
 
     def _compute_bsab_stats(df_raw):
@@ -209,10 +205,8 @@ def main():
     _groups = [(assays, 'assays', 'Experimental assays'), (computed_props, 'computed', 'Computed properties'), (moe_props, 'moe', 'MOE properties'), (charge_props, 'charge', 'Net charge (VH + VL)')]
     _figs = []
     for _cols, _slug, _label in _groups:
-        _path = paths.FIGURES / f's00_mab_coverage_{_slug}.png'
-        _fig = make_coverage_pairplot(df_mabs, df_mab_subsample, _cols, title=f'GDPa1 mAbs — {_label}', mode='scatter', save_path=_path)
+        _fig = make_coverage_pairplot(df_mabs, df_mab_subsample, _cols, title=f'GDPa1 mAbs — {_label}', mode='scatter', save_path=None)
         _figs.append(_fig)
-        print(f'wrote {_path.relative_to(paths.REPO_ROOT)}')
     _charge = df_mabs.set_index('antibody_name')['net_charge']
     _q1_bg = df_all_bsabs['antibody_name-1'].map(_charge)
     _q2_bg = df_all_bsabs['antibody_name-2'].map(_charge)
@@ -237,29 +231,20 @@ def main():
     _handles = [Line2D([], [], color=DATAPOINTS_COLORS['gray'], marker='o', linestyle='None', markersize=4, label='All possible pairs'), Line2D([], [], color=DATAPOINTS_COLORS['blue'], marker='o', linestyle='None', markersize=4, label='Selected (160)')]
     _ax.legend(handles=_handles, fontsize=FONT_SIZE_LEGEND, loc='upper left')
     _fig.tight_layout()
-    _out = paths.FIGURES / 's00_arm_charge_scatter.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    _fig
     _groups = [(assays, 'assays', 'Experimental assays'), (computed_props, 'computed', 'Computed properties'), (moe_props, 'moe', 'MOE properties')]
     _figs = []
     for _cols, _slug, _label in _groups:
         for _stat, _mode in [('avg', 'hex'), ('diff', 'contour')]:
             _plot_cols = [f'{c}_{_stat}' for c in _cols]
-            _path = paths.FIGURES / f's00_strat1_{_stat}_{_slug}.png'
-            _fig = make_coverage_pairplot(df_all_bsabs, df_strat1, _plot_cols, title=f'Strategy 1 — {_label} ({_stat})', mode=_mode, save_path=_path)
+            _fig = make_coverage_pairplot(df_all_bsabs, df_strat1, _plot_cols, title=f'Strategy 1 — {_label} ({_stat})', mode=_mode, save_path=None)
             _figs.append(_fig)
-            print(f'wrote {_path.relative_to(paths.REPO_ROOT)}')
     _groups = [(assays, 'assays', 'Experimental assays'), (computed_props, 'computed', 'Computed properties'), (moe_props, 'moe', 'MOE properties')]
     _figs = []
     for _cols, _slug, _label in _groups:
         for _stat, _mode in [('avg', 'hex'), ('diff', 'contour')]:
             _plot_cols = [f'{c}_{_stat}' for c in _cols]
-            _path = paths.FIGURES / f's00_strat2_{_stat}_{_slug}.png'
-            _fig = make_coverage_pairplot(df_all_bsabs, df_strat2, _plot_cols, title=f'Strategy 2 — {_label} ({_stat})', mode=_mode, save_path=_path)
+            _fig = make_coverage_pairplot(df_all_bsabs, df_strat2, _plot_cols, title=f'Strategy 2 — {_label} ({_stat})', mode=_mode, save_path=None)
             _figs.append(_fig)
-            print(f'wrote {_path.relative_to(paths.REPO_ROOT)}')
     _all_parents = sorted(set(df_exported['antibody_name-1'].tolist() + df_exported['antibody_name-2'].tolist()))
     _df_mab_sel = df_mabs[df_mabs['antibody_name'].isin(_all_parents)]
     _df_bsab_sel = pd.concat([df_strat1, df_strat2], ignore_index=True)
@@ -317,11 +302,10 @@ def main():
     _leg_ax.axis('off')
     _handles = [Line2D([], [], color=_blue, marker='o', linestyle='None', markersize=4, markeredgecolor=_gray, markeredgewidth=0.3, label=f'mAbs ({len(_df_mab_sel)} / {len(df_mabs)})'), Line2D([], [], color=_purple, marker='o', linestyle='None', markersize=4, markeredgecolor=_gray, markeredgewidth=0.3, label=f'Pairs ({len(_df_bsab_sel)} / {len(df_all_bsabs):,})')]
     _leg_ax.legend(handles=_handles, loc='center', fontsize=FONT_SIZE_LEGEND, frameon=False)
-    _out = paths.FIGURES / 's00_coverage_consolidated.png'
+    _out = paths.FIGURES / 'supplementary/figure_s11.png'
     _out.parent.mkdir(parents=True, exist_ok=True)
     _fig.savefig(_out, dpi=300, bbox_inches='tight')
     print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    _fig
     _w, _h, _cw = grid_figsize(2, 2)
     _fig, ((_ax1, _ax2), (_ax3, _ax4)) = plt.subplots(2, 2, figsize=(_w, _h), layout='constrained')
     _blue = DATAPOINTS_COLORS['blue']
@@ -366,11 +350,6 @@ def main():
     print(f'Light ≤2 Da: {_n_light}/{len(_light)}')
     print(f'Both ≤2 Da: {_n_both}/{min(len(_heavy), len(_light))}')
     print(f'Whole bsAb MW: {_whole.min():.0f}–{_whole.max():.0f} Da')
-    _out = paths.FIGURES / 's00_mw_differences.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    _fig
     _all_arms = pd.concat([df_exported['antibody_name-1'], df_exported['antibody_name-2']])
     _counts = _all_arms.value_counts().sort_values(ascending=False)
     _n = len(_counts)
@@ -407,12 +386,7 @@ def main():
             _cell.set_facecolor('white')
         if _c in (1, 3):
             _cell.set_text_props(ha='center')
-    _out = paths.FIGURES / 's00_arm_distribution.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
     print(f'Total unique parents: {_n}')
-    _fig
     _coords = pd.read_csv(paths.RAW_UMAP_COORDS)
     _bg = _coords[_coords['category'] == 'All possible pairs']
     _sel = _coords[_coords['category'] == 'Selected (160)']
@@ -429,11 +403,6 @@ def main():
     _ax.set_title(wrap_title('Bispecific design space (all possible pairs)', SINGLE_COL_WIDTH), fontsize=FONT_SIZE_TITLE)
     _ax.tick_params(labelsize=FONT_SIZE_TICK)
     _fig.tight_layout()
-    _out = paths.FIGURES / 's00_umap_design_space.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    _fig
     _bg = np.isfinite(umap_x)
     _sel = np.isfinite(sel_umap_x)
     _fig, _ax = plt.subplots(figsize=(SINGLE_COL_WIDTH, SINGLE_COL_WIDTH))
@@ -457,16 +426,6 @@ def main():
     _ax.set_title(wrap_title('Selected bispecifics in design space', SINGLE_COL_WIDTH), fontsize=FONT_SIZE_TITLE)
     _ax.tick_params(labelsize=FONT_SIZE_TICK)
     _fig.tight_layout()
-    _out = paths.FIGURES / 's00_umap_selected.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    _fig
-    _src = paths.FIGURES / 's00_coverage_consolidated.png'
-    _dst = paths.FIGURES / 'supplementary/figure_s11.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('supp_11')
 if __name__ == '__main__':
     main()

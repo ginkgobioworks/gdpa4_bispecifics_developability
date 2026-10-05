@@ -21,7 +21,6 @@ from matplotlib.lines import Line2D
 from prophet_ab import paths
 from prophet_ab.features.thermal import THERMAL_METRICS, load_crossmab_deltas, round_half_away, summarize_delta
 from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, FONT_SIZE_LABEL, FONT_SIZE_LEGEND, FONT_SIZE_TICK, FONT_SIZE_TITLE
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -61,16 +60,10 @@ def main():
     fig.legend(handles=_handles, loc='outside lower center', fontsize=FONT_SIZE_LEGEND, frameon=False, ncols=2)
     for _ax, _letter in zip(axes, 'ABC'):
         _ax.annotate(_letter, xy=(0, 1), xycoords='axes fraction', xytext=(-6, 4), textcoords='offset points', fontsize=14, fontweight='bold', ha='right', va='bottom')
-    _out = paths.FIGURES / 'main' / 'supplementary_figure_s13.png'
+    _out = paths.FIGURES / 'supplementary/figure_s13.png'
     _out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(_out, dpi=300, bbox_inches='tight')
     print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    fig
-    _src = paths.FIGURES / 'main/supplementary_figure_s13.png'
-    _dst = paths.FIGURES / 'supplementary/figure_s13.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('supp_13')
 if __name__ == '__main__':
     main()

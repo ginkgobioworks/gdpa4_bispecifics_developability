@@ -33,12 +33,12 @@ bispecific = acsins[acsins["kind"] == schema.KIND_BISPECIFIC][
 ].rename(columns={"median": "observed"})
 
 # Join bispecific with parent medians
-n3p = bispecific.merge(
+paired = bispecific.merge(
     components[["antibody_name", "parent_a", "parent_b"]],
     on="antibody_name",
 )
-n3p = (
-    n3p.merge(
+paired = (
+    paired.merge(
         monospecific[["parent", "condition", "median"]].rename(
             columns={"parent": "parent_a", "median": "pa_median"}
         ),
@@ -53,18 +53,18 @@ n3p = (
         how="left",
     )
 )
-n3p["expected"] = (n3p["pa_median"] + n3p["pb_median"]) / 2
-n3p["residual"] = n3p["observed"] - n3p["expected"]
+paired["expected"] = (paired["pa_median"] + paired["pb_median"]) / 2
+paired["residual"] = paired["observed"] - paired["expected"]
 
 # ---------------------------------------------------------------------------
-# Error-propagation noise band (Ammar pattern)
+# Error-propagation noise band
 # ---------------------------------------------------------------------------
 pbs = acsins[acsins["condition"] == "1X PBS"]
 sigma_arm = float(np.nanmedian(pbs[pbs["kind"] == schema.KIND_MONOSPECIFIC]["std"]))
 sigma_bsab = float(np.nanmedian(pbs[pbs["kind"] == schema.KIND_BISPECIFIC]["std"]))
 noise_pbs = float(np.sqrt(sigma_bsab**2 + sigma_arm**2 / 2))
 
-bispecific_acsins_pbs = n3p[n3p["condition"] == "1X PBS"].dropna(subset=["residual"]).copy()
+bispecific_acsins_pbs = paired[paired["condition"] == "1X PBS"].dropna(subset=["residual"]).copy()
 
 # ---------------------------------------------------------------------------
 # Panel A: unique-pair classification (average both orientations, then classify)

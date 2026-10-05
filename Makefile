@@ -20,10 +20,12 @@ data:
 
 figures: $(addprefix figure-,$(MAIN_FIGURES)) $(addprefix figure-s,$(SUPP_FIGURES))
 
-figure-%: data
+# Static pattern rules, not implicit pattern rules. GNU Make 3.81, the make
+# shipped with Xcode, does not apply an implicit rule to a .PHONY target.
+$(addprefix figure-,$(MAIN_FIGURES)): figure-%: data
 	$(MPL_ENV) $(PY) figures/main/figure_$*.py
 
-figure-s%: data
+$(addprefix figure-s,$(SUPP_FIGURES)): figure-s%: data
 	$(MPL_ENV) $(PY) figures/supplementary/figure_s$*.py
 
 source-data:

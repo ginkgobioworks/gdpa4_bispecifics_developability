@@ -1,5 +1,6 @@
-"""Optional one-off plot helpers. Notebooks in this repo draw their own
-figures; these exist so the documented public API is complete.
+"""Optional one-off plot helpers.
+
+Figure scripts draw their own panels. These helpers cover the documented API.
 
 Example::
 

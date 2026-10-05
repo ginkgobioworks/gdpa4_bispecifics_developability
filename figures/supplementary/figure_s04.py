@@ -25,7 +25,6 @@ from sklearn.metrics import roc_curve, roc_auc_score
 from prophet_ab import paths, schema
 from prophet_ab import normalize as nz
 from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, FULL_WIDTH, FONT_SIZE_LABEL, FONT_SIZE_LEGEND, FONT_SIZE_LEGEND_TITLE, FONT_SIZE_TICK, FONT_SIZE_TITLE, equalize_axes, wrap_label, wrap_title
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -194,11 +193,10 @@ def main():
     _axA.text(-0.1, 1.04, 'A', transform=_axA.transAxes, fontsize=14, fontweight='bold', ha='left', va='bottom')
     _axB.text(-0.22, 1.04, 'B', transform=_axB.transAxes, fontsize=14, fontweight='bold', ha='left', va='bottom')
     _axC.text(-0.18, 1.04, 'C', transform=_axC.transAxes, fontsize=14, fontweight='bold', ha='left', va='bottom')
-    _out = paths.FIGURES / 'main' / 'supplemental_figure_ceiling.png'
+    _out = paths.FIGURES / 'supplementary/figure_s04.png'
     _out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(_out, dpi=300, bbox_inches='tight')
     print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    fig
     _t1 = paths.TABLES / 's13_ceiling_crossers.csv'
     _t1.parent.mkdir(parents=True, exist_ok=True)
     crosser_df.to_csv(_t1, index=False)
@@ -206,11 +204,6 @@ def main():
     _t2 = paths.TABLES / 's13_ceiling_roc_auc.csv'
     auc_table.to_csv(_t2, index=False)
     print(f'wrote {_t2.relative_to(paths.REPO_ROOT)}')
-    _src = paths.FIGURES / 'main/supplemental_figure_ceiling.png'
-    _dst = paths.FIGURES / 'supplementary/figure_s04.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('supp_04')
 if __name__ == '__main__':
     main()

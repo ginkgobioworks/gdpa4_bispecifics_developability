@@ -36,7 +36,6 @@ _EXTRACTORS = {
 def emit(figure_id: str) -> None:
     """Write source-data CSVs for ``figure_id``.
 
-    Parameters
     ----------
     figure_id:
         Final manuscript identifier such as ``"main_03"`` or ``"supp_14"``.

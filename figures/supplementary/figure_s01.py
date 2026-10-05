@@ -24,7 +24,6 @@ from prophet_ab.features.naming import display_value_col
 from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, FULL_WIDTH, equalize_axes, grid_figsize, wrap_title
 import numpy as _np
 from matplotlib.ticker import MaxNLocator
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -49,7 +48,6 @@ def main():
     _acsins = paired['this_value_col'] == 'acsins_delta_Lmax'
     for _src, _dst in (('this_median', 'this_plot'), ('gdpa1_median', 'gdpa1_plot')):
         paired.loc[_acsins, _dst] = paired.loc[_acsins].groupby('panel')[_src].transform(lambda s: (s - s.mean()) / s.std(ddof=0))
-    paired
     _rows = []
     for _panel, _g in paired.groupby('panel', sort=False):
         if len(_g) < 3:
@@ -58,7 +56,6 @@ def main():
         _r, _p = stats.pearsonr(_g['this_median'], _g['gdpa1_median'])
         _rows.append(dict(panel=_panel, n=len(_g), pearson_r=_r, p=_p, this_value_col=_g['this_value_col'].iloc[0], this_condition=_g['this_condition'].iloc[0], gdpa1_col=_g['gdpa1_col'].iloc[0]))
     metrics = pd.DataFrame(_rows).sort_values('pearson_r', ascending=False)
-    metrics
 
     def _sync_ticks(ax, nticks=3):
         """Make both axes share identical ticks with the range max on a tick."""
@@ -98,20 +95,14 @@ def main():
         _ax.set_ylabel('GDPa1')
     for _ax in _axes_flat[len(_panels):]:
         _ax.axis('off')
-    _out = paths.FIGURES / 's02_cross_platform_scatter.png'
+    _out = paths.FIGURES / 'supplementary/figure_s01.png'
     _out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(_out, dpi=300, bbox_inches='tight')
     print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-    fig
     _out = paths.TABLES / 's02_cross_platform_correlations.csv'
     _out.parent.mkdir(parents=True, exist_ok=True)
     metrics.to_csv(_out, index=False)
     print(f'wrote {_out.relative_to(paths.REPO_ROOT)}  rows={len(metrics)}')
-    _src = paths.FIGURES / 's02_cross_platform_scatter.png'
-    _dst = paths.FIGURES / 'supplementary/figure_s01.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('supp_01')
 if __name__ == '__main__':
     main()

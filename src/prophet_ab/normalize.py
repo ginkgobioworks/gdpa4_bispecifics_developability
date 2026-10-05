@@ -9,7 +9,7 @@ from .schema import (
     KIND_BISPECIFIC,
     KIND_MONOSPECIFIC,
     BISPECIFIC_PAIR_SEP,
-    LEGACY_BISPECIFIC_PREFIX,
+    BISPECIFIC_NAME_PREFIX,
 )
 
 
@@ -21,19 +21,16 @@ def strip_isotype_suffix(name: str) -> str:
 
 
 def canonical_name(name: str) -> str:
-    """Canonical antibody name: drop a leading `N3-` prefix if present.
+    """Drop a leading ``N3-`` prefix when present.
 
-    Raw sources are inconsistent: the tall CSV names bispecifics
-    `parent_a__x__parent_b` (no prefix) while `bispecific_production.xlsx` keeps the
-    historical `bispecific-parent_a__x__parent_b` form. Canonicalize to the prefix-less
-    convention so every processed table shares one naming scheme.
+    Bispecific names use ``parent_a__x__parent_b``. Some production records
+    prefix that name with ``N3-``. Processed tables use the prefix-less form.
     """
-    return name.removeprefix(LEGACY_BISPECIFIC_PREFIX)
+    return name.removeprefix(BISPECIFIC_NAME_PREFIX)
 
 
 def classify_kind(name: str) -> str:
-    # Bispecifics (bispecific) are the only names containing the pair separator; the
-    # `N3-` prefix is no longer emitted by the tall export, so key on `__x__`.
+    # A bispecific name contains the pair separator `__x__`.
     return KIND_BISPECIFIC if BISPECIFIC_PAIR_SEP in name else KIND_MONOSPECIFIC
 
 

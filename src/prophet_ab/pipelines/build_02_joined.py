@@ -68,8 +68,7 @@ def main() -> None:
     long = pd.read_parquet(paths.S01 / "gdpa4_long.parquet")
     monospecific_long = long[long["kind"] == schema.KIND_MONOSPECIFIC]
     monospecific_names = sorted(monospecific_long["antibody_name"].unique())
-    # Compare parents (already suffix-stripped by `parse_bispecific_components`) to
-    # suffix-stripped monospecific names. Per D-2026-04-27-ISOTYPE.
+    # Compare parents, already suffix-stripped, with suffix-stripped monospecific names.
     monospecific_stripped_set = {normalize.strip_isotype_suffix(n) for n in monospecific_names}
 
     print("[1/3] bispecific_components")

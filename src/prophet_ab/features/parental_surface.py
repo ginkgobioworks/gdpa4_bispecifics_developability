@@ -6,17 +6,8 @@ bispecific is kept for an assay only when both arms and the bispecific
 itself have a median. Orientations stay as separate molecules.
 
 The figure highlights every bispecific that contains brazikumab or
-ligelizumab. This library has no brazikumab × ligelizumab molecule in
-either orientation; ``is_brazi_lige_pair`` is the flag the plot uses to
-draw that pair as a star if one is added later.
-
-The revision note quotes Spearman ρ = −0.60 (n = 157) between parental-mean
-HIC and parental-mean HAC, and within-library 75th percentiles of 3.136
-and 4.313. On the repository medians the correlation is −0.59 across the
-158 bispecifics that have both parental means (the two atezolizumab
-bispecifics have no parental HIC or HAC). The Hazen sample quartile of
-those 158 pairs rounds to the quoted thresholds, and no bispecific sits
-above both.
+ligelizumab. ``is_brazi_lige_pair`` is true only for a molecule built from
+both of those arms. This library has no such molecule.
 
 Example::
 
@@ -53,8 +44,8 @@ BRAZIKUMAB = "brazikumab"
 LIGELIZUMAB = "ligelizumab"
 EXAMPLE_ARMS: tuple[str, ...] = (BRAZIKUMAB, LIGELIZUMAB)
 
-# Hyndman–Fan type 5. The linear quartile does not match the three-decimal
-# thresholds quoted for this figure; Hazen does (3.136 and 4.313).
+# Hyndman–Fan type 5 (Hazen). The linear quartile does not match the
+# three-decimal thresholds used in the figure (3.136 and 4.313).
 QUARTILE_METHOD = "hazen"
 
 HIGHLIGHT_COLUMNS: tuple[str, ...] = (

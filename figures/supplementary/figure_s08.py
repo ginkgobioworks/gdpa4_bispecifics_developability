@@ -31,13 +31,11 @@ from matplotlib.colors import LinearSegmentedColormap as _LSC
 from prophet_ab.features.naming import parse_label_name as _parse
 from collections import namedtuple as _nt
 import seaborn as _sns
-from shutil import copy2
 
 def main():
     set_manuscript_style()
     m = pd.read_parquet(paths.S05 / 'cv_metrics_loo.parquet')
     m = m.assign(label_short=m['label'].map(display_label))
-    m
     MetricSpec = namedtuple('MetricSpec', ['key', 'col', 'display', 'ascending', 'vmin', 'vmax', 'fmt'])
     METRIC_SPECS = {'spearman': MetricSpec('spearman', 'spearman_rho', 'Spearman ρ', False, -0.2, 1.0, '.2f'), 'pearson': MetricSpec('pearson', 'pearson_r', 'Pearson r', False, -0.2, 1.0, '.2f'), 'mse': MetricSpec('mse', 'mse', 'MSE', True, None, None, '.2g'), 'rmse': MetricSpec('rmse', 'rmse', 'RMSE', True, None, None, '.3g')}
     TABLE_COLS = ['label_short', 'config', 'model', 'n_features', 'n_samples', 'spearman_rho', 'pearson_r', 'r2', 'mse', 'rmse', 'mae']
@@ -84,10 +82,6 @@ def main():
                     _ax.text(_j, _i, f'{_v:{spec.fmt}}', ha='center', va='center', color=_color, fontsize=6)
         fig.colorbar(_im, ax=_ax, label=f'{spec.display} ({CV_LABEL})', shrink=0.7)
         _ax.set_title(f'Out-of-fold {spec.display} across labels x (config, model) -- parent-disjoint {CV_LABEL}')
-        _o = paths.FIGURES / f'{SECTION}_{spec.key}_heatmap.png'
-        _o.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(_o, dpi=300, bbox_inches='tight')
-        print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
         return fig
 
     def plot_bar_chart(m, spec, paths, np, plt, display_config, cfg_order=None, suffix=''):
@@ -110,10 +104,6 @@ def main():
         _ax.axhline(0, color='k', lw=0.5)
         _ax.legend(bbox_to_anchor=(1.02, 0.5), loc='center left', ncols=2)
         _ax.set_title(f'Per-label {spec.display} across feature configs\nparent-disjoint {CV_LABEL} (best model per config)')
-        _o = paths.FIGURES / f'{SECTION}_{spec.key}_comparison{suffix}.png'
-        _o.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(_o, dpi=300, bbox_inches='tight')
-        print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
         return fig
 
     def plot_oof_scatter(m, oof, spec, paths, np, plt, display_config, equalize_axes=None, DATAPOINTS_COLORS=None, grid_figsize=None, wrap_title=None):
@@ -155,10 +145,6 @@ def main():
             _ax.axis('off')
         _suptitle_text = f'{CV_LABEL} predicted vs experimental -- best (config x model) per label by {spec.display} (parent-disjoint leave-one-bispecific-out)'
         fig.suptitle(_suptitle_text, fontsize=9)
-        _o = paths.FIGURES / f'{SECTION}_oof_scatter_{spec.key}.png'
-        _o.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(_o, dpi=300, bbox_inches='tight')
-        print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
         return fig
     oof = pd.read_parquet(paths.S05 / 'cv_oof_predictions_loo.parquet')
     _spec = METRIC_SPECS['spearman']
@@ -188,11 +174,6 @@ def main():
     _ax.axhline(0, color='k', lw=0.5)
     _ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
     _ax.set_title('Per-label Spearman ρ across feature configs\n-- parent-disjoint LOO (best model per config)')
-    _o = paths.FIGURES / 's07_spearman_comparison_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_subset.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_subset
     _SUBSET_LABELS = ['HIC RT (norm)', 'AC-SINS ΔLmax @ His/NaCl pH 6', 'PR Score @ CHO']
     _TICK_LABELS = {'HIC RT (norm)': 'HIC', 'AC-SINS ΔLmax @ His/NaCl pH 6': 'AC-SINS His/NaCl pH 6', 'PR Score @ CHO': 'PR-CHO'}
     _ARM_CFG_ORDER = ['compositional_baseline', 'arm_corresponding', 'arm_all_experimental', 'arm_in_silico_only', 'arm_in_silico_plus_corresponding', 'arm_in_silico_plus_all_experimental']
@@ -213,11 +194,6 @@ def main():
     _ax.axhline(0, color='k', lw=0.5)
     _ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
     _ax.set_title('Per-label Spearman ρ across arm feature configs\n-- parent-disjoint LOO (best model per config)')
-    _o = paths.FIGURES / 's07_spearman_comparison_subset_arm.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_subset_arm.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_subset_arm
     imp = pd.read_parquet(paths.S05 / 'feature_importance_long.parquet')
     _parsed = imp['feature'].map(naming.parse_feature_name)
     imp = imp.assign(kind=_parsed.map(lambda p: p.kind), source=_parsed.map(lambda p: p.source), label_short=lambda d: d['label'].map(display_label), abs_perm=lambda d: d['perm_importance_mean'].abs())
@@ -246,11 +222,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in _kind_color.values()]
     fig_imp_subset.legend(_handles, [_kind_labels[k] for k in _kind_color], loc='outside right upper')
     fig_imp_subset.suptitle('Top permutation-importance features -- subset labels\n(best config x model by LOO Spearman ρ)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_imp_subset.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_subset
     _SUBSET_LABELS = ['HIC RT (norm)', 'AC-SINS ΔLmax @ His/NaCl pH 6', 'PR Score @ CHO']
     _TICK_LABELS = {'HIC RT (norm)': 'HIC', 'AC-SINS ΔLmax @ His/NaCl pH 6': 'AC-SINS His/NaCl pH 6', 'PR Score @ CHO': 'PR-CHO'}
     _ARM_IS_CONFIGS = ('arm_in_silico_only', 'arm_in_silico_plus_corresponding', 'arm_in_silico_plus_all_experimental')
@@ -278,11 +249,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in _kind_color.values()]
     fig_imp_subset_arm.legend(_handles, [_kind_labels[k] for k in _kind_color], loc='outside lower center')
     fig_imp_subset_arm.suptitle('Top permutation-importance features -- subset labels\n(best arm config x model by LOO Spearman ρ)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_subset_arm.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_imp_subset_arm.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_subset_arm
     FEATURE_GROUP_COLORS = {'Same Assay': DATAPOINTS_COLORS['navy'], 'Same Assay Diff Condition': DATAPOINTS_COLORS['blue'], 'Different Assay': DATAPOINTS_COLORS['teal'], 'In-silico': DATAPOINTS_COLORS['amber']}
     FEATURE_GROUP_ORDER = list(FEATURE_GROUP_COLORS.keys())
 
@@ -321,11 +287,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     fig_imp_arm_groups.legend(_handles, FEATURE_GROUP_ORDER, loc='outside right upper')
     fig_imp_arm_groups.suptitle('Top permutation-importance features -- subset labels\n(best arm config x model by LOO Spearman ρ)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_subset_arm_groups.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_imp_arm_groups.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_arm_groups
     _SUBSET_LABELS = ['HIC RT (norm)', 'AC-SINS ΔLmax @ His/NaCl pH 6', 'PR Score @ CHO']
     _TICK_LABELS = {'HIC RT (norm)': 'HIC', 'AC-SINS ΔLmax @ His/NaCl pH 6': 'AC-SINS His/NaCl pH 6', 'PR Score @ CHO': 'PR-CHO'}
     _NONARM_IS_CONFIGS = ('in_silico_only', 'in_silico_plus_corresponding', 'in_silico_plus_all_experimental')
@@ -351,12 +312,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     fig_imp_nonarm_groups.legend(_handles, FEATURE_GROUP_ORDER, loc='outside right upper')
     fig_imp_nonarm_groups.suptitle('Top permutation-importance features -- subset labels\n(best operator config x model by LOO Spearman ρ)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_subset_groups.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_imp_nonarm_groups.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_nonarm_groups
-    _ARM_IS_CONFIGS = ('arm_in_silico_only', 'arm_in_silico_plus_corresponding', 'arm_in_silico_plus_all_experimental')
     _ms = m[m['config'].isin(_ARM_IS_CONFIGS)].dropna(subset=['spearman_rho'])
     _best_all = _ms.sort_values('spearman_rho', ascending=False).groupby('label').head(1).sort_values('spearman_rho', ascending=False)
     _ntotal = len(_best_all)
@@ -381,12 +336,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     fig_imp_all_groups.legend(_handles, FEATURE_GROUP_ORDER, loc='outside lower center', ncols=4)
     fig_imp_all_groups.suptitle('Top permutation-importance features — all labels\n(best arm config × model by LOO Spearman ρ, ordered by performance)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_all_arm_groups.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_imp_all_groups.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_all_groups
-    _NONARM_IS_CONFIGS = ('in_silico_only', 'in_silico_plus_corresponding', 'in_silico_plus_all_experimental')
     _ms = m[m['config'].isin(_NONARM_IS_CONFIGS)].dropna(subset=['spearman_rho'])
     _best_all = _ms.sort_values('spearman_rho', ascending=False).groupby('label').head(1).sort_values('spearman_rho', ascending=False)
     _ntotal = len(_best_all)
@@ -411,11 +360,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     fig_imp_all_nonarm_groups.legend(_handles, FEATURE_GROUP_ORDER, loc='outside lower center', ncols=4)
     fig_imp_all_nonarm_groups.suptitle('Top permutation-importance features — all labels\n(best operator config × model by LOO Spearman ρ, ordered by performance)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_all_groups.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_imp_all_nonarm_groups.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_all_nonarm_groups
     _SUBSET_LABELS = ['HIC RT (norm)', 'AC-SINS ΔLmax @ His/NaCl pH 6', 'PR Score @ CHO']
     _TICK_LABELS = {'HIC RT (norm)': 'HIC', 'AC-SINS ΔLmax @ His/NaCl pH 6': 'AC-SINS His/NaCl pH 6', 'PR Score @ CHO': 'PR-CHO'}
     _ARM_IS_CONFIGS = ('arm_in_silico_only', 'arm_in_silico_plus_corresponding', 'arm_in_silico_plus_all_experimental')
@@ -448,11 +392,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     _ax.legend(_handles, FEATURE_GROUP_ORDER, bbox_to_anchor=(1.02, 0.5), loc='center left')
     fig_stacked_subset.suptitle('Performance & importance breakdown by feature group\nsubset labels (best arm config x model by LOO Spearman ρ)')
-    _o = paths.FIGURES / 's07_stacked_importance_subset_arm.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_stacked_subset.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_stacked_subset
     _SUBSET_LABELS = ['HIC RT (norm)', 'AC-SINS ΔLmax @ His/NaCl pH 6', 'PR Score @ CHO']
     _TICK_LABELS = {'HIC RT (norm)': 'HIC', 'AC-SINS ΔLmax @ His/NaCl pH 6': 'AC-SINS His/NaCl pH 6', 'PR Score @ CHO': 'PR-CHO'}
     _NONARM_IS_CONFIGS = ('in_silico_only', 'in_silico_plus_corresponding', 'in_silico_plus_all_experimental')
@@ -485,12 +424,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     _ax.legend(_handles, FEATURE_GROUP_ORDER, bbox_to_anchor=(1.02, 0.5), loc='center left')
     fig_stacked_subset_nonarm.suptitle('Performance & importance breakdown by feature group\nsubset labels (best operator config x model by LOO Spearman ρ)')
-    _o = paths.FIGURES / 's07_stacked_importance_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_stacked_subset_nonarm.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_stacked_subset_nonarm
-    _ARM_IS_CONFIGS = ('arm_in_silico_only', 'arm_in_silico_plus_corresponding', 'arm_in_silico_plus_all_experimental')
     _ms = m[m['config'].isin(_ARM_IS_CONFIGS)].dropna(subset=['spearman_rho'])
     _best = _ms.sort_values('spearman_rho', ascending=False).groupby('label').head(1).sort_values('spearman_rho', ascending=False)
     _n = len(_best)
@@ -521,12 +454,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     _ax.legend(_handles, FEATURE_GROUP_ORDER, bbox_to_anchor=(1.02, 0.5), loc='center left')
     fig_stacked_all.suptitle('Performance & importance breakdown by feature group\nall labels (best arm config x model by LOO Spearman ρ)')
-    _o = paths.FIGURES / 's07_stacked_importance_all_arm.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_stacked_all.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_stacked_all
-    _NONARM_IS_CONFIGS = ('in_silico_only', 'in_silico_plus_corresponding', 'in_silico_plus_all_experimental')
     _ms = m[m['config'].isin(_NONARM_IS_CONFIGS)].dropna(subset=['spearman_rho'])
     _best = _ms.sort_values('spearman_rho', ascending=False).groupby('label').head(1).sort_values('spearman_rho', ascending=False)
     _n = len(_best)
@@ -557,11 +484,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     _ax.legend(_handles, FEATURE_GROUP_ORDER, bbox_to_anchor=(1.02, 0.5), loc='center left')
     fig_stacked_all_nonarm.suptitle('Performance & importance breakdown by feature group\nall labels (best operator config x model by LOO Spearman ρ)')
-    _o = paths.FIGURES / 's07_stacked_importance_all.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_stacked_all_nonarm.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_stacked_all_nonarm
     _SUBSET_LABELS = ['HIC RT (norm)', 'AC-SINS ΔLmax @ His/NaCl pH 6', 'PR Score @ CHO']
     _ms = m[m['label_short'].isin(_SUBSET_LABELS)].dropna(subset=['spearman_rho'])
     _best_per_cfg = _ms.sort_values('spearman_rho', ascending=False).groupby(['label', 'config']).head(1)[['label', 'label_short', 'config', 'model', 'spearman_rho']]
@@ -621,11 +543,6 @@ def main():
     _ax.set_title(f'LOO vs k-fold Spearman ρ\n(n={len(join)} combos, Pearson r={_r:.2f})')
     _ax.legend(loc='lower right')
     _ax.grid(alpha=0.3)
-    _o = paths.FIGURES / 's07_loo_vs_kfold_scatter.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_c.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_c
     _cfg_order = list(schema.CONFIG_DISPLAY.keys())
     _plot = m.dropna(subset=['spearman_rho']).copy()
     _plot['config_label'] = _plot['config'].map(display_config)
@@ -640,11 +557,6 @@ def main():
     _ax.axhline(0, color='k', lw=0.5, ls='--')
     _ax.legend(title='Feature config', loc='upper left', bbox_to_anchor=(1.01, 1))
     _ax.set_title('Spearman ρ by model and feature config\nparent-disjoint LOO')
-    _o = paths.FIGURES / 's07_boxenplot_model_config.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_box.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_box
     _red = '#C94040'
     _green = '#3A9A5C'
     _cmap = LinearSegmentedColormap.from_list('rho_diverging', [_red, 'white', _green], N=256)
@@ -678,11 +590,6 @@ def main():
     _ax.set_xlabel('Feature config')
     _ax.set_ylabel('Model')
     _ax.set_title('HIC RT (norm) -- LOO Spearman ρ by feature config x model')
-    _o = paths.FIGURES / 's07_hic_spearman_heatmap.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_hic.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_hic
     _red = '#C94040'
     _green = '#3A9A5C'
     _cmap = _LSC.from_list('rho_diverging', [_red, 'white', _green], N=256)
@@ -716,11 +623,6 @@ def main():
     _ax.set_xlabel('Feature config')
     _ax.set_ylabel('Model')
     _ax.set_title('HIC RT (norm) -- LOO Spearman ρ by arm feature config x model')
-    _o = paths.FIGURES / 's07_hic_spearman_heatmap_arm.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_hic_arm.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_hic_arm
 
     def _is_reported(label_col: str) -> bool:
         _vc, _ = _parse(label_col)
@@ -777,10 +679,6 @@ def main():
                     _ax.text(_j, _i, f'{_v:{spec.fmt}}', ha='center', va='center', color=_color, fontsize=6)
         fig.colorbar(_im, ax=_ax, label=f'{spec.display} ({_RS_CV_LABEL})', shrink=0.7)
         _ax.set_title(f'Out-of-fold {spec.display} across labels x (config, model) -- parent-disjoint {_RS_CV_LABEL} (reported subset)')
-        _o = paths.FIGURES / f'{_RS_SECTION}_{spec.key}_heatmap{_RS_SUFFIX}.png'
-        _o.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(_o, dpi=300, bbox_inches='tight')
-        print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
         return fig
 
     def rs_plot_bar_chart(m_r, spec, paths, np, plt, display_config, cfg_order=None, suffix=''):
@@ -805,10 +703,6 @@ def main():
         _ax.axhline(0, color='k', lw=0.5)
         _ax.legend(bbox_to_anchor=(1.02, 0.5), loc='center left', ncols=2)
         _ax.set_title(f'Per-label {spec.display} across feature configs\nparent-disjoint {_RS_CV_LABEL} (reported subset, best model per config)')
-        _o = paths.FIGURES / f'{_RS_SECTION}_{spec.key}_comparison{suffix}{_RS_SUFFIX}.png'
-        _o.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(_o, dpi=300, bbox_inches='tight')
-        print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
         return fig
 
     def rs_plot_oof_scatter(m_r, oof_r, spec, paths, np, plt, display_config, equalize_axes=None, DATAPOINTS_COLORS=None):
@@ -842,10 +736,6 @@ def main():
         for _ax in _axes[len(_best):]:
             _ax.axis('off')
         fig.suptitle(f'{_RS_CV_LABEL} predicted vs experimental -- best (config x model) per label by {spec.display} (reported subset, parent-disjoint LOO)', fontsize=9)
-        _o = paths.FIGURES / f'{_RS_SECTION}_oof_scatter_{spec.key}{_RS_SUFFIX}.png'
-        _o.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(_o, dpi=300, bbox_inches='tight')
-        print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
         return fig
     _rs_spec = _RS_METRIC_SPECS['spearman']
     rs_save_best_table(m_reported, _rs_spec, paths)
@@ -900,11 +790,10 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     fig_imp_all_groups_rs.legend(_handles, FEATURE_GROUP_ORDER, loc='outside lower center', ncols=4)
     fig_imp_all_groups_rs.suptitle('Top permutation-importance features -- reported subset\n(best arm config x model by LOO Spearman ρ, ordered by performance)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_all_arm_groups_reported_subset.png'
+    _o = paths.FIGURES / 'supplementary/figure_s08.png'
     _o.parent.mkdir(parents=True, exist_ok=True)
     fig_imp_all_groups_rs.savefig(_o, dpi=300, bbox_inches='tight')
     print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_all_groups_rs
     _NONARM_IS_CONFIGS = ('in_silico_only', 'in_silico_plus_corresponding', 'in_silico_plus_all_experimental')
     _ms = m_reported[m_reported['config'].isin(_NONARM_IS_CONFIGS)].dropna(subset=['spearman_rho'])
     _best_all = _ms.sort_values('spearman_rho', ascending=False).groupby('label').head(1).sort_values('spearman_rho', ascending=False)
@@ -930,12 +819,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     fig_imp_all_nonarm_groups_rs.legend(_handles, FEATURE_GROUP_ORDER, loc='outside lower center', ncols=4)
     fig_imp_all_nonarm_groups_rs.suptitle('Top permutation-importance features -- reported subset\n(best operator config x model by LOO Spearman ρ, ordered by performance)', fontsize=9)
-    _o = paths.FIGURES / 's07_top_features_all_groups_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_imp_all_nonarm_groups_rs.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_imp_all_nonarm_groups_rs
-    _ARM_IS_CONFIGS = ('arm_in_silico_only', 'arm_in_silico_plus_corresponding', 'arm_in_silico_plus_all_experimental')
     _ms = m_reported[m_reported['config'].isin(_ARM_IS_CONFIGS)].dropna(subset=['spearman_rho'])
     _best = _ms.sort_values('spearman_rho', ascending=False).groupby('label').head(1).sort_values('spearman_rho', ascending=False)
     _n = len(_best)
@@ -966,12 +849,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     _ax.legend(_handles, FEATURE_GROUP_ORDER, bbox_to_anchor=(1.02, 0.5), loc='center left')
     fig_stacked_all_rs.suptitle('Performance & importance breakdown by feature group\nreported subset (best arm config x model by LOO Spearman ρ)')
-    _o = paths.FIGURES / 's07_stacked_importance_all_arm_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_stacked_all_rs.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_stacked_all_rs
-    _NONARM_IS_CONFIGS = ('in_silico_only', 'in_silico_plus_corresponding', 'in_silico_plus_all_experimental')
     _ms = m_reported[m_reported['config'].isin(_NONARM_IS_CONFIGS)].dropna(subset=['spearman_rho'])
     _best = _ms.sort_values('spearman_rho', ascending=False).groupby('label').head(1).sort_values('spearman_rho', ascending=False)
     _n = len(_best)
@@ -1002,11 +879,6 @@ def main():
     _handles = [plt.Rectangle((0, 0), 1, 1, color=FEATURE_GROUP_COLORS[g]) for g in FEATURE_GROUP_ORDER]
     _ax.legend(_handles, FEATURE_GROUP_ORDER, bbox_to_anchor=(1.02, 0.5), loc='center left')
     fig_stacked_all_nonarm_rs.suptitle('Performance & importance breakdown by feature group\nreported subset (best operator config x model by LOO Spearman ρ)')
-    _o = paths.FIGURES / 's07_stacked_importance_all_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_stacked_all_nonarm_rs.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_stacked_all_nonarm_rs
     _kf = pd.read_parquet(paths.S05 / 'cv_metrics.parquet')
     _join = m_reported[['label', 'label_short', 'config', 'model', 'spearman_rho']].rename(columns={'spearman_rho': 'rho_loo'}).merge(_kf[['label', 'config', 'model', 'spearman_rho']].rename(columns={'spearman_rho': 'rho_kfold'}), on=['label', 'config', 'model']).dropna(subset=['rho_loo', 'rho_kfold'])
     fig_c_rs, _ax = plt.subplots(figsize=(6, 6), layout='constrained')
@@ -1028,11 +900,6 @@ def main():
     _ax.set_title(f'LOO vs k-fold Spearman ρ (reported subset,\nn={len(_join)} combos, Pearson r={_r:.2f})')
     _ax.legend(loc='lower right')
     _ax.grid(alpha=0.3)
-    _o = paths.FIGURES / 's07_loo_vs_kfold_scatter_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_c_rs.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_c_rs
     _cfg_order = list(schema.CONFIG_DISPLAY.keys())
     _plot = m_reported.dropna(subset=['spearman_rho']).copy()
     _plot['config_label'] = _plot['config'].map(display_config)
@@ -1047,11 +914,6 @@ def main():
     _ax.axhline(0, color='k', lw=0.5, ls='--')
     _ax.legend(title='Feature config', loc='upper left', bbox_to_anchor=(1.01, 1))
     _ax.set_title('Spearman ρ by model and feature config\nparent-disjoint LOO (reported subset)')
-    _o = paths.FIGURES / 's07_boxenplot_model_config_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_box_rs.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_box_rs
 
     def plot_supervised_vs_baseline(m_in, paths, np, pd, plt, DATAPOINTS_COLORS, suffix='', subtitle=''):
         _md = m_in.dropna(subset=['spearman_rho'])
@@ -1081,18 +943,9 @@ def main():
         _ax.set_xlabel('Spearman ρ (out-of-fold, parent-disjoint LOO)')
         _ax.legend(loc='lower right', frameon=False)
         _ax.set_title('Supervised models add marginal value over the compositional baseline' + (f'\n{subtitle}' if subtitle else ''))
-        _o = paths.FIGURES / f's07_supervised_vs_baseline{suffix}.png'
-        _o.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(_o, dpi=300, bbox_inches='tight')
-        print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
         return fig
     _fig = plot_supervised_vs_baseline(m, paths, np, pd, plt, DATAPOINTS_COLORS, subtitle='all labels (best model per config, parent-disjoint LOO)')
     _fig = plot_supervised_vs_baseline(m_reported, paths, np, pd, plt, DATAPOINTS_COLORS, suffix='_reported_subset', subtitle='reported subset (best model per config, parent-disjoint LOO)')
-    _src = paths.FIGURES / 's07_top_features_all_arm_groups_reported_subset.png'
-    _dst = paths.FIGURES / 'supplementary/figure_s08.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('supp_08')
 if __name__ == '__main__':
     main()

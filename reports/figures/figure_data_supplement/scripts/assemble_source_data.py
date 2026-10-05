@@ -1,8 +1,8 @@
-"""Assemble all extracted figure data into a single source data Excel workbook.
+"""Assemble extracted figure CSVs into one source-data workbook.
 
 Reads CSVs from reports/figures/figure_data_supplement/extracted/ and writes
-one sheet per figure/panel to reports/figures/figure_data_supplement/source_data.xlsx,
-following the Nature Communications example format.
+one sheet per figure or panel to
+reports/figures/figure_data_supplement/source_data.xlsx.
 """
 
 import sys
@@ -40,7 +40,7 @@ SHEETS: list[tuple[str, str, str | None]] = [
      "Leave-one-out cross-validation Spearman rho per model, config, and label"),
     # --- Supplemental Figures ---
     ("Supp Figure 1", "supp_fig1_cross_platform.csv",
-     "Cross-platform (this campaign vs GDPa1) scatter data per assay"),
+     "Cross-platform (this study vs GDPa1) scatter data per assay"),
     ("Supp Figure 2a", "supp_fig2a_delta_aic.csv",
      "Ungated noise-band charge-transform horserace: coef, Wald p, delta-AIC, AUC"),
     ("Supp Figure 2b", "supp_fig2b_enhancer_violin.csv",

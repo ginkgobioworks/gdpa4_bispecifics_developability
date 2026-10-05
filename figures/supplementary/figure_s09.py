@@ -27,7 +27,6 @@ from prophet_ab.features.naming import display_value_col
 from datapoints_figures import DATAPOINTS_COLORS, FONT_SIZE_LABEL, FONT_SIZE_LEGEND, FONT_SIZE_TICK, FONT_SIZE_TITLE, FULL_WIDTH, SINGLE_COL_WIDTH, set_manuscript_style, wrap_label, wrap_title, equalize_axes, grid_figsize
 from matplotlib.lines import Line2D
 from matplotlib.lines import Line2D as _Line2D
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -60,11 +59,6 @@ def main():
     _legend_handles = [Line2D([0], [0], marker='o', color='w', markerfacecolor='tab:blue', markeredgecolor='k', markersize=8, label=f'degree >= {MIN_DEGREE}'), Line2D([0], [0], marker='o', color='w', markerfacecolor='lightgray', markeredgecolor='k', markersize=8, label=f'degree < {MIN_DEGREE}')]
     _ax.legend(handles=_legend_handles, loc='upper right', fontsize=FONT_SIZE_LEGEND)
     _ax.axis('off')
-    _o = paths.FIGURES / 's08_parent_graph.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_graph.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_graph
     _degrees = [d for _, d in G_full.degree()]
     fig_deg, _ax = plt.subplots(figsize=(SINGLE_COL_WIDTH, SINGLE_COL_WIDTH * 0.75), layout='constrained')
     _bins = np.arange(0, max(_degrees) + 2) - 0.5
@@ -75,11 +69,6 @@ def main():
     _ax.set_ylabel('Count (Fvs)')
     _ax.set_title(f'Fv degree distribution\n{_n_pass}/{len(_degrees)} pass threshold')
     _ax.legend()
-    _o = paths.FIGURES / 's08_degree_distribution.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_deg.savefig(_o, dpi=300)
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_deg
     fvs_passing = sorted([n for n, d in G_full.degree() if d >= MIN_DEGREE])
     fvs_set = set(fvs_passing)
     _src = residuals_long[residuals_long['parent_a'].isin(fvs_set) & residuals_long['parent_b'].isin(fvs_set)]
@@ -106,11 +95,6 @@ def main():
         _ax.set_ylabel('residual')
     for _ax in _axes_flat[len(_panels):]:
         _ax.axis('off')
-    _o = paths.FIGURES / 's08_residual_strips.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_strips.savefig(_o, dpi=300)
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_strips
     _fv_to_idx = {fv: i for i, fv in enumerate(fvs_passing)}
     _n_fv = len(fvs_passing)
     _assays = residuals_long.groupby(['value_col', 'condition']).size().reset_index(name='n')
@@ -242,11 +226,6 @@ def main():
         _ax.set_xlabel('bsAb effect')
     for _ax in _axes_flat[len(_panels):]:
         _ax.axis('off')
-    _o = paths.FIGURES / 's08_coefficient_forest.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_forest.savefig(_o, dpi=300)
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_forest
     _coef = coefficients.copy()
     _coef['assay_label'] = _coef.apply(lambda r: display_value_col(r['value_col'], r['condition']), axis=1)
     _pivot = _coef.pivot_table(index='fv', columns='assay_label', values='coef', aggfunc='first')
@@ -275,15 +254,6 @@ def main():
     _ax.set_yticks(range(len(_pivot)))
     _ax.set_yticklabels(_pivot.index, fontsize=5)
     _ax.set_title(wrap_title('Per-Fv bispecific format effects (* = FDR < 0.05)', _fig_w))
-    _o = paths.FIGURES / 's08_coefficient_heatmap.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_heatmap.savefig(_o, dpi=300)
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_heatmap
-    _o = paths.TABLES / 's08_format_effect_coefficients.csv'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    coefficients.to_csv(_o, index=False)
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}  rows={len(coefficients)}')
     _src = residuals_long[residuals_long['parent_a'].isin(fvs_set) & residuals_long['parent_b'].isin(fvs_set) & residuals_long['value_col'].isin(schema.REPORTED_VALUE_COLS)]
     _panels = _src.groupby(['value_col', 'condition']).size().reset_index(name='n').query('n >= 5')
     _panels = list(zip(_panels['value_col'], _panels['condition']))
@@ -308,11 +278,6 @@ def main():
         _ax.set_ylabel('residual')
     for _ax in _axes_flat[len(_panels):]:
         _ax.axis('off')
-    _o = paths.FIGURES / 's08_residual_strips_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_strips_reported.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_strips_reported
     _coefs_rep = coefficients[coefficients['value_col'].isin(schema.REPORTED_VALUE_COLS)]
     _panels = _coefs_rep.groupby(['value_col', 'condition']).size().reset_index(name='n')
     _panels = list(zip(_panels['value_col'], _panels['condition']))
@@ -339,11 +304,6 @@ def main():
         _ax.set_xlabel('bsAb effect')
     for _ax in _axes_flat[len(_panels):]:
         _ax.axis('off')
-    _o = paths.FIGURES / 's08_coefficient_forest_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_forest_reported.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_forest_reported
     _coefs = coefficients[coefficients['value_col'].isin(schema.REPORTED_VALUE_COLS)].copy()
     _STYLE = [('acsins_delta_Lmax', '1X PBS', DATAPOINTS_COLORS['blue'], 'o'), ('acsins_delta_Lmax', 'His/Arg, pH 6', DATAPOINTS_COLORS['blue'], 's'), ('acsins_delta_Lmax', 'His/NaCl, pH 6', DATAPOINTS_COLORS['blue'], 'D'), ('hihplc_normretentiontime', 'default', DATAPOINTS_COLORS['teal'], 'o'), ('smachplc_retentiontime', 'default', DATAPOINTS_COLORS['teal'], 's'), ('hachplc_retentiontime', 'default', DATAPOINTS_COLORS['teal'], 'D'), ('pr_score', 'CHO', DATAPOINTS_COLORS['coral'], 'o'), ('pr_score', 'Ovalbumin', DATAPOINTS_COLORS['coral'], 's'), ('bvp_score_norm', 'default', DATAPOINTS_COLORS['coral'], 'D'), ('thermostability_tm1', 'Tm1', DATAPOINTS_COLORS['amber'], 'o'), ('thermostability_tm2', 'Tm2', DATAPOINTS_COLORS['amber'], 's')]
     _z_parts = []
@@ -392,11 +352,10 @@ def main():
     _ax.set_yticklabels(_fv_order, fontsize=5)
     _ax.set_xlabel('Fv effect (z-score normalized within assay)')
     _ax.legend(handles=_legend_handles, bbox_to_anchor=(1.02, 0.5), loc='center left', fontsize=FONT_SIZE_LEGEND, framealpha=0.9, borderaxespad=0)
-    _o = paths.FIGURES / 's08_coefficient_overlay_reported_subset.png'
+    _o = paths.FIGURES / 'supplementary/figure_s09.png'
     _o.parent.mkdir(parents=True, exist_ok=True)
     fig_overlay.savefig(_o, dpi=300, bbox_inches='tight')
     print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_overlay
     _coefs_rep = coefficients[coefficients['value_col'].isin(schema.REPORTED_VALUE_COLS)]
     _coefs_rep = _coefs_rep.copy()
     _coefs_rep['assay_label'] = _coefs_rep.apply(lambda r: display_value_col(r['value_col'], r['condition']), axis=1)
@@ -426,16 +385,6 @@ def main():
     _ax.set_yticks(range(len(_pivot)))
     _ax.set_yticklabels(_pivot.index, fontsize=5)
     _ax.set_title(wrap_title('Per-Fv bispecific format effects (* = FDR < 0.05)', _fig_w))
-    _o = paths.FIGURES / 's08_coefficient_heatmap_reported_subset.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_heatmap_reported.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_heatmap_reported
-    _src = paths.FIGURES / 's08_coefficient_overlay_reported_subset.png'
-    _dst = paths.FIGURES / 'supplementary/figure_s09.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('supp_09')
 if __name__ == '__main__':
     main()

@@ -3,7 +3,7 @@
 Two style presets:
 
 - ``set_manuscript_style()`` — publication defaults (3.5\" / 7.2\", 10–11 pt,
-  0.8 pt spines). Use this in every notebook that writes a report figure.
+  0.8 pt spines). Use this in every script that writes a manuscript figure.
 - ``set_datapoints_style()`` — dashboard / exploratory defaults (thicker
   spines, 14–16 pt type).
 
@@ -27,7 +27,7 @@ from matplotlib.colors import LinearSegmentedColormap
 # ---------------------------------------------------------------------------
 # Palette
 # ---------------------------------------------------------------------------
-# Named hex values used throughout the notebooks. The first five are the
+# Named hex values used by the manuscript figures. The first five are the
 # documented Datapoints brand tokens; the rest are the extended keys the
 # manuscript figures already index (navy, teal, amber, green, coral, slate).
 

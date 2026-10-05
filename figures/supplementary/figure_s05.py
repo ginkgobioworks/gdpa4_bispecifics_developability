@@ -28,7 +28,6 @@ from matplotlib.patches import Patch as _Patch
 from prophet_ab.normalize import parse_bispecific_components as _parse
 from matplotlib.ticker import MaxNLocator
 from matplotlib.ticker import MaxNLocator as _MaxNLocator
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -112,10 +111,6 @@ def main():
     _ax.tick_params(axis='both', labelsize=FONT_SIZE_TICK)
     _ax.set_title('PTS-IF thermostability', fontsize=FONT_SIZE_TITLE, fontweight='bold')
     _ax.legend(handles=[_Patch(facecolor=_c, edgecolor=_c, alpha=0.3, label=_l) for _, _l, _c in _kinds], loc='upper right', frameon=False, fontsize=FONT_SIZE_LEGEND)
-    _out = paths.FIGURES / 's01_violin_pts_if.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
     _pts = assay_data_tagged[(assay_data_tagged['assay_group'] == 'PTS-IF') & assay_data_tagged['value_col'].isin(['thermostability_tm1', 'thermostability_tm2'])]
     _kinds = [('bispecific', 'Bispecific', DATAPOINTS_COLORS['blue']), ('monospecific', 'Monospecific', DATAPOINTS_COLORS['purple'])]
@@ -131,7 +126,7 @@ def main():
     _ax.set_ylabel('Tm1 + Tm2 (°C)', fontsize=FONT_SIZE_LABEL)
     _ax.tick_params(axis='both', labelsize=FONT_SIZE_TICK)
     _ax.set_title('PTS-IF pooled thermal transitions', fontsize=FONT_SIZE_TITLE, fontweight='bold')
-    _out = paths.FIGURES / 's01_violin_pts_if_tm_pooled.png'
+    _out = paths.FIGURES / 'supplementary/figure_s05.png'
     _out.parent.mkdir(parents=True, exist_ok=True)
     _fig.savefig(_out, dpi=300, bbox_inches='tight')
     print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
@@ -161,10 +156,6 @@ def main():
             _axes[_j].set_visible(False)
         _fig.suptitle(_assay, fontsize=FONT_SIZE_TITLE, fontweight='bold')
         _slug = _assay.lower().replace('-', '_')
-        _out = paths.FIGURES / f's01_dist_{_slug}.png'
-        _out.parent.mkdir(parents=True, exist_ok=True)
-        _fig.savefig(_out, dpi=300, bbox_inches='tight')
-        _saved_assay_figs.append(str(_out.relative_to(paths.REPO_ROOT)))
         plt.close(_fig)
     print(f'Saved {len(_saved_assay_figs)} assay distribution figures')
     for _p in _saved_assay_figs:
@@ -181,10 +172,6 @@ def main():
     for _j in range(_n_prod, len(_axes)):
         _axes[_j].set_visible(False)
     _fig.suptitle('Production QC', fontsize=FONT_SIZE_TITLE, fontweight='bold')
-    _out = paths.FIGURES / 's01_dist_production.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
 
     def _pivot_wide(df):
@@ -277,10 +264,6 @@ def main():
                     _ax.text(_j, _i, f'{_v:.2f}', ha='center', va='center', fontsize=_annot_fs, color='black' if abs(_v) < 0.5 else 'white')
     _cax = _fig.add_subplot(_gs[:, 4])
     _fig.colorbar(_axes_top[0].images[0], cax=_cax, label='correlation')
-    _out = paths.FIGURES / 's01_correlation_heatmaps.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
     _reported = assay_data[assay_data['value_col'].isin(schema.REPORTED_VALUE_COLS)].copy()
     _reported['metric_label'] = _reported.apply(lambda r: display_value_col(r['value_col'], r['condition']), axis=1)
@@ -334,10 +317,6 @@ def main():
                     _ax.text(_j, _i, f'{_v:.2f}', ha='center', va='center', fontsize=_annot_fs, color='black' if abs(_v) < 0.5 else 'white')
     _cax = _fig.add_subplot(_gs[0, 4])
     _fig.colorbar(_axes[0].images[0], cax=_cax, label='correlation')
-    _out = paths.FIGURES / 's01_correlation_heatmaps_reported_subset.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
     _bispecific = assay_data[(assay_data['kind'] == 'bispecific') & assay_data['value_col'].isin(schema.REPORTED_VALUE_COLS)].copy()
     _comps = _bispecific['antibody_name'].map(_parse)
@@ -406,10 +385,6 @@ def main():
         _ax.set_ylabel('max(A×B, B×A)')
     for _ax in _axes_flat[len(swap_combos):]:
         _ax.axis('off')
-    _out = paths.FIGURES / 's01_swap_pair_scatters.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
 
     def _sync_ticks(ax, nticks=3):
@@ -455,10 +430,6 @@ def main():
         _ax.set_ylabel('max(A×B, B×A)')
     for _ax in _axes_flat[len(swap_combos):]:
         _ax.axis('off')
-    _out = paths.FIGURES / 's01_swap_pair_scatters_pearson.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
     _ncols = 4
     _nrows = (len(swap_combos) + _ncols - 1) // _ncols
@@ -498,10 +469,6 @@ def main():
     for _j in range(len(swap_combos), len(_axes)):
         _axes[_j].set_visible(False)
     _fig.suptitle(f'Orientation swap pairs with SE (n = {len(swap_pair_keys)})', fontsize=FONT_SIZE_TITLE, fontweight='bold')
-    _out = paths.FIGURES / 's01_swap_pair_scatters_se.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
     _bispecific_reported = assay_data[(assay_data['kind'] == 'bispecific') & assay_data['value_col'].isin(schema.REPORTED_VALUE_COLS)].copy()
     _VC_ORDER = ['hihplc_normretentiontime', 'smachplc_retentiontime', 'hachplc_retentiontime', 'acsins_delta_Lmax', 'pr_score', 'bvp_score_norm', 'thermostability_tm1', 'thermostability_tm2']
@@ -529,16 +496,7 @@ def main():
         _ax.tick_params(labelsize=FONT_SIZE_TICK)
     for _ax in _axes_flat[len(_combos):]:
         _ax.set_visible(False)
-    _out = paths.FIGURES / 's01_bispecific_reported_histograms.png'
-    _out.parent.mkdir(parents=True, exist_ok=True)
-    _fig.savefig(_out, dpi=300, bbox_inches='tight')
-    print(f'Saved {_out.relative_to(paths.REPO_ROOT)}')
     plt.close(_fig)
-    _src = paths.FIGURES / 's01_violin_pts_if_tm_pooled.png'
-    _dst = paths.FIGURES / 'supplementary/figure_s05.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('supp_05')
 if __name__ == '__main__':
     main()

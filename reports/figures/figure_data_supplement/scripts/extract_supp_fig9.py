@@ -31,12 +31,12 @@ bispecific = summaries[summaries["kind"] == schema.KIND_BISPECIFIC][
 ].rename(columns={"median": "bispecific_median"})
 bispecific = bispecific[~bispecific["value_col"].isin(EXCLUDED)]
 
-n3p = bispecific.merge(
+paired = bispecific.merge(
     components[["antibody_name", "parent_a", "parent_b"]],
     on="antibody_name",
 )
-n3p = (
-    n3p.merge(
+paired = (
+    paired.merge(
         monospecific[["parent", "value_col", "condition", "median"]].rename(
             columns={"parent": "parent_a", "median": "pa_median"}
         ),
@@ -50,9 +50,9 @@ n3p = (
         how="left",
     )
 )
-n3p["parent_mean"] = (n3p["pa_median"] + n3p["pb_median"]) / 2
-n3p["residual"] = n3p["bispecific_median"] - n3p["parent_mean"]
-residuals_long = n3p.dropna(subset=["residual"])
+paired["parent_mean"] = (paired["pa_median"] + paired["pb_median"]) / 2
+paired["residual"] = paired["bispecific_median"] - paired["parent_mean"]
+residuals_long = paired.dropna(subset=["residual"])
 
 # ── Build parent graph and filter by degree ──────────────────────────────
 G_full = nx.Graph()

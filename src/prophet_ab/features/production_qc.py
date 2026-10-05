@@ -1,12 +1,11 @@
 """Parental-mean production and purity tiers for supplementary figure S15.
 
-Reviewer 2 asked whether the three-tier inheritance framework also covers
-expression titer and purity. For each attribute the parental expectation is
-the arithmetic mean of the two monospecific medians. A bispecific is kept
-only when both arms have a median, which is why SEC percent monomer has
-158 molecules and the three production attributes have 160.
+For each attribute the parental expectation is the arithmetic mean of the
+two monospecific medians. A bispecific is kept only when both arms have a
+median, so SEC percent monomer has 158 molecules and the three production
+attributes have 160.
 
-The tier rule is the one quoted for this figure::
+The tier rule is::
 
     if rho >= 0.7 and abs(median residual) < sigma_arm:  Class I
     if rho < 0.3:                                        Class III
@@ -16,11 +15,6 @@ The tier rule is the one quoted for this figure::
 monospecific median for that attribute, including parents that were not
 used in a bispecific. Residual is observed minus parental mean. Class III
 does not depend on the sign of that residual.
-
-On the repository medians every attribute is Class III. Titer and SDS-PAGE
-purity sit below the parental mean; SEC-HPLC purity and SEC percent monomer
-sit slightly above it. Panel D's Spearman ρ is 0.141. The revision note
-prints 0.140; both are far below the 0.3 cutoff, so the class is the same.
 
 Example::
 
@@ -187,7 +181,7 @@ def load_production_pairs(
 ) -> pd.DataFrame:
     """One row per bispecific per attribute, complete parental pairs only.
 
-    Reads the stage-02 component table and the stage-03 per-antibody medians
+    Reads ``bispecific_components.parquet`` and ``gdpa4_per_antibody.parquet``
     when frames are not passed in. Rows missing the bispecific median or
     either parental median are dropped, so attributes can differ in length.
     """

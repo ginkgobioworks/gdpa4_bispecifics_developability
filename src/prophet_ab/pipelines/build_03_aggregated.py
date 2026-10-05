@@ -1,7 +1,7 @@
 """Stage 03 — per-antibody summary statistics.
 
 Outputs (data/processed/03_aggregated/):
-    gdpa4_per_antibody.parquet   — per-antibody summaries from this campaign
+    gdpa4_per_antibody.parquet   — per-antibody summaries for this study
                                    (one row per antibody × value_col × condition).
     gdpa1_per_antibody.parquet  — per-antibody summaries from the GDPa1 wide
                                    tidy table, melted to long form to match

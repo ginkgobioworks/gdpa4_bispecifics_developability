@@ -46,8 +46,8 @@ def main() -> None:
     _write(io.read_gdpa1_prior_lit(), out / "gdpa1_prior_lit.parquet")
 
     print("[5/6] bispecific_production")
-    n3p = normalize.annotate(io.read_bispecific_production())
-    _write(n3p, out / "bispecific_production.parquet")
+    production = normalize.annotate(io.read_bispecific_production())
+    _write(production, out / "bispecific_production.parquet")
 
     print("[6/6] monospecific_production")
     n4p = normalize.annotate(io.read_monospecific_production())

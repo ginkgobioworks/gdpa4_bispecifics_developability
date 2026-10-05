@@ -1,15 +1,12 @@
 """Per-antibody replicate aggregation.
 
-Centralizes the policy used everywhere downstream. Change here, not in
-notebooks.
+The per-antibody summary is the median across replicates. Mean and standard
+deviation are retained; downstream models use the median.
 """
 from __future__ import annotations
 
 import pandas as pd
 
-# Decision D-2026-04-27-AGG (see decisions.md): use median across replicates
-# as the per-antibody summary. Mean and std are also retained for context
-# but downstream models should default to median.
 SUMMARY_STATS: tuple[str, ...] = ("median", "mean", "std", "min", "max", "count")
 
 

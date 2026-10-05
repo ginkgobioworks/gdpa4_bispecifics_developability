@@ -1,8 +1,7 @@
 """Per-Fv bispecific format-effect model over the connected parent graph.
 
-Single source of truth for the OLS that s08 (D-2026-05-05-FORMAT-EFFECTS,
-D-2026-05-05-MIN-DEGREE) fits: for each assay, the bispecific-vs-mean(parents)
-residual is decomposed into a sum of per-Fv format effects
+For each assay, the residual of a bispecific from the mean of its parents
+is decomposed into a sum of per-Fv format effects
 
     r_ij = bs_i + bs_j + eps        (OLS, no intercept)
 
@@ -10,12 +9,6 @@ restricted to Fvs that appear in at least ``min_degree`` bispecific
 combinations (degree >= 3 by default). Per-Fv t-tests with Benjamini-Hochberg
 FDR correction identify Fvs whose variable region behaves systematically
 differently in bispecific format ("translators").
-
-The s08 notebook implements this inline; this module lifts it into importable
-functions so any downstream stage (e.g. the stage-07 translation filter) reuses
-the exact same fit rather than re-deriving it or reading the notebook's CSV
-output. ``fit_format_effects`` reproduces
-``reports/tables/s08_format_effect_coefficients.csv`` column-for-column.
 """
 from __future__ import annotations
 
@@ -31,11 +24,7 @@ MIN_DEGREE = 3
 
 
 def _components_from_names(bispecific_names) -> pd.DataFrame:
-    """(antibody_name, parent_a, parent_b) parsed from bispecific names.
-
-    Robust to an optional ``N3-`` prefix (``normalize.parse_bispecific_components``),
-    so it does not depend on the possibly-stale stage-02 parquet.
-    """
+    """(antibody_name, parent_a, parent_b) parsed from bispecific names."""
     parsed = [nz.parse_bispecific_components(n) for n in bispecific_names]
     return pd.DataFrame(
         {
@@ -99,12 +88,11 @@ def fit_format_effects(
     components: pd.DataFrame | None = None,
     min_degree: int = MIN_DEGREE,
 ) -> pd.DataFrame:
-    """Per-Fv format-effect coefficients per assay (reproduces s08).
+    """Per-Fv format-effect coefficients per assay.
 
     Fits ``residual = bs_a + bs_b`` (OLS, no intercept) per (value_col,
-    condition) over bispecifics whose both parents pass the degree threshold. Returns
-    one row per (value_col, condition, fv) with the same columns as
-    ``reports/tables/s08_format_effect_coefficients.csv``.
+    condition) over bispecifics whose both parents pass the degree threshold.
+    Returns one row per (value_col, condition, fv).
     """
     resid = build_residuals_long(per_antibody, components)
     if components is None:
@@ -203,8 +191,7 @@ def significant_assay_counts(coef: pd.DataFrame) -> pd.Series:
 def flagged_parents(coef: pd.DataFrame, min_sig_assays: int = 3) -> set[str]:
     """Parents ("translators") FDR-significant in >= ``min_sig_assays`` assays.
 
-    Global-union rule (D-2026-07-22-TRANSLATION-FILTER): a single set of
-    parents flagged across all assays.
+    One parent set is formed across all assays.
     """
     counts = significant_assay_counts(coef)
     return set(counts[counts >= min_sig_assays].index)

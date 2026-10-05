@@ -5,21 +5,18 @@ Reads the wide matrices produced by build_05_wide and runs the full
 
 Outputs (data/processed/05_modeling/):
     cv_metrics.parquet                 — long-form metrics from the parent-aware
-                                          5-fold sweep (D-2026-04-27-CV-PARENTAWARE).
+                                          5-fold sweep.
     cv_oof_predictions.parquet         — long-form out-of-fold predictions
                                           for the 5-fold sweep.
     cv_metrics_loo.parquet             — long-form metrics from the per-bispecific
-                                          parent-disjoint leave-one-out sweep
-                                          (D-2026-04-30-CV-LOO-PARENT-DISJOINT).
+                                          parent-disjoint leave-one-out sweep.
     cv_oof_predictions_loo.parquet     — long-form OOF predictions for the
                                           LOO sweep (one row per bispecific per
                                           (label x config x model) combo).
     feature_importance_long.parquet    — per (label x config x model x feature)
-                                          built-in + permutation importances
-                                          (D-2026-04-27-IMPORTANCE). Importance
-                                          is split-agnostic (refits on all
-                                          observed rows) — same answer for both
-                                          CV strategies, computed once.
+                                          built-in and permutation importances.
+                                          Importance refits on all observed rows,
+                                          so it does not depend on the split.
 
 The (label x config x model) sweep is dispatched in parallel via joblib.
 Permutation importance inside each worker uses `n_jobs=1` to avoid nested
@@ -141,13 +138,13 @@ def main() -> None:
     kfold_splits = cv.build_parent_aware_splits(list(common), components)
     _n_test = sum(len(te) for _, te in kfold_splits)
     _n_train_per_fold = [len(tr) for tr, _ in kfold_splits]
-    print(f"  parent-aware k-fold splits (D-2026-04-27-CV-PARENTAWARE): "
+    print(f"  parent-aware k-fold splits: "
           f"{len(kfold_splits)} folds, total OOF rows={_n_test}, "
           f"train sizes per fold={_n_train_per_fold}")
 
     loo_splits = cv.build_parent_disjoint_loo_splits(list(common), components)
     _loo_train_sizes = [len(tr) for tr, _ in loo_splits]
-    print(f"  parent-disjoint LOO splits (D-2026-04-30-CV-LOO-PARENT-DISJOINT): "
+    print(f"  parent-disjoint LOO splits: "
           f"{len(loo_splits)} folds (one per bispecific), "
           f"train sizes min={min(_loo_train_sizes)} "
           f"median={int(pd.Series(_loo_train_sizes).median())} "

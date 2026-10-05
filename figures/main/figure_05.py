@@ -20,8 +20,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from prophet_ab import paths, schema
-from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, WHITE_TO_PURPLE, FULL_WIDTH, FONT_SIZE_TICK, FONT_SIZE_LABEL, FONT_SIZE_TITLE, grid_figsize, wrap_title
-from shutil import copy2
+from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, WHITE_TO_PURPLE, FULL_WIDTH, FONT_SIZE_TICK, FONT_SIZE_LABEL, FONT_SIZE_TITLE, wrap_title
 
 def main():
     set_manuscript_style()
@@ -51,49 +50,6 @@ def main():
     _fpts = _pts[_is_pareto]
     frontier_pts = _fpts[np.argsort(_fpts[:, 0])]
     print(f'monospecific Pareto frontier: {len(frontier_pts)} points')
-    PANELS = [('acsins_pbs', 'AC-SINS ΔLmax 1× PBS'), ('acsins_his_arg', 'AC-SINS ΔLmax His/Arg pH 6'), ('acsins_his_nacl', 'AC-SINS ΔLmax His/NaCl pH 6'), ('pr_cho', 'PR-CHO Score'), ('pr_ova', 'PR-Ovalbumin Score'), ('bvp', 'PR-BVP Score')]
-    _PAD = 0.05
-    _hic_all = wide['hic'].dropna()
-    _hac_all = wide['hac'].dropna()
-    _hic_range = _hic_all.max() - _hic_all.min()
-    _hac_range = _hac_all.max() - _hac_all.min()
-    _xlim = (_hic_all.min() - _PAD * _hic_range, _hic_all.max() + _PAD * _hic_range)
-    _ylim = (_hac_all.min() - _PAD * _hac_range, _hac_all.max() + _PAD * _hac_range)
-    _clims = {}
-    for _col, _ in PANELS:
-        _vals = wide[_col].dropna()
-        _clims[_col] = (_vals.min(), _vals.max())
-    _fw, _fh, _cell_w = grid_figsize(2, 3, full_width=FULL_WIDTH)
-
-    def plot_reactivity_grid(df, suptitle, save_name):
-        _fig, _axes = plt.subplots(2, 3, figsize=(_fw, _fh), layout='constrained')
-        _axes = _axes.ravel()
-        for _i, (_col, _label) in enumerate(PANELS):
-            _ax = _axes[_i]
-            _mask = df[['hic', 'hac', _col]].notna().all(axis=1)
-            _sub = df[_mask]
-            _vmin, _vmax = _clims[_col]
-            if len(_sub) == 0:
-                _ax.set_title(wrap_title(_label, _cell_w), fontsize=FONT_SIZE_TITLE)
-                _ax.text(0.5, 0.5, 'no data', transform=_ax.transAxes, ha='center', va='center', fontsize=FONT_SIZE_TICK)
-                continue
-            _sc = _ax.scatter(_sub['hic'], _sub['hac'], c=_sub[_col], cmap=WHITE_TO_PURPLE, vmin=_vmin, vmax=_vmax, s=30, edgecolors=DATAPOINTS_COLORS['gray'], linewidths=0.3, alpha=0.85)
-            _cb = _fig.colorbar(_sc, ax=_ax, shrink=0.8, pad=0.02)
-            _cb.ax.tick_params(labelsize=FONT_SIZE_TICK)
-            _ax.set_xlim(_xlim)
-            _ax.set_ylim(_ylim)
-            _ax.set_xlabel('HIC RT (norm)', fontsize=FONT_SIZE_LABEL)
-            _ax.set_ylabel('HAC RT', fontsize=FONT_SIZE_LABEL)
-            _ax.set_title(wrap_title(_label, _cell_w), fontsize=FONT_SIZE_TITLE)
-            _ax.tick_params(labelsize=FONT_SIZE_TICK)
-        _fig.suptitle(suptitle, fontsize=FONT_SIZE_TITLE)
-        _out = paths.FIGURES / save_name
-        _out.parent.mkdir(parents=True, exist_ok=True)
-        _fig.savefig(_out, dpi=300, bbox_inches='tight')
-        print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
-        return _fig
-    fig_monospecific = plot_reactivity_grid(wide[wide['kind'] == 'monospecific'], 'Monospecifics', 's09_reactivity_vs_chromatography_monospecific.png')
-    fig_bispecific = plot_reactivity_grid(wide[wide['kind'] == 'bispecific'], 'Bispecifics', 's09_reactivity_vs_chromatography_bispecific.png')
     _PR_PANELS = [('pr_cho', 'PR-CHO Score'), ('pr_ova', 'PR-Ovalbumin Score'), ('bvp', 'PR-BVP Score')]
     _ROW_KINDS = [('monospecific', 'Monospecifics'), ('bispecific', 'Bispecifics')]
     _PAD = 0.05
@@ -137,16 +93,11 @@ def main():
             _ext_y = np.r_[frontier_pts[0, 1], frontier_pts[:, 1], frontier_pts[-1, 1]]
             _ax.plot(_ext_x, _ext_y, ls=':', color=DATAPOINTS_COLORS['coral'], lw=1.2, zorder=3)
         _axes[_row, 0].annotate(_row_label, xy=(0, 0.5), xytext=(-55, 0), xycoords='axes fraction', textcoords='offset points', ha='center', va='center', fontsize=FONT_SIZE_TITLE, rotation=90, fontweight='bold')
-    _out = paths.FIGURES / 's09_polyreactivity_vs_chromatography.png'
+    _out = paths.FIGURES / 'main/figure_05.png'
     _out.parent.mkdir(parents=True, exist_ok=True)
     _fig.savefig(_out, dpi=300, bbox_inches='tight')
     print(f'wrote {_out.relative_to(paths.REPO_ROOT)}')
     fig_pr = _fig
-    _src = paths.FIGURES / 's09_polyreactivity_vs_chromatography.png'
-    _dst = paths.FIGURES / 'main/figure_05.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('main_05')
 if __name__ == '__main__':
     main()

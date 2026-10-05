@@ -1,21 +1,12 @@
 """Arm-combination transforms and the three-tier inheritance metadata.
 
-Single source of truth (repo rule #2) for:
+- four operators that predict a bispecific value from its two parental medians
+- the operator used for each metric
+- the short display label per metric
+- the three inheritance tiers, with colors and captions
 
-- the four arm-combination operators used to predict an bispecific bispecific value
-  from its two parent monospecific (monospecific) values;
-- the mechanistically-chosen operator per metric (D-2026-05-28-BEST-TRANSFORM);
-- the short display label per metric;
-- the three-tier "zones of inheritance" grouping used by the combined
-  manuscript figure (s13) and its colors / captions.
-
-`TRANSFORMS`, `BEST_TRANSFORM`, `SHORT_LABEL`, and `PRIMARY_METRICS` were
-previously inlined in `notebooks/s03_compositional_baselines/02_transform_heatmap.py`
-and duplicated in the raw figure bundle's `plot_style.py`. Both s03 and s13
-now import from here so a metric reclassification is a one-line edit.
-
-Metrics are keyed by the `(value_col, condition)` pair as they appear in
-`data/processed/03_aggregated/gdpa4_per_antibody.parquet`.
+Metrics are keyed by ``(value_col, condition)`` as in
+``data/processed/03_aggregated/gdpa4_per_antibody.parquet``.
 """
 from __future__ import annotations
 
@@ -33,7 +24,7 @@ TRANSFORMS = {
     )),
 }
 
-# --- Mechanistically-chosen operator per metric (D-2026-05-28-BEST-TRANSFORM)
+# --- Operator used for each metric ---------------------------------------
 BEST_TRANSFORM = {
     ("pr_score", "Ovalbumin"):                          "mean",
     ("pr_score", "CHO"):                                "mean",

@@ -1,8 +1,6 @@
 """Datapoints matplotlib style, palette, and layout helpers.
 
-This is a local stand-in for the original ``datapoints_figures`` package.
-Call ``set_manuscript_style()`` at the top of every notebook that writes
-figures.
+Call ``set_manuscript_style()`` before plotting a manuscript figure.
 
 Example::
 

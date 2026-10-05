@@ -1,8 +1,8 @@
 """Canonical names, enums, and cross-dataset mappings.
 
-Legacy campaign labels are accepted only at the raw-data boundary. Processed
-tables use biological format names so publication-facing analysis does not
-depend on internal production campaign terminology.
+Processed tables use ``bispecific`` and ``monospecific``. Raw names may
+still carry an ``N3-`` prefix or an ``_IgG1`` suffix; those are removed at
+the boundary.
 """
 from __future__ import annotations
 
@@ -11,10 +11,10 @@ from __future__ import annotations
 # ---------------------------------------------------------------------------
 KIND_BISPECIFIC = "bispecific"
 KIND_MONOSPECIFIC = "monospecific"
-KIND_GDPA1 = "GDPa1"  # historical monospecific
+KIND_GDPA1 = "GDPa1"  # published 246-IgG reference panel
 
 # ---------------------------------------------------------------------------
-# PROPHET-Ab assay panel (this campaign)
+# Assay panel in the tall measurement table
 # ---------------------------------------------------------------------------
 # (assay, condition, value_col) tuples actually present in the tall CSV.
 ASSAY_PANEL: tuple[tuple[str, str, str], ...] = (
@@ -42,29 +42,24 @@ ASSAY_PANEL: tuple[tuple[str, str, str], ...] = (
 # ---------------------------------------------------------------------------
 # Name normalization
 # ---------------------------------------------------------------------------
-# All 71 monospecific monospecifics were expressed on a uniform IgG1 constant region
-# (D-2026-04-27-IGG1-UNIFORM). Three monospecific names carry an explicit `_IgG1`
-# suffix flagging the originally non-IgG1 parents; their bispecific components drop
-# the suffix, so strip at join time (D-2026-04-27-ISOTYPE).
+# Monospecifics were expressed as IgG1. Three names keep an `_IgG1` suffix;
+# bispecific component names omit it, so joins strip the suffix.
 ISOTYPE_SUFFIXES_TO_STRIP: tuple[str, ...] = ("_IgG1",)
 
 # Plate controls. These also occur as legitimate monospecific parents in some bispecifics; do
 # not drop them by name — instead flag.
 CONTROL_NAMES: frozenset[str] = frozenset({"atezolizumab", "trastuzumab", "adalimumab"})
 
-LEGACY_BISPECIFIC_PREFIX = "N3-"
+BISPECIFIC_NAME_PREFIX = "N3-"
 BISPECIFIC_PAIR_SEP = "__x__"
 
 # ---------------------------------------------------------------------------
 # Metrics deprecated for downstream analysis
 # ---------------------------------------------------------------------------
-# value_cols here are kept in raw + per-antibody parquets (so the measurement
-# record is preserved) but are excluded from feature builders, label builders,
-# and any analysis-layer reporting. Maintained as a single source of truth so
-# that "switch the canonical metric" is a one-line edit.
-#
-# Per D-2026-04-27-PR-PRIMARY: pr_score is the canonical PR metric;
-# pr_score_norm is excluded from baselines, features, and labels.
+# Kept in the raw and per-antibody tables, and excluded from features,
+# labels, and reported analyses. Polyreactivity uses pr_score;
+# pr_score_norm is excluded. acsins_Lmax is excluded in favor of
+# acsins_delta_Lmax.
 DEPRECATED_VALUE_COLS: frozenset[str] = frozenset({"pr_score_norm", "acsins_Lmax"})
 
 # Production QC metrics — flow through gdpa4_long and aggregation for
@@ -109,13 +104,10 @@ PROPHET_TO_GDPA1: dict[tuple[str, str | None], str] = {
     ("pr_score",                             "CHO"):            "polyreactivity_prscore_cho",
     ("pr_score",                             "Ovalbumin"):      "polyreactivity_prscore_ova",
 }
-# Decision D-2026-04-27-AC-SINS: His/Arg only is the like-for-like comparator
-# to GDPa1's pH 6.0 condition; His/NaCl is intentionally not mapped.
-# Decision D-2026-04-27-PR-V2: pr_score (not pr_score_norm) maps to GDPa1
-# (supersedes the original D-2026-04-27-PR).
-# Decision D-2026-05-08-DROP-SEC-THERMO: SEC %monomer and thermostability
-# (Tm1, Tm2, Tonset) removed from cross-platform comparison.
-# Decision D-2026-05-08-GDPA1-IGG1: filter GDPa1 to IgG1 (hc_subtype).
+# His/Arg is the pH 6.0 comparator; His/NaCl is not mapped.
+# Polyreactivity maps pr_score, not pr_score_norm.
+# SEC percent monomer and thermostability are not compared across panels.
+# Cross-panel GDPa1 rows are limited to IgG1 (hc_subtype).
 
 # ---------------------------------------------------------------------------
 # Display names for figures

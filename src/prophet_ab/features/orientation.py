@@ -1,23 +1,16 @@
 """A-B versus B-A orientation pairs for supplementary figure S16.
 
-Reviewer 1 asked for the direct comparison that Figure 2 summarizes with a
-minimum and a maximum. A bispecific is orientation-paired when the library
-contains both ``A__x__B`` and ``B__x__A`` as separate molecules. Arms are
-sorted lexicographically so the assignment is reproducible: the first arm
-is A, the second is B, and the A-B configuration is the molecule whose
-``parent_a`` sorts first. Self-pairs (``parent_a == parent_b``) are
-excluded, and a sorted arm pair is kept only when it has exactly two
-molecules.
+A bispecific is orientation-paired when the library contains both
+``A__x__B`` and ``B__x__A`` as separate molecules. Arms are sorted
+lexicographically: the first arm is A, the second is B, and the A-B
+configuration is the molecule whose ``parent_a`` sorts first. Self-pairs
+(``parent_a == parent_b``) are excluded, and a sorted arm pair is kept
+only when it has exactly two molecules.
 
 That rule yields 21 unordered pairs. A pair is plotted for an assay only
 when both orientations have a median. Tm2 is unresolved in seven of those
-pairs, so that panel has 14 points and the table has 98 rows
-(21 + 21 + 21 + 14 + 21). ``difference`` is B-A minus A-B.
-
-Panel order is AC-SINS, HIC-HPLC norm RT, SE-HPLC percent monomer, Tm2, then
-PR-CHO. Spearman ρ on the repository medians, rounded to the two decimals
-quoted in the note: AC-SINS PBS 0.94, HIC-HPLC norm RT 0.91, PR-CHO 0.82, Tm2
-0.59, SEC percent monomer 0.14.
+pairs, so that panel has 14 points and the table has 98 rows.
+``difference`` is B-A minus A-B.
 
 Example::
 
@@ -44,8 +37,7 @@ from scipy.stats import spearmanr
 from .. import paths, schema
 
 # (panel letter, short key, display name, value_col, condition).
-# Display names are the assay labels in the S16 note. Conditions match the
-# tall assay table, not the workbook's flattened headers.
+# Conditions are the values in the tall assay table.
 ORIENTATION_ASSAYS: tuple[tuple[str, str, str, str, str], ...] = (
     (
         "A",
@@ -198,7 +190,7 @@ def load_orientation_pairs(
 ) -> pd.DataFrame:
     """One row per orientation pair per assay, both medians required.
 
-    Reads the stage-02 component table and the stage-03 per-antibody medians
+    Reads ``bispecific_components.parquet`` and ``gdpa4_per_antibody.parquet``
     when frames are not passed in. A library pair that lacks either
     orientation on an assay is omitted from that assay only.
     """

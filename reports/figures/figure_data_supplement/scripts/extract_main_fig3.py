@@ -46,12 +46,12 @@ def _build_bispecific_with_parents():
         ["antibody_name", "value_col", "condition", "median"]
     ].rename(columns={"median": "observed"})
 
-    n3p = bispecific.merge(
+    paired = bispecific.merge(
         components[["antibody_name", "parent_a", "parent_b"]],
         on="antibody_name",
     )
-    n3p = (
-        n3p.merge(
+    paired = (
+        paired.merge(
             monospecific[["parent", "value_col", "condition", "median"]].rename(
                 columns={"parent": "parent_a", "median": "pa_median"}
             ),
@@ -66,7 +66,7 @@ def _build_bispecific_with_parents():
             how="left",
         )
     )
-    return n3p.dropna(subset=["pa_median", "pb_median"])
+    return paired.dropna(subset=["pa_median", "pb_median"])
 
 
 def main():

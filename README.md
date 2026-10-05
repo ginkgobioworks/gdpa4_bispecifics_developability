@@ -1,13 +1,10 @@
 # GDPa4 bispecific developability figures
 
 This repository contains the analysis required to reproduce the code-backed
-figures and source data for the revised PNAS manuscript. It describes 160
-bispecific antibodies assembled from 65 unique monospecific parents and
-profiled alongside 71 monospecific IgG1s.
-
-The historical campaign labels remain only in immutable raw filenames and
-input parsing. Processed data, code, and figure labels use **bispecific** and
-**monospecific**.
+figures and source data for [Decoding Bispecific Antibody Developability:
+Design Rules and Predictive Models from a 160-Member Library](https://www.biorxiv.org/content/10.64898/2026.06.15.732449v1).
+It describes 160 bispecific antibodies assembled from 65 unique monospecific
+parents and profiled alongside 71 monospecific IgG1s.
 
 ## Setup
 
@@ -37,7 +34,7 @@ uv run python figures/supplementary/figure_s14.py
 ```
 
 Each command writes a final-numbered PNG and its numerical source-data CSVs.
-Generate all supported figures and assemble the PNAS source-data workbook with:
+Generate all supported figures and assemble the source-data workbook with:
 
 ```bash
 make all
@@ -67,21 +64,28 @@ Supplementary figures with in-repository generators:
 - S3, S6, S10, and S12 are external or manually composed and have no analysis
   generator in this checkout.
 
-Final-numbered manuscript images under `reports/figures/main/` and
-`reports/figures/supplementary/` are versioned. Intermediate plots and
-generated source-data files remain ignored.
+Each script writes only its final-numbered image under `reports/figures/main/`
+or `reports/figures/supplementary/`. Generated source-data files remain ignored.
 
-## Preserved inputs
+## Data
 
-- `data/raw/`: immutable assay, design, production, and in-silico inputs.
+The assay tables are in this repository. Open the files below; no separate request is required to review them.
+
+- [Bispecific and monospecific assay measurements](<data/raw/GDPa4_N3_N4_Summary_tall.csv>), one row per replicate
+- [GDPa1 monospecific reference workbook](data/raw/%5BExternal%5D%20AbDev%20peer-review%20246%20IgGs_Master%20data%20file_GDPa1.xlsx), including sequences, tidy assay data, and prior literature values
+- [Bispecific production and purity](data/raw/production/Data_Summary_U594PPMRG0_03032026%20%281%29.xlsx)
+- [Monospecific production](data/raw/production/N4_U126M421G0_AntibodyList_reformatted.xlsx)
+- [In-silico parental features](data/raw/in_silico_gpa1/GDPa1/)
+- [Library design tables](data/raw/bsab_design/)
+
+`make data` reads these files and writes analysis tables under `data/processed/`. Those generated tables are not versioned. Four supervised-model records are committed so the default figure build does not refit models:
+
 - `data/processed/05_modeling/cv_metrics.parquet`
 - `data/processed/05_modeling/cv_metrics_loo.parquet`
 - `data/processed/05_modeling/cv_oof_predictions_loo.parquet`
 - `data/processed/05_modeling/feature_importance_long.parquet`
-- `datapoints_figures/`: the local manuscript plotting-style package.
 
-Intermediate processed tables and exploratory outputs are reproducible and
-are not versioned.
+The same assay release is listed at [Ginkgo Datapoints](https://datapoints.ginkgo.bio/dataset-access).
 
 ## Verification
 
@@ -93,7 +97,10 @@ model records:
 make test
 ```
 
-## Citation and license
+## Citation
 
-Replace this section with the final article citation. Confirm data and code
-redistribution terms before public release.
+Ritter S, Rand L, Karthick S, Bloomingdale T, Smith A, Ao X, Pierre Y,
+Harris B, Moller J, Bhatt A, Bhatt R, Schwartz J, Grippo L, Cohen R,
+Borhani DW, Tessier PM, Arsiwala A (2026). Decoding Bispecific Antibody
+Developability: Design Rules and Predictive Models from a 160-Member
+Library. *bioRxiv*. <https://www.biorxiv.org/content/10.64898/2026.06.15.732449v1>

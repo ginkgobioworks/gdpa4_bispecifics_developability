@@ -5,8 +5,6 @@ space (e.g., log, logit). Transforms are applied via sklearn's
 TransformedTargetRegressor, which wraps the base model and auto-inverts
 predictions so that all metrics are computed on the original measurement
 scale.
-
-Decision D-2026-04-29-TARGET-TRANSFORMS governs the assignments below.
 """
 from __future__ import annotations
 

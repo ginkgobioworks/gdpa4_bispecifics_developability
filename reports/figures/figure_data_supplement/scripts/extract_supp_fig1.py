@@ -29,7 +29,6 @@ def main() -> None:
         how="left",
     )
 
-    # Build display label helper (mirrors notebook logic)
     def _panel_label(vc: str, cond: str) -> str:
         name = schema.VALUE_COL_DISPLAY.get(vc, vc)
         cond_disp = schema.CONDITION_DISPLAY.get(cond, cond)
@@ -42,7 +41,7 @@ def main() -> None:
     for (this_vc, this_cond), gdpa1_col in schema.PROPHET_TO_GDPA1.items():
         ours = monospecific[(monospecific["value_col"] == this_vc) & (monospecific["condition"] == this_cond)][
             ["monospecific_stripped", "median"]
-        ].rename(columns={"median": "this_campaign_median"})
+        ].rename(columns={"median": "study_median"})
 
         theirs = gdpa1[gdpa1["value_col"] == gdpa1_col][
             ["antibody_name", "median"]
@@ -51,7 +50,7 @@ def main() -> None:
         )
 
         merged = ours.merge(theirs, on="monospecific_stripped", how="inner").dropna(
-            subset=["this_campaign_median", "gdpa1_median"]
+            subset=["study_median", "gdpa1_median"]
         )
 
         if len(merged) < 3:
@@ -62,18 +61,18 @@ def main() -> None:
         # Z-score for AC-SINS deltaLmax panels
         if this_vc == "acsins_delta_Lmax":
             for col, zcol in [
-                ("this_campaign_median", "this_campaign_zscore"),
+                ("study_median", "study_zscore"),
                 ("gdpa1_median", "gdpa1_zscore"),
             ]:
                 vals = merged[col]
                 merged[zcol] = (vals - vals.mean()) / vals.std(ddof=0)
         else:
-            merged["this_campaign_zscore"] = np.nan
+            merged["study_zscore"] = np.nan
             merged["gdpa1_zscore"] = np.nan
 
         # Pearson r on raw medians
         r, _ = stats.pearsonr(
-            merged["this_campaign_median"], merged["gdpa1_median"]
+            merged["study_median"], merged["gdpa1_median"]
         )
         n = len(merged)
 
@@ -91,9 +90,9 @@ def main() -> None:
                     "value_col",
                     "condition",
                     "panel_label",
-                    "this_campaign_median",
+                    "study_median",
                     "gdpa1_median",
-                    "this_campaign_zscore",
+                    "study_zscore",
                     "gdpa1_zscore",
                     "pearson_r",
                     "n",

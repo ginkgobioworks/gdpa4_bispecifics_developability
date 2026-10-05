@@ -11,10 +11,9 @@ the figure asks what CrossMab assembly cost the molecules that were made,
 so the table has one row per bispecific (160), not per unique parental pair.
 Tm2 is unresolved in some thermograms, so that column is shorter (125).
 
-The submitted caption quotes two decimal places. Several quartiles land on
-a half-hundredth (ΔTm2's upper quartile is −0.625 °C). ``round_half_away``
-reproduces those quoted figures; Python's default half-to-even rounding
-prints that quartile as −0.62.
+Several quartiles land on a half-hundredth (the ΔTm2 upper quartile is
+−0.625 °C). ``round_half_away`` rounds half away from zero so that value
+prints as −0.63; Python's default half-to-even rounding prints −0.62.
 
 Example::
 
@@ -43,7 +42,7 @@ THERMAL_METRICS: tuple[tuple[str, str, str], ...] = (
     ("tonset", "thermostability_tonset", "Tonset"),
 )
 
-# Left-tail cuts quoted in the S13 caption, in °C.
+# Left-tail cuts used by the figure, in °C.
 TAIL_CUTS_C: tuple[float, ...] = (3.0, 5.0, 7.0)
 
 
@@ -99,7 +98,7 @@ def load_crossmab_deltas(
 ) -> pd.DataFrame:
     """One row per produced bispecific, with all three residuals.
 
-    Reads the stage-02 component table and the stage-03 per-antibody medians
+    Reads ``bispecific_components.parquet`` and ``gdpa4_per_antibody.parquet``
     when frames are not passed in. Parental names are already suffix-stripped
     on the component table; monospecific names lose an ``_IgG1`` suffix here
     before the join.

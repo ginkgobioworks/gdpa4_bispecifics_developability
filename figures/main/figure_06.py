@@ -25,7 +25,6 @@ from prophet_ab.features.naming import display_config, display_label, display_fe
 from prophet_ab.features.transforms import SHORT_LABEL
 from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, FONT_SIZE_LABEL, FONT_SIZE_TICK, FONT_SIZE_TITLE, FONT_SIZE_LEGEND
 from prophet_ab.features.naming import parse_label_name as _parse_label
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -76,11 +75,6 @@ def main():
     for _let, _ax in zip('AB', [_axA, _axC]):
         _pos = _ax.get_position()
         _fig5.text(_pos.x0 - 0.045, _pos.y1 + 0.012, _let, fontsize=16, fontweight='bold', va='bottom', ha='left')
-    _o5 = paths.FIGURES / 'main' / 'figure_5_loo.png'
-    _o5.parent.mkdir(parents=True, exist_ok=True)
-    _fig5.savefig(_o5, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o5.relative_to(paths.REPO_ROOT)}')
-    _fig5
     _OPS = ('mean', 'min', 'max')
     _s03 = pd.read_csv(paths.TABLES / 's03_baseline_metrics.csv')
     _s03 = _s03[_s03['operator'].isin(_OPS) & _s03['value_col'].isin(schema.REPORTED_VALUE_COLS)]
@@ -102,7 +96,6 @@ def main():
         _is_rho = float(_is['spearman_rho'].max()) if len(_is) else np.nan
         _rows.append({'value_col': _vc, 'condition': _cond, 'label': SHORT_LABEL.get((_vc, _cond), display_label(_hit['label'])), 'operator': _op, 'parent_rho': _parent_rho, 'model_rho': _model_rho, 'insilico_rho': _is_rho, 'delta_rho': _model_rho - _parent_rho, 'config': _hit['config'], 'model': _hit['model']})
     bars_v2 = pd.DataFrame(_rows).sort_values('parent_rho', ascending=False).reset_index(drop=True)
-    bars_v2
     _fig5v2 = plt.figure(figsize=(9.5, 9.6))
     _gs5v2 = GridSpec(2, 1, height_ratios=[1.0, 1.25], hspace=0.28, left=0.085, right=0.76, top=0.95, bottom=0.16, figure=_fig5v2)
     _axA2 = _fig5v2.add_subplot(_gs5v2[0, 0])
@@ -134,11 +127,10 @@ def main():
     for _let, _ax in zip('AB', [_axA2, _axB2]):
         _pos = _ax.get_position()
         _fig5v2.text(_pos.x0 - 0.045, _pos.y1 + 0.012, _let, fontsize=16, fontweight='bold', va='bottom', ha='left')
-    _o5v2 = paths.FIGURES / 'main' / 'figure_5_version_2.png'
+    _o5v2 = paths.FIGURES / 'main/figure_06.png'
     _o5v2.parent.mkdir(parents=True, exist_ok=True)
     _fig5v2.savefig(_o5v2, dpi=300, bbox_inches='tight')
     print(f'wrote {_o5v2.relative_to(paths.REPO_ROOT)}')
-    _fig5v2
     _fig5v3 = plt.figure(figsize=(9.5, 9.6))
     _gs5v3 = GridSpec(2, 1, height_ratios=[1.0, 1.25], hspace=0.28, left=0.085, right=0.76, top=0.95, bottom=0.16, figure=_fig5v3)
     _axA3 = _fig5v3.add_subplot(_gs5v3[0, 0])
@@ -171,11 +163,6 @@ def main():
     for _let, _ax in zip('AB', [_axA3, _axB3]):
         _pos = _ax.get_position()
         _fig5v3.text(_pos.x0 - 0.045, _pos.y1 + 0.012, _let, fontsize=16, fontweight='bold', va='bottom', ha='left')
-    _o5v3 = paths.FIGURES / 'main' / 'figure_5_version_3.png'
-    _o5v3.parent.mkdir(parents=True, exist_ok=True)
-    _fig5v3.savefig(_o5v3, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o5v3.relative_to(paths.REPO_ROOT)}')
-    _fig5v3
     _SUBSET_LABELS = ['HIC RT (norm)', 'AC-SINS ΔLmax @ His/NaCl pH 6', 'PR Score @ CHO']
     _TICK_LABELS = {'HIC RT (norm)': 'HIC', 'AC-SINS ΔLmax @ His/NaCl pH 6': 'AC-SINS\nHis/NaCl\npH 6', 'PR Score @ CHO': 'PR-CHO'}
     _fig6 = plt.figure(figsize=(15.0, 5.6))
@@ -247,16 +234,6 @@ def main():
     for _let, _ax in zip('AB', [_axB, _axD]):
         _pos = _ax.get_position()
         _fig6.text(_pos.x0 - 0.05, _pos.y1 + 0.1, _let, fontsize=16, fontweight='bold', va='bottom', ha='left')
-    _o6 = paths.FIGURES / 'main' / 'figure_6_loo.png'
-    _o6.parent.mkdir(parents=True, exist_ok=True)
-    _fig6.savefig(_o6, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o6.relative_to(paths.REPO_ROOT)}')
-    _fig6
-    _src = paths.FIGURES / 'main/figure_5_version_2.png'
-    _dst = paths.FIGURES / 'main/figure_06.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('main_06')
 if __name__ == '__main__':
     main()

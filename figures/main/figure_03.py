@@ -27,7 +27,6 @@ from prophet_ab import normalize as nz
 from prophet_ab.features.transforms import TRANSFORMS, BEST_TRANSFORM, SHORT_LABEL, PRIMARY_METRICS, TIER_DEFS, TIER_COLORS, TIER_LABELS
 from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, equalize_axes, wrap_title, FONT_SIZE_LABEL, FONT_SIZE_TICK, FONT_SIZE_TITLE, FONT_SIZE_LEGEND
 from matplotlib.ticker import MaxNLocator as _MaxNLocator
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -59,7 +58,6 @@ def main():
             _rec[f'{_t}_n'] = _n
         _rows.append(_rec)
     rho_table = pd.DataFrame(_rows)
-    rho_table
     _EXCLUDE = {('sehplc_pct_mono', 'default'), ('thermostability_tonset', 'Tonset')}
     _sections = []
     for _tier_num, _members in TIER_DEFS:
@@ -165,16 +163,10 @@ def main():
         _lab.set_fontweight('semibold')
     fig.text(0.03, 0.99, 'A', fontsize=16, fontweight='bold', color='black', ha='left', va='top')
     fig.text(0.77, _hm_y + _hm_h + 0.03, 'B', fontsize=16, fontweight='bold', color='black', ha='left', va='top')
-    _o = paths.FIGURES / 'main' / 'figure_2_tiers.png'
+    _o = paths.FIGURES / 'main/figure_03.png'
     _o.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(_o, dpi=300, bbox_inches='tight')
     print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig
-    _src = paths.FIGURES / 'main/figure_2_tiers.png'
-    _dst = paths.FIGURES / 'main/figure_03.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('main_03')
 if __name__ == '__main__':
     main()

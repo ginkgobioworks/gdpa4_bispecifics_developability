@@ -11,9 +11,6 @@ Outputs (data/processed/04_features/):
         compositional.OPERATORS to the two parents' values.
         Cols: antibody_name, parent_a, parent_b, source, feature, operator, value
 
-Note: stage 04 also receives `bispecific_compositional_predictions.parquet` from the
-s03 notebook (compositional baseline labels + predictions).
-
 Run: `python -m prophet_ab.pipelines.build_04_features`
 """
 from __future__ import annotations

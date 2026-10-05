@@ -4,7 +4,7 @@ Three builders, each returning a DataFrame indexed by bispecific antibody_name:
 
 - `build_measured_wide` — measured monospecific features applied through every operator
   in `compositional.OPERATORS`. Columns: `meas__{value_col}__{condition}__{op}`.
-- `build_in_silico_wide` — pivots stage-04 in-silico per-bispecific long form.
+- `build_in_silico_wide` — pivots the in-silico per-bispecific long table.
   Columns: `is__{source}__{feature}__{op}`.
 - `build_labels_wide` — per-bispecific measured medians (the prediction targets).
   Columns: `label__{value_col}__{condition}`.

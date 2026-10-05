@@ -1,10 +1,8 @@
-"""Charge-transform horserace for supplementary figure S2.
+"""Charge-transform comparison for supplementary figure S2.
 
-The revised figure classifies each unique parental pair from the AC-SINS
-replicate-noise band alone. The submitted absolute gates (observed ΔLmax
-≥ 17.51 nm for an enhancer, ≤ 5 nm for a suppressor) are retained only as
-``category_gated``, so the published gated horserace can be checked before
-the ungated one is trusted.
+Each unique parental pair is classified from the AC-SINS replicate-noise
+band. Absolute gates (observed ΔLmax ≥ 17.51 nm for an enhancer, ≤ 5 nm
+for a suppressor) are retained as ``category_gated``.
 
 For residual = observed − parental mean and half-width = 5 · σ_noise:
 
@@ -21,10 +19,9 @@ parental pair are averaged before classification.
 
 Each class is a single-predictor logistic regression against the on-parental
 pairs. The predictor is standardized (mean 0, population sd 1) and fit with
-``LogisticRegression(C=1e6)``. The default penalty (``C=1``) does not
-reproduce the revision coefficients. Wald p-values come from the observed
-information matrix of that fit. ΔAIC is within class, so the winner has
-ΔAIC = 0.
+unpenalized ``LogisticRegression(C=1e6)``. Wald p-values come from the
+observed information matrix of that fit. ΔAIC is within class, so the
+winner has ΔAIC = 0.
 
 Example::
 
@@ -63,11 +60,11 @@ TRANSFORM_LABELS = {
     "T4_mono_dipole": "|Sq|/|Dq|\nmono/dipole",
 }
 
-# Submitted absolute gates, used only to reproduce the gated horserace.
+# Absolute gates for category_gated.
 ENHANCER_THRESHOLD = 17.51
 SUPPRESSOR_CEILING = 5.0
 NOISE_MULTIPLIER = 5
-# Effectively unpenalized. sklearn's default C=1 will not match the revision.
+# Unpenalized logistic regression. C=1 changes the coefficients.
 LOGISTIC_C = 1e6
 
 

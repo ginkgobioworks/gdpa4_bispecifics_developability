@@ -25,7 +25,6 @@ from prophet_ab import normalize as nz
 from datapoints_figures import set_manuscript_style, DATAPOINTS_COLORS, equalize_axes, wrap_title, FONT_SIZE_LABEL, FONT_SIZE_TICK, FONT_SIZE_TITLE, FONT_SIZE_LEGEND
 from prophet_ab.features.charge import TRANSFORM_LABELS, TRANSFORM_ORDER, horserace as _horserace
 from mpl_toolkits.axes_grid1 import make_axes_locatable as _make_axes_locatable
-from shutil import copy2
 
 def main():
     set_manuscript_style()
@@ -154,11 +153,6 @@ def main():
         _ax.annotate(_letter, xy=(0, 1), xycoords='axes fraction', xytext=(_dx, 6), textcoords='offset points', fontsize=16, fontweight='bold', ha='left', va='bottom')
     _handles = [Line2D([], [], color=_GRAY, marker='o', linestyle='None', markersize=8, label='Not classified'), Line2D([], [], color=_CORAL, marker='o', linestyle='None', markersize=9, label='Enhancers'), Line2D([], [], color=_GREEN, marker='o', linestyle='None', markersize=9, label='Suppressors')]
     fig.legend(handles=_handles, loc='outside lower center', ncol=3, frameon=False, fontsize=FONT_SIZE_LEGEND, handletextpad=0.4, columnspacing=2.2)
-    _o = paths.FIGURES / 'main' / 'figure_3.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig
     _CORAL = DATAPOINTS_COLORS['coral']
     _GREEN = DATAPOINTS_COLORS['green']
     _GRAY = DATAPOINTS_COLORS['gray']
@@ -247,11 +241,10 @@ def main():
         _let_ax.annotate(_letter, xy=(0, 1), xycoords='axes fraction', xytext=(_dx, 6), textcoords='offset points', fontsize=16, fontweight='bold', ha='left', va='bottom')
     _handles = [Line2D([], [], color=_GRAY, marker='o', linestyle='None', markersize=8, label='Not classified'), Line2D([], [], color=_CORAL, marker='o', linestyle='None', markersize=9, label='Enhancers'), Line2D([], [], color=_GREEN, marker='o', linestyle='None', markersize=9, label='Suppressors')]
     _fig_v2.legend(handles=_handles, loc='lower center', ncol=3, bbox_to_anchor=(0.5, 0.01), frameon=False, fontsize=FONT_SIZE_LEGEND, handletextpad=0.4, columnspacing=1.8)
-    _o_v2 = paths.FIGURES / 'main' / 'figure_3_version_2.png'
+    _o_v2 = paths.FIGURES / 'main/figure_04.png'
     _o_v2.parent.mkdir(parents=True, exist_ok=True)
     _fig_v2.savefig(_o_v2, dpi=300, bbox_inches='tight')
     print(f'wrote {_o_v2.relative_to(paths.REPO_ROOT)}')
-    _fig_v2
     _CORAL = DATAPOINTS_COLORS['coral']
     _GREEN = DATAPOINTS_COLORS['green']
     _GRAY = DATAPOINTS_COLORS['gray']
@@ -317,16 +310,6 @@ def main():
     _violin(_axC_r, _signed_gmean(_ncc['q1'].values, _ncc['q2'].values), _signed_gmean(_resc['q1'].values, _resc['q2'].values), 'Suppressor · charge', '−sgn(q1q2)·√|q1q2|', _GREEN, 'sup')
     for _ax, _letter, _dx in [(_axC_bar, 'A', -62), (_axC_a, 'B', -40), (_axC_r, 'C', -40)]:
         _ax.annotate(_letter, xy=(0, 1), xycoords='axes fraction', xytext=(_dx, 6), textcoords='offset points', fontsize=16, fontweight='bold', ha='left', va='bottom')
-    _o = paths.FIGURES / 'main' / 'figure_4.png'
-    _o.parent.mkdir(parents=True, exist_ok=True)
-    fig_c.savefig(_o, dpi=300, bbox_inches='tight')
-    print(f'wrote {_o.relative_to(paths.REPO_ROOT)}')
-    fig_c
-    _src = paths.FIGURES / 'main/figure_3_version_2.png'
-    _dst = paths.FIGURES / 'main/figure_04.png'
-    _dst.parent.mkdir(parents=True, exist_ok=True)
-    copy2(_src, _dst)
-    print(f'wrote {_dst.relative_to(paths.REPO_ROOT)}')
     emit('main_04')
 if __name__ == '__main__':
     main()
